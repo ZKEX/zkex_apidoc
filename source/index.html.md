@@ -5,4 +5,4 @@ search: false
 
 ---
 
-<script language='javascript'>document.location = '/apidocs/spots/cn/'</script>
+<script language='javascript'>document.location = '/zkex_apidoc/uni/cn/'</script>
