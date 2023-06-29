@@ -609,6 +609,10 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+
+  .highlight + p {
+    margin-top: 20px;
+  }
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
@@ -630,79 +634,4 @@ html, body {
 
 .copy-clipboard:hover {
   opacity: 0.8;
-}
-
-
-
-// ----------------------------------------------------
-// 修改navbar高度之后，要调整 all_nosearch.js 的值 loadToc($('#toc'), '.toc-link', '.toc-list-h2', 60);
-$navbar-height-pc: 44px;
-.bx-nav-siderbar-container{
-  .bx-navbar{
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 20;
-    height: $navbar-height-pc;
-    background: #1f2224;
-    border-bottom: 1px solid black;
-    color: #eee;
-    padding: 0;
-    display: flex;
-    align-items: stretch;
-    .site-logo-wrapper{
-      display: flex;
-      align-items: center;
-      width: 230px;
-      padding: 0 12px;
-      box-sizing: border-box;
-      span{
-        margin-left: 8px;
-        font-weight: bold;
-        font-size: 18px;
-      }
-    }
-    .site-logo{
-      height: 36PX;
-    }
-  }
-  .bx-navbar-item{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 16px;
-    font-size: 16px;
-    color: #666;
-    text-decoration: none;
-    margin-bottom: -1px;
-    border-bottom: 3px solid transparent;
-    &.is-active{
-      color: #eee;
-      border-bottom-color: #0F75D4;
-    }
-  }
-  .toc-wrapper{
-    top: $navbar-height-pc;
-    position: fixed;
-  }
-}
-.bx-content-container{
-  .page-wrapper{
-    margin-top: $navbar-height-pc;
-    // 保证锚点显示位置在navbar之下，不会被navbar遮挡
-    .content>h1[id], .content>h2[id], .content>h3[id], .content>h4[id], .content>h5[id], .content>h6[id]{
-      // margin-top: -$navbar-height-pc;
-      &:after{
-        content: '';
-        display: block;
-      }
-      &:before{
-        content: '';
-        display: block;
-        height: $navbar-height-pc;
-      }
-    }
-  }
 }
