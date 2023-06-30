@@ -545,7 +545,7 @@
 <h2 id='70bdef7e25'>返回参数</h2>
 <p>如果API调用成功，返回200，内容总是JSON，且具有<code>Content-Type: application/json</code>。</p>
 
-<p>如果API调用失败，返回400，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="https://uniapi.876ex.com/v1/market/error">https://uniapi.876ex.com/v1/market/error</a>。</p>
+<p>如果API调用失败，返回code非200，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="https://54.199.66.35:8080/v1/market/error">https://54.199.66.35:8080/v1/market/error</a>。</p>
 
 <p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
