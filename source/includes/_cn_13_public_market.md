@@ -15,17 +15,17 @@ API请求参数：
 ```
 API响应样例：
 ```
-| 字段                      | 说明         |
-|:------------------------|------------|
-| **spotsSymbols**        | 现货交易对信息    |
- | **contractsCurrencies** | 合约结算币种     |
-| **contractsSymbols**    | 合约交易对信息    | 
-| **indexes**             | 价格信息       |
+| 字段                      | 说明      |
+|:------------------------|---------|
+| **spotsSymbols**        | 现货交易对信息 |
+| **contractsCurrencies** | 合约结算币种  |
+| **contractsSymbols**    | 合约交易对信息 | 
+| **indexes**             | 价格信息    |
 | **spotsCurrencies**     | 现货Currency |
-| **riskLimits**          | 合约风险系数信息   |
-| **chains**              | 支持的链信息     |
- | **currencies**          |  currency基础信息|
-|  **tokenMappingList** |  现货和合约与链上Id映射关系|
+| **riskLimits**          | 合约风险系数信息 |
+| **chains**              | 支持的链信息  |
+| **currencies**          |  currency基础信息|
+| **tokenMappingList**    |  现货和合约与链上Id映射关系|
 
 ```json
 {
@@ -323,7 +323,7 @@ API响应样例：
 
 API描述：获取系统定义的全部错误代码。
 
-API路径：GET [/v1/market/errorCodes](https://uniapi.876ex.com/v1/market/errorCodes)
+API路径：GET [/v1/market/errorCodes](http://54.199.66.35:8080/v1/market/errorCodes)
 
 API请求参数：
 
@@ -335,45 +335,13 @@ API响应样例：
 
 ```json
 {
-    // "错误代码常量": {"语言"："错误描述模版..."}
-    "ACCOUNT_NO_ENOUGH_AVAILABLE": {
-        "cn": "{0} 账户缺少足够的余额",
-        "en": "Account error: {{0}} has no enough available"
-    },
-    "ACCOUNT_NO_ENOUGH_BALANCE": {
-        "cn": "余额不足",
-        "en": "Account error: no enough balance"
-    },
-    "ACCOUNT_TRANSFER_FAILED": {
-        "cn": "转账失败",
-        "en": "Account error: transfer failed"
-    },
-    ...
-}
-```
-
-## 返回错误响应
-
-API描述：返回一个错误响应，以便调试客户端错误处理代码。
-
-API路径：GET [/v1/market/error](https://uniapi.876ex.com/v1/market/error)
-
-API请求参数：
-
-- 无
-
-```
-API响应样例：
-```
-
-```json
-{
-    // 标准错误响应:
-    "error": "TEST_API_ERROR",
-    "data": {
-        "0": "Hello"
-    },
-    "message": "Hello, this is a test api message"
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "ACCOUNT_FREEZE_FAILED": "Account error: freeze failed.",
+    "ACCOUNT_NO_ENOUGH_AVAILABLE": "Account error: no enough available.",
+    "ACCOUNT_NO_ENOUGH_BALANCE": "Account error: no enough balance."
+  }
 }
 ```
 
@@ -381,7 +349,7 @@ API响应样例：
 
 API描述：获取当前所有指数的最新值。
 
-API路径：GET [/v1/market/indexes](https://uniapi.876ex.com/v1/market/indexes)
+API路径：GET [/v1/market/indexes](http://54.199.66.35:8080/v1/market/indexes)
 
 API请求参数：
 
@@ -393,29 +361,25 @@ API响应样例：
 
 ```json
 {
-    "results":[
-        {
-            "type":"INDEX",
-            "indexName":"XBTCUSDDAILYRATE",
-            "data":[
-                1546272000000, // 时间戳
-                0.0003 // 价格
-            ]
-        },
-        {
-            "type":"INDEX",
-            "indexName":"XBTCUSDPI",
-            "data":[
-                1546272000000,
-                0.0005
-            ]
-        },
-				... ...
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "BTC_USD_PI": [
+      "1688098860000", // 时间戳
+      "0.000096"  // 价格
+    ],
+    "BTC_MAXBTCUSDPI": [
+      "1546272000000",
+      "0.0005"
     ]
+  }
 }
 ```
 
-某些指数是价格，例如`BBTCUSD`是比特币现货加权指数，某些指数是计算的数值，例如`XBTCUSDPI`是当前比特币对美元溢价率。
+某些指数是价格，
+例如`BCH`是币现货加权指数，某些指数是计算的数值。
+例如`BCH_USD_PI`是当前币对美元溢价率。
+例如`BCH_USD_FAIR`是当前币对合约的标记价格。
 
 ## 获取某个指数的最近历史值(合约)
 
@@ -423,13 +387,13 @@ API描述：获取某个指数的最近历史值。
 
 API路径：GET /v1/market/indexes/:index_name
 
-API示例：GET [/v1/market/indexes/BBTCUSD](https://uniapi.876ex.com/v1/market/indexes/BBTCUSD)
+API示例：GET [/v1/market/indexes/ETH_USD_FAIR](http://54.199.66.35:8080/v1/market/indexes/ETH_USD_FAIR)
 
 API请求参数(Path Param)：
 
-| 参数     | 类型     | 说明                                             |
-| :------- | -------- | :----------------------------------------------- |
-| **index_name** | **path** | **必填**<br>指数名称，注意以`.`开头，例如`BBTCUSD` |
+| 参数     | 类型     | 说明                                            |
+| :------- | -------- |:----------------------------------------------|
+| **index_name** | **path** | **必填**<br>指数名称，例如`ETH_USD_FAIR`  |
 
 API请求参数(Request Param)：
 
@@ -445,14 +409,16 @@ API响应样例：
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "results": [
-        // 按时间从近到远排序: [时间戳, 值]
-        [1564815660000, 10801.32],
-        [1564815600000, 10799.67],
-        [1564815540000, 10794.05],
-        [1564815480000, 10797.47],
-        ...
+      [
+        1688099240000,
+        "564.05311"
+      ]
     ]
+  }
 }
 ```
 
@@ -462,7 +428,7 @@ API描述：获取某个交易对的最近24小时统计价格。接口不区分
 
 API路径：GET /v1/market/ticker/:symbol_name
 
-API示例：GET [/v1/market/ticker/BTC_USDT](https://uniapi.876ex.com/v1/market/ticker/BTC_USDT)
+API示例：GET [/v1/market/ticker/BTC_USDT](http://54.199.66.35:8080/v1/market/ticker/BTC_USDT)
 
 API请求参数(Path Param)：
 
@@ -506,7 +472,7 @@ API描述：获取所有交易对的最近24小时统计价格。接口不区分
 
 API路径：GET /v1/market/all-ticker
 
-API示例：GET [/v1/market/all-ticker](https://uniapi.876ex.com/v1/market/all-ticker)
+API示例：GET [/v1/market/all-ticker](http://54.199.66.35:8080/v1/market/all-ticker)
 
 API请求参数：
 
@@ -545,7 +511,7 @@ API描述：获取所有币币交易对的最近24小时统计价格。
 
 API路径：GET /v1/market/spots/all-ticker
 
-API示例：GET [/v1/market/spots/all-ticker](https://uniapi.876ex.com/v1/market/spots/all-ticker)
+API示例：GET [/v1/market/spots/all-ticker](http://54.199.66.35:8080/v1/market/spots/all-ticker)
 
 API请求参数：
 
@@ -584,7 +550,7 @@ API描述：获取所有合约交易对的最近24小时统计价格。
 
 API路径：GET /v1/market/contracts/all-ticker
 
-API示例：GET [/v1/market/contracts/all-ticker](https://uniapi.876ex.com/v1/market/contracts/all-ticker)
+API示例：GET [/v1/market/contracts/all-ticker](http://54.199.66.35:8080/v1/market/contracts/all-ticker)
 
 API请求参数：
 
@@ -623,7 +589,7 @@ API描述：获取某个交易对的最近OrderBook。
 
 API路径：GET /v1/market/orderBook/:symbol_name
 
-API示例：GET [/v1/market/orderBook/BTC_USDT](https://uniapi.876ex.com/v1/market/orderbook/BTC_USDT)
+API示例：GET [/v1/market/orderBook/BTC_USDT](http://54.199.66.35:8080/v1/market/orderbook/BTC_USDT)
 
 API请求参数(Path Param)：
 
@@ -660,7 +626,7 @@ API描述：获取某个交易对的最近tick信息。接口不区分现货、�
 
 API路径：GET /v1/market/ticks/:symbol_name
 
-API示例：GET [/v1/market/ticks/BTC_USDT](https://uniapi.876ex.com/v1/market/ticks/BTC_USDT?limit=10)
+API示例：GET [/v1/market/ticks/BTC_USDT](http://54.199.66.35:8080/v1/market/ticks/BTC_USDT?limit=10)
 
 API请求参数(Path Param)：
 
@@ -827,7 +793,7 @@ API描述：获取某个交易对的最近Bar数据。接口不区分现货、�
 
 API路径：GET /v1/market/bars/:symbol_name/:type
 
-API示例：GET [/v1/market/bars/BTC_USDT/min](https://uniapi.876ex.com/v1/market/bars/BTC_USDT/min)
+API示例：GET [/v1/market/bars/BTC_USDT/min](http://54.199.66.35:8080/v1/market/bars/BTC_USDT/min)
 
 API请求参数(Path Param)：
 
