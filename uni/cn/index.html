@@ -346,9 +346,6 @@
                     <a href="#03372bcd75" class="toc-h2 toc-link" data-title="获取系统错误代码">获取系统错误代码</a>
                   </li>
                   <li>
-                    <a href="#b57c398896" class="toc-h2 toc-link" data-title="返回错误响应">返回错误响应</a>
-                  </li>
-                  <li>
                     <a href="#ff112f8d6f" class="toc-h2 toc-link" data-title="获取当前系统指数(合约)">获取当前系统指数(合约)</a>
                   </li>
                   <li>
@@ -649,8 +646,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td>现货交易对信息</td>
 </tr>
 <tr>
-<td style="text-align: left"></td>
-<td><strong>contractsCurrencies</strong></td>
+<td style="text-align: left"><strong>contractsCurrencies</strong></td>
+<td>合约结算币种</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>contractsSymbols</strong></td>
@@ -673,8 +670,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td>支持的链信息</td>
 </tr>
 <tr>
-<td style="text-align: left"></td>
-<td><strong>currencies</strong></td>
+<td style="text-align: left"><strong>currencies</strong></td>
+<td>currency基础信息</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>tokenMappingList</strong></td>
@@ -961,7 +958,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h2 id='03372bcd75'>获取系统错误代码</h2>
 <p>API描述：获取系统定义的全部错误代码。</p>
 
-<p>API路径：GET <a href="https://uniapi.876ex.com/v1/market/errorCodes">/v1/market/errorCodes</a></p>
+<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/errorCodes">/v1/market/errorCodes</a></p>
 
 <p>API请求参数：</p>
 
@@ -970,44 +967,18 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="nl">"错误代码常量"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"语言"</span><span class="err">：</span><span class="s2">"错误描述模版..."</span><span class="p">}</span><span class="w">
-    </span><span class="nl">"ACCOUNT_NO_ENOUGH_AVAILABLE"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{0} 账户缺少足够的余额"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: {{0}} has no enough available"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"ACCOUNT_NO_ENOUGH_BALANCE"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"余额不足"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: no enough balance"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"ACCOUNT_TRANSFER_FAILED"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"cn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"转账失败"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"en"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: transfer failed"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="err">...</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='b57c398896'>返回错误响应</h2>
-<p>API描述：返回一个错误响应，以便调试客户端错误处理代码。</p>
-
-<p>API路径：GET <a href="https://uniapi.876ex.com/v1/market/error">/v1/market/error</a></p>
-
-<p>API请求参数：</p>
-
-<ul>
-<li>无</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">标准错误响应:</span><span class="w">
-    </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TEST_API_ERROR"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"0"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello, this is a test api message"</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ACCOUNT_FREEZE_FAILED"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: freeze failed."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ACCOUNT_NO_ENOUGH_AVAILABLE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: no enough available."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ACCOUNT_NO_ENOUGH_BALANCE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account error: no enough balance."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='ff112f8d6f'>获取当前系统指数(合约)</h2>
 <p>API描述：获取当前所有指数的最新值。</p>
 
-<p>API路径：GET <a href="https://uniapi.876ex.com/v1/market/indexes">/v1/market/indexes</a></p>
+<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/indexes">/v1/market/indexes</a></p>
 
 <p>API请求参数：</p>
 
@@ -1016,34 +987,30 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"INDEX"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"indexName"</span><span class="p">:</span><span class="s2">"XBTCUSDDAILYRATE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="mi">1546272000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
-                </span><span class="mf">0.0003</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">价格</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"INDEX"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"indexName"</span><span class="p">:</span><span class="s2">"XBTCUSDPI"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="mi">1546272000000</span><span class="p">,</span><span class="w">
-                </span><span class="mf">0.0005</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-                </span><span class="err">...</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"BTC_USD_PI"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"1688098860000"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
+      </span><span class="s2">"0.000096"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">价格</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"BTC_MAXBTCUSDPI"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"1546272000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"0.0005"</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>某些指数是价格，例如<code>BBTCUSD</code>是比特币现货加权指数，某些指数是计算的数值，例如<code>XBTCUSDPI</code>是当前比特币对美元溢价率。</p>
+<p>某些指数是价格，
+例如<code>BCH</code>是币现货加权指数，某些指数是计算的数值。
+例如<code>BCH_USD_PI</code>是当前币对美元溢价率。
+例如<code>BCH_USD_FAIR</code>是当前币对合约的标记价格。</p>
 <h2 id='6a306ebffa'>获取某个指数的最近历史值(合约)</h2>
 <p>API描述：获取某个指数的最近历史值。</p>
 
 <p>API路径：GET /v1/market/indexes/:index_name</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/indexes/BBTCUSD">/v1/market/indexes/BBTCUSD</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/indexes/ETH_USD_FAIR">/v1/market/indexes/ETH_USD_FAIR</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1057,7 +1024,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>index_name</strong></td>
 <td><strong>path</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>指数名称，注意以<code>.</code>开头，例如<code>BBTCUSD</code></td>
+<td style="text-align: left"><strong>必填</strong><br>指数名称，例如<code>ETH_USD_FAIR</code></td>
 </tr>
 </tbody></table>
 
@@ -1088,21 +1055,23 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="err">//</span><span class="w"> </span><span class="err">按时间从近到远排序:</span><span class="w"> </span><span class="p">[</span><span class="err">时间戳</span><span class="p">,</span><span class="w"> </span><span class="err">值</span><span class="p">]</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815660000</span><span class="p">,</span><span class="w"> </span><span class="mf">10801.32</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815600000</span><span class="p">,</span><span class="w"> </span><span class="mf">10799.67</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815540000</span><span class="p">,</span><span class="w"> </span><span class="mf">10794.05</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1564815480000</span><span class="p">,</span><span class="w"> </span><span class="mf">10797.47</span><span class="p">],</span><span class="w">
-        </span><span class="err">...</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mi">1688099240000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"564.05311"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='24'>获取24小时统计价格</h2>
 <p>API描述：获取某个交易对的最近24小时统计价格。接口不区分现货、合约。</p>
 
 <p>API路径：GET /v1/market/ticker/:symbol_name</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/ticker/BTC_USDT">/v1/market/ticker/BTC_USDT</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticker/BTC_USDT">/v1/market/ticker/BTC_USDT</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1148,7 +1117,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/all-ticker</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/all-ticker">/v1/market/all-ticker</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/all-ticker">/v1/market/all-ticker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1179,7 +1148,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/spots/all-ticker</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/spots/all-ticker">/v1/market/spots/all-ticker</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/spots/all-ticker">/v1/market/spots/all-ticker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1210,7 +1179,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/contracts/all-ticker</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/contracts/all-ticker">/v1/market/contracts/all-ticker</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/contracts/all-ticker">/v1/market/contracts/all-ticker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1241,7 +1210,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/orderBook/:symbol_name</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/orderbook/BTC_USDT">/v1/market/orderBook/BTC_USDT</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/orderbook/BTC_USDT">/v1/market/orderBook/BTC_USDT</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1280,7 +1249,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/ticks/:symbol_name</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/ticks/BTC_USDT?limit=10">/v1/market/ticks/BTC_USDT</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticks/BTC_USDT?limit=10">/v1/market/ticks/BTC_USDT</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1471,7 +1440,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/bars/:symbol_name/:type</p>
 
-<p>API示例：GET <a href="https://uniapi.876ex.com/v1/market/bars/BTC_USDT/min">/v1/market/bars/BTC_USDT/min</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/bars/BTC_USDT/min">/v1/market/bars/BTC_USDT/min</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
