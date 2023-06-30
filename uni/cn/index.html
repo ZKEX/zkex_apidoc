@@ -529,17 +529,17 @@
         <h1 id='46ae2946a2'>基础介绍</h1>
 <p>API使用HTTPS。</p>
 
-<p>针对终端用户的API域名是<code>uniapi.876ex.com</code>。</p>
+<p>针对终端用户的API域名是<code>http://54.199.66.35:8080</code>。</p>
 
 <p>API调用方式：</p>
 
 <ul>
 <li>请求方式：总是GET或POST；</li>
-<li>请求路径：总是以<code>/v1/</code>开头，例如<code>/v1/market/ticks</code>；</li>
+<li>请求路径：总是以<code>/v1/</code>开头，例如<code>/v1/market/trades</code>；</li>
 </ul>
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
-<li>GET请求以URL参数传入，例如：<a href="https://uniapi.876ex.com/v1/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590">https://uniapi.876ex.com/v1/market/bars/BTC_USDT/MIN?start=1594697861590&amp;end=1594797861590</a></li>
+<li>GET请求以URL参数传入，例如：<a href="http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&amp;end=1">http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&amp;end=1</a>。</li>
 <li>POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json</li>
 </ul>
 <h2 id='70bdef7e25'>返回参数</h2>
