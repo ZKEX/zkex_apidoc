@@ -18,7 +18,7 @@ API调用方式：
 
 如果API调用成功，返回200，内容总是JSON，且具有`Content-Type: application/json`。
 
-如果API调用失败，返回400，内容总是JSON，且具有`Content-Type: application/json`，格式为固定的Error，请参考[https://uniapi.876ex.com/v1/market/error](https://uniapi.876ex.com/v1/market/error)。
+如果API调用失败，返回code非200，内容总是JSON，且具有`Content-Type: application/json`，格式为固定的Error，请参考[https://54.199.66.35:8080/v1/market/error](https://54.199.66.35:8080/v1/market/error)。
 
 如果API超过了业务频率限制，返回429，无内容，可根据返回头`X-RateLimit-Biz-Limit`、"`X-RateLimit-Biz-Burst`和`X-RateLimit-Biz-Remaining`获取限频次数。
 
