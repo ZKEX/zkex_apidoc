@@ -11,7 +11,7 @@ API调用方式：
 
 ## 请求参数
 
-- GET请求以URL参数传入，例如：http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&end=1
+- GET请求以URL参数传入，例如：[http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&end=1](http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&end=1)。
 - POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json
 
 ## 返回参数
