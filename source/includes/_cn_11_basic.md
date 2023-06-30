@@ -2,16 +2,16 @@
 
 API使用HTTPS。
 
-针对终端用户的API域名是`uniapi.876ex.com`。
+针对终端用户的API域名是`http://54.199.66.35:8080`。
 
 API调用方式：
 
 - 请求方式：总是GET或POST；
-- 请求路径：总是以`/v1/`开头，例如`/v1/market/ticks`；
+- 请求路径：总是以`/v1/`开头，例如`/v1/market/trades`；
 
 ## 请求参数
 
-- GET请求以URL参数传入，例如：[https://uniapi.876ex.com/v1/market/bars/BTC_USDT/MIN?start=1594697861590&end=1594797861590](https://uniapi.876ex.com/v1/market/bars/BTC_USDT/MIN?start=1594697861590&end=1594797861590)
+- GET请求以URL参数传入，例如：http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&end=1
 - POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json
 
 ## 返回参数
