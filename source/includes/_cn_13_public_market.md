@@ -6,7 +6,7 @@
 
 API描述：获取交易所当前所有交易。
 
-API路径：GET [/v1/market//trades](http://54.199.66.35:8080/v1/market/trades)
+API路径：GET [/v1/market/trades](http://54.199.66.35:8080/v1/market/trades)
 
 API请求参数：
 
@@ -15,6 +15,17 @@ API请求参数：
 ```
 API响应样例：
 ```
+| 字段                      | 说明         |
+|:------------------------|------------|
+| **spotsSymbols**        | 现货交易对信息    |
+ | **contractsCurrencies** | 合约结算币种     |
+| **contractsSymbols**    | 合约交易对信息    | 
+| **indexes**             | 价格信息       |
+| **spotsCurrencies**     | 现货Currency |
+| **riskLimits**          | 合约风险系数信息   |
+| **chains**              | 支持的链信息     |
+ | **currencies**          |  currency基础信息|
+|  **tokenMappingList** |  现货和合约与链上Id映射关系|
 
 ```json
 {
@@ -36,91 +47,6 @@ API响应样例：
         "quoteName": "USDT",
         "quoteMinimumIncrement": 0.5,
         "quoteScale": 1,
-        "supportMarginTrade": true,
-        "alwaysChargeQuote": false
-      },
-      {
-        "id": 101103,
-        "name": "ETH_USDT",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "SPOTS",
-        "baseName": "ETH",
-        "baseMinimumIncrement": 0.01,
-        "baseScale": 2,
-        "baseMinimumQuantity": 0.01,
-        "baseMaximumQuantity": 10000.0,
-        "quoteName": "USDT",
-        "quoteMinimumIncrement": 0.2,
-        "quoteScale": 1,
-        "supportMarginTrade": true,
-        "alwaysChargeQuote": false
-      },
-      {
-        "id": 102103,
-        "name": "BCH_USDT",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "SPOTS",
-        "baseName": "BCH",
-        "baseMinimumIncrement": 0.01,
-        "baseScale": 2,
-        "baseMinimumQuantity": 0.01,
-        "baseMaximumQuantity": 10000.0,
-        "quoteName": "USDT",
-        "quoteMinimumIncrement": 0.1,
-        "quoteScale": 1,
-        "supportMarginTrade": true,
-        "alwaysChargeQuote": false
-      },
-      {
-        "id": 104101,
-        "name": "ARM_ETH",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "SPOTS",
-        "baseName": "ARM",
-        "baseMinimumIncrement": 0.01,
-        "baseScale": 2,
-        "baseMinimumQuantity": 0.01,
-        "baseMaximumQuantity": 10000.0,
-        "quoteName": "ETH",
-        "quoteMinimumIncrement": 0.01,
-        "quoteScale": 2,
-        "supportMarginTrade": false,
-        "alwaysChargeQuote": false
-      },
-      {
-        "id": 101100,
-        "name": "ETH_BTC",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "SPOTS",
-        "baseName": "ETH",
-        "baseMinimumIncrement": 0.01,
-        "baseScale": 2,
-        "baseMinimumQuantity": 0.01,
-        "baseMaximumQuantity": 10000.0,
-        "quoteName": "BTC",
-        "quoteMinimumIncrement": 0.01,
-        "quoteScale": 2,
-        "supportMarginTrade": false,
-        "alwaysChargeQuote": false
-      },
-      {
-        "id": 104103,
-        "name": "ARM_USDT",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "SPOTS",
-        "baseName": "ARM",
-        "baseMinimumIncrement": 0.01,
-        "baseScale": 2,
-        "baseMinimumQuantity": 0.01,
-        "baseMaximumQuantity": 10000.0,
-        "quoteName": "USDT",
-        "quoteMinimumIncrement": 0.01,
-        "quoteScale": 2,
         "supportMarginTrade": true,
         "alwaysChargeQuote": false
       }
@@ -167,90 +93,11 @@ API响应样例：
           "FUNDING_RATE_AGGREGATE": 10142,
           "LENDING_RATE_1D": 10136
         }
-      },
-      {
-        "id": 132,
-        "name": "XBTC",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "CONTRACTS",
-        "type": "PERPETUAL",
-        "baseCurrency": "BTC",
-        "marginCurrency": "USDT",
-        "quoteCurrency": "USDT",
-        "multiplier": 0.1,
-        "quoteMinimumIncrement": 0.5,
-        "quoteScale": 1,
-        "baseScale": 0,
-        "baseMinimumIncrement": 1,
-        "maximumQuantityPerOrder": 100,
-        "riskLimit": {
-          "id": 105,
-          "initialMarginRate": 0.01,
-          "maintenanceMarginRate": 0.005,
-          "marginRateStep": 0.005,
-          "maxLeverage": 10,
-          "riskLimitBase": 200,
-          "riskLimitStep": 100,
-          "maxRiskLimitSteps": 9,
-          "createdAt": 1546956010600
-        },
-        "settlementFeeRate": 0.0,
-        "referencedIndexes": {
-          "SPOT": 10122,
-          "FAIR": 10125,
-          "PREMIUM_1M": 10126,
-          "PREMIUM_AGGREGATE": 10127,
-          "MAX_PREMIUM_RATE": 10124,
-          "FUNDING_RATE_1M": 10128,
-          "FUNDING_RATE_AGGREGATE": 10129,
-          "LENDING_RATE_1D": 10123
-        }
-      },
-      {
-        "id": 119,
-        "name": "XBCH",
-        "startTime": 1680278400000,
-        "endTime": 5995814400000,
-        "trade": "CONTRACTS",
-        "type": "PERPETUAL",
-        "baseCurrency": "BCH",
-        "marginCurrency": "USDT",
-        "quoteCurrency": "USDT",
-        "multiplier": 0.1,
-        "quoteMinimumIncrement": 0.5,
-        "quoteScale": 1,
-        "baseScale": 0,
-        "baseMinimumIncrement": 1,
-        "maximumQuantityPerOrder": 100,
-        "riskLimit": {
-          "id": 106,
-          "initialMarginRate": 0.02,
-          "maintenanceMarginRate": 0.01,
-          "marginRateStep": 0.01,
-          "maxLeverage": 5,
-          "riskLimitBase": 200,
-          "riskLimitStep": 100,
-          "maxRiskLimitSteps": 9,
-          "createdAt": 1546956031080
-        },
-        "settlementFeeRate": 0.0,
-        "referencedIndexes": {
-          "SPOT": 10109,
-          "FAIR": 10112,
-          "PREMIUM_1M": 10113,
-          "PREMIUM_AGGREGATE": 10114,
-          "MAX_PREMIUM_RATE": 10111,
-          "FUNDING_RATE_1M": 10115,
-          "FUNDING_RATE_AGGREGATE": 10116,
-          "LENDING_RATE_1D": 10110
-        }
-      }
-    ],
+      }],                                                                                                                                                                                                                           ],
     "indexes": [
       {
         "id": 10109,
-        "name": "BCH",
+        "name": "BCH",  // 指数价格
         "startTime": 0,
         "endTime": 5995814400000,
         "scale": 2
@@ -271,7 +118,7 @@ API响应样例：
       },
       {
         "id": 10112,
-        "name": "BCH_USD_FAIR",
+        "name": "BCH_USD_FAIR", // 标记价格
         "startTime": 0,
         "endTime": 5995814400000,
         "scale": 6
@@ -317,146 +164,6 @@ API响应样例：
         "startTime": 0,
         "endTime": 5995814400000,
         "scale": 6
-      },
-      {
-        "id": 10122,
-        "name": "BTC",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 2
-      },
-      {
-        "id": 10123,
-        "name": "BTC_DAILYRATE",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10124,
-        "name": "BTC_MAXBTCUSDPI",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10125,
-        "name": "BTC_USD_FAIR",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10126,
-        "name": "BTC_USD_PI",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10127,
-        "name": "BTC_USD_PI8H",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10128,
-        "name": "BTC_FR",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10129,
-        "name": "BTC_FR8H",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10130,
-        "name": "BTC_INS1H",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10131,
-        "name": "BTC_INS1D",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10135,
-        "name": "ETH",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 2
-      },
-      {
-        "id": 10136,
-        "name": "ETH_DAILYRATE",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10137,
-        "name": "ETH_MAXETHUSDPI",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10138,
-        "name": "ETH_USD_FAIR",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10139,
-        "name": "ETH_USD_PI",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10140,
-        "name": "ETH_USD_PI8H",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10141,
-        "name": "ETH_FR",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10142,
-        "name": "ETH_FR8H",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10143,
-        "name": "ETH_INS1H",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
-      },
-      {
-        "id": 10144,
-        "name": "ETH_INS1D",
-        "startTime": 0,
-        "endTime": 5995814400000,
-        "scale": 6
       }
     ],
     "spotsCurrencies": [
@@ -477,28 +184,6 @@ API响应样例：
         "riskLimitStep": 100,
         "maxRiskLimitSteps": 9,
         "createdAt": 1546956010600
-      },
-      {
-        "id": 106,
-        "initialMarginRate": 0.02,
-        "maintenanceMarginRate": 0.01,
-        "marginRateStep": 0.01,
-        "maxLeverage": 5,
-        "riskLimitBase": 200,
-        "riskLimitStep": 100,
-        "maxRiskLimitSteps": 9,
-        "createdAt": 1546956031080
-      },
-      {
-        "id": 107,
-        "initialMarginRate": 0.015,
-        "maintenanceMarginRate": 0.01,
-        "marginRateStep": 0.005,
-        "maxLeverage": 10,
-        "riskLimitBase": 100,
-        "riskLimitStep": 50,
-        "maxRiskLimitSteps": 9,
-        "createdAt": 1686047861717
       }
     ],
     "chains": {
@@ -523,166 +208,6 @@ API响应样例：
           "isSupport": true,
           "updateTime": 1684493403857
         }
-      ],
-      "146": [
-        {
-          "id": 31,
-          "chainTokenId": 146,
-          "chainId": 2,
-          "address": "0x145407c16831512459f6d4a672e16b4dcfb3fc40",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1686968221632
-        }
-      ],
-      "36": [
-        {
-          "id": 23,
-          "chainTokenId": 36,
-          "chainId": 7,
-          "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-          "decimals": 18,
-          "fastWithdraw": false,
-          "isSupport": true,
-          "updateTime": 1684493402887
-        },
-        {
-          "id": 24,
-          "chainTokenId": 36,
-          "chainId": 4,
-          "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-          "decimals": 18,
-          "fastWithdraw": false,
-          "isSupport": true,
-          "updateTime": 1684493403079
-        },
-        {
-          "id": 25,
-          "chainTokenId": 36,
-          "chainId": 6,
-          "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-          "decimals": 18,
-          "fastWithdraw": false,
-          "isSupport": true,
-          "updateTime": 1684493403284
-        },
-        {
-          "id": 26,
-          "chainTokenId": 36,
-          "chainId": 5,
-          "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-          "decimals": 18,
-          "fastWithdraw": false,
-          "isSupport": true,
-          "updateTime": 1684493403466
-        },
-        {
-          "id": 30,
-          "chainTokenId": 36,
-          "chainId": 9,
-          "address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-          "decimals": 18,
-          "fastWithdraw": false,
-          "isSupport": true,
-          "updateTime": 1686910890166
-        }
-      ],
-      "150": [
-        {
-          "id": 17,
-          "chainTokenId": 150,
-          "chainId": 3,
-          "address": "0x5f9969e07339553969f01d9d23f7abb877c25baf",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493401578
-        },
-        {
-          "id": 18,
-          "chainTokenId": 150,
-          "chainId": 4,
-          "address": "0x4647a67c08ffa70ac1051fee36a1a16a1690b90a",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493401785
-        },
-        {
-          "id": 19,
-          "chainTokenId": 150,
-          "chainId": 1,
-          "address": "0x91e5d0c39e3f2de1d8cbbecca3604f6704fb3494",
-          "decimals": 6,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493402004
-        },
-        {
-          "id": 20,
-          "chainTokenId": 150,
-          "chainId": 7,
-          "address": "0x18cd805e441c906d13d339842bb95c321b352a7d",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493402188
-        },
-        {
-          "id": 21,
-          "chainTokenId": 150,
-          "chainId": 2,
-          "address": "0x2b1d07f867b220fcc818e9d7ff4fcb08e63b2ae5",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493402382
-        },
-        {
-          "id": 22,
-          "chainTokenId": 150,
-          "chainId": 6,
-          "address": "0xd4e2b83d2696ed0e05818db08f95416aac8d7e2f",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493402593
-        }
-      ],
-      "140": [
-        {
-          "id": 15,
-          "chainTokenId": 140,
-          "chainId": 1,
-          "address": "0x0fc3283a6d40550185a4d8cbd00030194475bbc4",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493401196
-        },
-        {
-          "id": 16,
-          "chainTokenId": 140,
-          "chainId": 2,
-          "address": "0xc6df93a49198bb902abc0231955ec77ae0cc34aa",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1684493401388
-        }
-      ],
-      "143": [
-        {
-          "id": 29,
-          "chainTokenId": 143,
-          "chainId": 2,
-          "address": "0x2796baed33862664c08b8ee5fa2d1283c79593b1",
-          "decimals": 18,
-          "fastWithdraw": true,
-          "isSupport": true,
-          "updateTime": 1686211574668
-        }
       ]
     },
     "tokenMappingList": [
@@ -695,67 +220,11 @@ API响应样例：
         "tokenType": 0
       },
       {
-        "id": 2,
-        "tokenId": 103,
-        "tokenName": "USDT",
-        "mappingTokenId": 0,
-        "tokenIconUrl": "https://static.zk.link/token/icons/default/usdt.svg",
-        "tokenType": 0
-      },
-      {
         "id": 3,
         "tokenId": 132,
         "tokenName": "XBTC",
         "mappingTokenId": 0,
         "tokenIconUrl": "https://static.zk.link/token/icons/default/btc.svg",
-        "tokenType": 1
-      },
-      {
-        "id": 4,
-        "tokenId": 101,
-        "tokenName": "ETH",
-        "mappingTokenId": 2,
-        "tokenIconUrl": "https://static.zk.link/token/icons/default/eth.svg",
-        "tokenType": 0
-      },
-      {
-        "id": 8,
-        "tokenId": 145,
-        "tokenName": "XETH",
-        "mappingTokenId": 1,
-        "tokenIconUrl": "https://static.zk.link/token/icons/default/eth.svg",
-        "tokenType": 1
-      },
-      {
-        "id": 14,
-        "tokenId": 102,
-        "tokenName": "BCH",
-        "mappingTokenId": 3,
-        "tokenIconUrl": "",
-        "tokenType": 0
-      },
-      {
-        "id": 15,
-        "tokenId": 119,
-        "tokenName": "XBCH",
-        "mappingTokenId": 3,
-        "tokenIconUrl": "",
-        "tokenType": 1
-      },
-      {
-        "id": 16,
-        "tokenId": 104,
-        "tokenName": "ARM",
-        "mappingTokenId": 4,
-        "tokenIconUrl": "",
-        "tokenType": 0
-      },
-      {
-        "id": 17,
-        "tokenId": 146,
-        "tokenName": "XARM",
-        "mappingTokenId": 4,
-        "tokenIconUrl": "",
         "tokenType": 1
       }
     ],
@@ -767,38 +236,6 @@ API响应样例：
         "conversionRatio": 1,
         "createdAt": 0,
         "displayName": "Bitcoin"
-      },
-      {
-        "id": 101,
-        "name": "ETH",
-        "main": false,
-        "conversionRatio": 0.9,
-        "createdAt": 0,
-        "displayName": "Ethereum"
-      },
-      {
-        "id": 102,
-        "name": "BCH",
-        "main": false,
-        "conversionRatio": 0.8,
-        "createdAt": 0,
-        "displayName": "Bitcoin Cash"
-      },
-      {
-        "id": 103,
-        "name": "USDT",
-        "main": true,
-        "conversionRatio": 1,
-        "createdAt": 0,
-        "displayName": "USD Tether"
-      },
-      {
-        "id": 104,
-        "name": "ARM",
-        "main": false,
-        "conversionRatio": 0,
-        "createdAt": 0,
-        "displayName": "Arweave"
       }
     ]
   }
@@ -809,7 +246,7 @@ API响应样例：
 
 API描述：获取服务器当前时间，以毫秒为单位。
 
-API路径：GET [/v1/market/timestamp](https://uniapi.876ex.com/v1/market/timestamp)
+API路径：GET [/v1/market/timestamp](http://54.199.66.35:8080/v1/market/timestamp)
 
 API请求参数：
 
@@ -821,8 +258,11 @@ API响应样例：
 
 ```json
 {
-    // 系统当前时间，以毫秒为单位:
-    "timestamp": 1563326294936
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "timestamp": 1688098283693
+  }
 }
 ```
 
@@ -830,7 +270,7 @@ API响应样例：
 
 API描述：获取当前市场汇率。
 
-API路径：GET [/v1/market/fex](https://uniapi.876ex.com/v1/market/fex)
+API路径：GET [/v1/market/fex](http://54.199.66.35:8080/v1/market/fex)
 
 API请求参数：
 
@@ -842,36 +282,40 @@ API响应样例：
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     // 基准汇率:
     "from": "USD",
     // 转换汇率:
     "tos": [
-        "AUD",
-        "CAD",
-        "CNY",
-        "EUR",
-        "GBP",
-        "HKD",
-        "JPY",
-        "KRW",
-        "RUB",
-        "SGD",
-        "TWD"
+      "AUD",
+      "CAD",
+      "CNY",
+      "EUR",
+      "GBP",
+      "HKD",
+      "JPY",
+      "KRW",
+      "RUB",
+      "SGD",
+      "TWD"
     ],
     // 当前汇率:
     "exchanges": {
-        "USD_GBP":0.78886,
-        "USD_CAD":1.35191,
-        "USD_JPY":107.206,
-        "USD_HKD":7.75152,
-        "USD_TWD":29.423,
-        "USD_EUR":0.8726,
-        "USD_RUB":71.3516,
-        "USD_KRW":1197.88,
-        "USD_SGD":1.38853,
-        "USD_AUD":1.42376,
-        "USD_CNY":6.9836
+      "USD_GBP": 0.79251,
+      "USD_CAD": 1.32423,
+      "USD_JPY": 144.76,
+      "USD_HKD": 7.83533,
+      "USD_TWD": 31.104,
+      "USD_EUR": 0.9193,
+      "USD_RUB": 87.2942,
+      "USD_KRW": 1319.57,
+      "USD_SGD": 1.35535,
+      "USD_AUD": 1.5077,
+      "USD_CNY": 7.2543
     }
+  }
 }
 ```
 
