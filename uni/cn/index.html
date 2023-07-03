@@ -352,16 +352,16 @@
                     <a href="#6a306ebffa" class="toc-h2 toc-link" data-title="获取某个指数的最近历史值(合约)">获取某个指数的最近历史值(合约)</a>
                   </li>
                   <li>
-                    <a href="#24-todo" class="toc-h2 toc-link" data-title="获取24小时统计价格（todo）">获取24小时统计价格（todo）</a>
+                    <a href="#24" class="toc-h2 toc-link" data-title="获取24小时统计价格">获取24小时统计价格</a>
                   </li>
                   <li>
-                    <a href="#todo" class="toc-h2 toc-link" data-title="获取所有统计价格（todo）">获取所有统计价格（todo）</a>
+                    <a href="#28a0acbc2b" class="toc-h2 toc-link" data-title="获取所有统计价格">获取所有统计价格</a>
                   </li>
                   <li>
-                    <a href="#todo-2" class="toc-h2 toc-link" data-title="获取所有币币交易对统计价格(todo)">获取所有币币交易对统计价格(todo)</a>
+                    <a href="#51df0d5c04" class="toc-h2 toc-link" data-title="获取所有币币交易对统计价格">获取所有币币交易对统计价格</a>
                   </li>
                   <li>
-                    <a href="#todo-3" class="toc-h2 toc-link" data-title="获取所有合约交易对统计价格(todo)">获取所有合约交易对统计价格(todo)</a>
+                    <a href="#777ab8d891" class="toc-h2 toc-link" data-title="获取所有合约交易对统计价格">获取所有合约交易对统计价格</a>
                   </li>
                   <li>
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="获取OrderBook">获取OrderBook</a>
@@ -1066,10 +1066,10 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='24-todo'>获取24小时统计价格（todo）</h2>
+</span></code></pre></div><h2 id='24'>获取24小时统计价格</h2>
 <p>API描述：获取某个交易对的最近24小时统计价格。接口不区分现货、合约。</p>
 
-<p>API路径：GET /v1/market/ticker/:symbol_name</p>
+<p>API路径：GET /v1/market/ticker/:symbolName</p>
 
 <p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticker/BTC_USDT">/v1/market/ticker/BTC_USDT</a></p>
 
@@ -1083,26 +1083,26 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tr>
 </thead><tbody>
 <tr>
-<td style="text-align: left"><strong>symbol_name</strong></td>
+<td style="text-align: left"><strong>symbolName</strong></td>
 <td><strong>path</strong></td>
 <td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-        </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-        </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-        </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-        </span><span class="mf">10905.1</span><span class="p">,</span><span class="w">
-        </span><span class="mi">24</span><span class="w">
-        </span><span class="mf">2142.3818</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194721"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988438053</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688281000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
@@ -1112,12 +1112,12 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p><code>[timestamp, open, high, low, close, amount, volume]</code></p>
 
 <p><code>[时间戳，开盘价，最高价，最低价，收盘价，成交量, 成交额]</code></p>
-<h2 id='todo'>获取所有统计价格（todo）</h2>
+<h2 id='28a0acbc2b'>获取所有统计价格</h2>
 <p>API描述：获取所有交易对的最近24小时统计价格。接口不区分现货、合约。</p>
 
-<p>API路径：GET /v1/market/all-ticker</p>
+<p>API路径：GET /v1/market/allTicker</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/all-ticker">/v1/market/all-ticker</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/allTicker">/v1/market/allTicker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1126,29 +1126,44 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-                </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">10895.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2142.2028</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194709"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988427765</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688278080000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"XBCH"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688278080000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ETH_USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688278080000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='todo-2'>获取所有币币交易对统计价格(todo)</h2>
+</span></code></pre></div><h2 id='51df0d5c04'>获取所有币币交易对统计价格</h2>
 <p>API描述：获取所有币币交易对的最近24小时统计价格。</p>
 
-<p>API路径：GET /v1/market/spots/all-ticker</p>
+<p>API路径：GET /v1/market/spots/allTicker</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/spots/all-ticker">/v1/market/spots/all-ticker</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/spots/allTicker">/v1/market/spots/allTicker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1157,29 +1172,36 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-                </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">10895.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2142.2028</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194709"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988427765</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ARM_USDT"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ETH_USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688284240000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"BCH_USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688284240000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">115.5</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='todo-3'>获取所有合约交易对统计价格(todo)</h2>
+</span></code></pre></div><h2 id='777ab8d891'>获取所有合约交易对统计价格</h2>
 <p>API描述：获取所有合约交易对的最近24小时统计价格。</p>
 
-<p>API路径：GET /v1/market/contracts/all-ticker</p>
+<p>API路径：GET /v1/market/contracts/allTicker</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/contracts/all-ticker">/v1/market/contracts/all-ticker</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/contracts/allTicker">/v1/market/contracts/allTicker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1188,22 +1210,19 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICKER"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="mi">1595988420000</span><span class="p">,</span><span class="w">
-                </span><span class="mi">11171</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11212.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">9953.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">10895.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2142.2028</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1194709"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595988427765</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688278390000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.0</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='orderbook'>获取OrderBook</h2>
 <p>API描述：获取某个交易对的最近OrderBook。</p>
