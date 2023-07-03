@@ -422,19 +422,19 @@ API响应样例：
 }
 ```
 
-## 获取24小时统计价格（todo）
+## 获取24小时统计价格
 
 API描述：获取某个交易对的最近24小时统计价格。接口不区分现货、合约。
 
-API路径：GET /v1/market/ticker/:symbol_name
+API路径：GET /v1/market/ticker/:symbolName
 
 API示例：GET [/v1/market/ticker/BTC_USDT](http://54.199.66.35:8080/v1/market/ticker/BTC_USDT)
 
 API请求参数(Path Param)：
 
-| 参数       | 类型     | 说明                                  |
-| :--------- | -------- | :------------------------------------ |
-| **symbol_name** | **path** | **必填**<br>交易对名称,例如`BTC_USDT` |
+| 参数             | 类型     | 说明                                  |
+|:---------------| -------- | :------------------------------------ |
+| **symbolName** | **path** | **必填**<br>交易对名称,例如`BTC_USDT` |
 
 ```
 API响应样例：
@@ -442,19 +442,19 @@ API响应样例：
 
 ```json
 {
-    "type": "TICKER",
-    "symbol": "BTC_USDT",
-    "data": [
-        1595988420000,
-        11171,
-        11212.2,
-        9953.5,
-        10905.1,
-      	24
-        2142.3818
-    ],
-    "sequenceId": "1194721",
-    "ts": 1595988438053
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "XBTC": [
+      1688281000000,
+      40000.0,
+      40000.0,
+      40000.0,
+      40000.0,
+      0.0,
+      0.0
+    ]
+  }
 }
 ```
 说明：
@@ -466,13 +466,13 @@ API响应样例：
 `[时间戳，开盘价，最高价，最低价，收盘价，成交量, 成交额]`
 
 
-## 获取所有统计价格（todo）
+## 获取所有统计价格
 
 API描述：获取所有交易对的最近24小时统计价格。接口不区分现货、合约。
 
-API路径：GET /v1/market/all-ticker
+API路径：GET /v1/market/allTicker
 
-API示例：GET [/v1/market/all-ticker](http://54.199.66.35:8080/v1/market/all-ticker)
+API示例：GET [/v1/market/allTicker](http://54.199.66.35:8080/v1/market/allTicker)
 
 API请求参数：
 
@@ -484,34 +484,49 @@ API响应样例：
 
 ```json
 {
-    "results": [
-        {
-            "type": "PRICE",
-            "symbol": "BTC_USDT",
-            "data": [
-                1595988420000,
-                11171,
-                11212.2,
-                9953.5,
-                10895.2,
-                2142.2028
-            ],
-            "sequenceId": "1194709",
-            "ts": 1595988427765
-        }
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "XBTC": [
+      1688278080000,
+      40000.0,
+      40000.0,
+      40000.0,
+      40000.0,
+      0.0,
+      0.0
+    ],
+    "XBCH": [
+      1688278080000,
+      117.5,
+      117.5,
+      117.5,
+      117.5,
+      0.0,
+      0.0
+    ],
+    "ETH_USDT": [
+      1688278080000,
+      1148.0,
+      1148.0,
+      1148.0,
+      1148.0,
+      0.0,
+      0.0
     ]
+  }
 }
 ```
 
 
 
-## 获取所有币币交易对统计价格(todo)
+## 获取所有币币交易对统计价格
 
 API描述：获取所有币币交易对的最近24小时统计价格。
 
-API路径：GET /v1/market/spots/all-ticker
+API路径：GET /v1/market/spots/allTicker
 
-API示例：GET [/v1/market/spots/all-ticker](http://54.199.66.35:8080/v1/market/spots/all-ticker)
+API示例：GET [/v1/market/spots/allTicker](http://54.199.66.35:8080/v1/market/spots/allTicker)
 
 API请求参数：
 
@@ -523,34 +538,41 @@ API响应样例：
 
 ```json
 {
-    "results": [
-        {
-            "type": "PRICE",
-            "symbol": "BTC_USDT",
-            "data": [
-                1595988420000,
-                11171,
-                11212.2,
-                9953.5,
-                10895.2,
-                2142.2028
-            ],
-            "sequenceId": "1194709",
-            "ts": 1595988427765
-        }
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "ARM_USDT": null,
+    "ETH_USDT": [
+      1688284240000,
+      1148.0,
+      1148.0,
+      1148.0,
+      1148.0,
+      0.0,
+      0.0
+    ],
+    "BCH_USDT": [
+      1688284240000,
+      115.5,
+      115.5,
+      115.5,
+      115.5,
+      0.0,
+      0.0
     ]
+  }
 }
 ```
 
 
 
-## 获取所有合约交易对统计价格(todo)
+## 获取所有合约交易对统计价格
 
 API描述：获取所有合约交易对的最近24小时统计价格。
 
-API路径：GET /v1/market/contracts/all-ticker
+API路径：GET /v1/market/contracts/allTicker
 
-API示例：GET [/v1/market/contracts/all-ticker](http://54.199.66.35:8080/v1/market/contracts/all-ticker)
+API示例：GET [/v1/market/contracts/allTicker](http://54.199.66.35:8080/v1/market/contracts/allTicker)
 
 API请求参数：
 
@@ -562,22 +584,19 @@ API响应样例：
 
 ```json
 {
-    "results": [
-        {
-            "type": "TICKER",
-            "symbol": "BTCUSDT_PERP",
-            "data": [
-                1595988420000,
-                11171,
-                11212.2,
-                9953.5,
-                10895.2,
-                2142.2028
-            ],
-            "sequenceId": "1194709",
-            "ts": 1595988427765
-        }
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "XBTC": [
+      1688278390000,
+      40000.0,
+      40000.0,
+      40000.0,
+      40000.0,
+      0.0,
+      0.0
     ]
+  }
 }
 ```
 
