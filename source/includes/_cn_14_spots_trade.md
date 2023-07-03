@@ -66,7 +66,36 @@ API响应样例:
 }
 ```
 
-## 下单（todo）
+## 获取下单nonce值信息
+API描述：创建订单时入参需要携带用户订单nonce,该接口是实时获取订单nonce信息接口
+
+API路径：GET /v1/orderNonce/gen/:slotType
+
+API请求参数(PATH):
+
+| 参数        | 类型    | 说明               |
+| :---------- | ------- | :----------------- |
+| *slotType* | **int** | **必填**<br> 现货 0 合约 1 |
+
+```
+API响应样例:
+```
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "userId": 10030,
+    "nonce": 0,    // 下单时需要
+    "slotId": 28773,  // 下单时需要
+    "available": true // 是否可以使用
+  }
+}
+```
+
+
+## 下单
 
 API描述：创建一个新订单。
 
@@ -80,18 +109,21 @@ API请求参数(PATH)：
 
 API请求参数(Request Json Body)：
 
-| 参数          | 类型        | 说明                                                   |
-| :------------ | ----------- | ------------------------------------------------------ |
-| **symbol**    | **string**  | **必填**<br>交易对名称,例如`BTC_USDT`                  |
-| **type**      | **enum**    | **必填**<br/>订单类型：限价单="LIMIT"，市价单="MARKET" |
-| **direction** | **enum**    | **必填**<br/>订单方向：买入="LONG"，卖出="SHORT"       |
-| **price**     | **decimal** | **仅限限价单**<br/>订单价格，例如`7123.5`              |
-| **quantity**  | **decimal** | **必填**<br/>订单数量，例如`1.02`                      |
-| **fillOrKill**  | **boolean** | **非必填**<br/>是否FOK订单，例如`true`                      |
-| **immediateOrCancel**  | **boolean** | **非必填**<br/>是否IOC订单，例如`true`                      |
-| **postOnly**  | **boolean** | **必填**<br/>是否被动委托订单，例如`true`                      |
-| **hidden**  | **boolean** | **必填**<br/>是否冰山委托订单，例如`true`，冰山委托订单手续费率使用taker费率      |
-| **clientOrderId** | **string** | **选填**<br/>用户自定义OrderId，可用于订单查询、撤单。自定义OrderId 24小时内可用。 |
+| 参数          | 类型          | 说明                                                                  |
+| :------------ |-------------|---------------------------------------------------------------------|
+| **symbol**    | **string**  | **必填**<br>交易对名称,例如`BTC_USDT`                                        |
+| **type**      | **enum**    | **必填**<br/>订单类型：限价单="LIMIT"，市价单="MARKET"                            |
+| **direction** | **enum**    | **必填**<br/>订单方向：买入="LONG"，卖出="SHORT"                                |
+| **price**     | **decimal** | **仅限限价单**<br/>订单价格，例如`7123.5`                                       |
+| **quantity**  | **decimal** | **必填**<br/>订单数量，例如`1.02`                                            |
+| **fillOrKill**  | **boolean** | **非必填**<br/>是否FOK订单，例如`true`                                        |
+| **immediateOrCancel**  | **boolean** | **非必填**<br/>是否IOC订单，例如`true`                                        |
+| **postOnly**  | **boolean** | **必填**<br/>是否被动委托订单，例如`true`                                        |
+| **hidden**  | **boolean** | **必填**<br/>是否冰山委托订单，例如`true`，冰山委托订单手续费率使用taker费率                    |
+| **clientOrderId** | **string**  | **选填**<br/>用户自定义OrderId，可用于订单查询、撤单。自定义OrderId activity Order 可以查询使用。 |
+| **slotId**| **long**    | **必填**<br/>订单slotId，通过接口/v1/orderNonce/gen获取 例如`1`                  |
+| **nonce**| **long**    | **必填**<br/>订单NonceId，通过接口/v1/orderNonce/gen获取 例如`0`                 |
+| **signature**| **String**  | **必填**<br/>请求参数签名串，通过2层私钥签名          |
 
 
 
@@ -101,32 +133,14 @@ API响应样例：订单信息
 
 ```json
 {
-    "id": 12345, // 订单ID
-  	"clientOrderId": "clientOrderId", // 用户自定义OrderId
-    "sequenceId": 23456, // 序列ID
-    "type": "LIMIT", // 订单类型
-    "direction": "LONG", // 订单方向
-    "price": 7123.5, // 订单限价
-    "quantity": 1.02, // 订单数量
-    "unfilledQuantity": 1.0, // 订单尚未成交数量
-    "fillPrice": 7102.2, // 订单成交均价，仅作为展示使用
-    "status": "PARTICIAL_FILLED", // 订单状态
-    "makerFeeRate": -0.001, // 作为Maker的费率
-    "takerFeeRate": 0.002, // 作为Taker的费率
-    "chargeQuote": true, // 是否总收取Quote作为手续费
-    "marginTrade": false, // 是否是杠杆交易(目前未开启)
-    "fee": 7.1022, // 累积收取的手续费总额
-    "createdAt": 1564558783608, // 创建时间
-    "updatedAt": 1564558783608 // 最后更新时间
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "orderId": 133001824436288
+  }
 }
 ```
-
-API错误响应：
-
-- `PARAMETER_INVALID`: 参数错误
-- `ACCOUNT_NO_ENOUGH_AVAILABLE`: 没有足够的可用余额
-- `ORDER_EXCEEDED`: 活动订单数量超过了限制
-- `PRICE_EXCEEDED`: 价格超出限制：买入价过高或卖出价过低
+异步返回订单Id，订单交易结果回通过ws通知，也可以主动去查询交易结果
 
 ## 撤单
 
@@ -142,18 +156,23 @@ API请求参数(Path Param)：
 | **accountId** | **path** | **必填**<br/>账户ID |
 
 ```
-API响应样例：同上
+API响应样例：
+{
+    "code": 200,
+    "msg": "success",
+    "data": {
+        "orderId": 133016311562368
+    }
+}
 ```
-
+```
 API错误响应：
-
-- `ORDER_NOT_FOUND`: 订单不存在（ID无效或已完全成交或已被取消）
-
-说明：
-
-如果撤单成功，返回的订单状态是`FULLY_CANCELLED`（全部取消）或`PARTICIAL_CANCELLED`（部分取消）。
-
-如果撤单失败，返回错误响应。
+{
+"code": 1003,
+"msg": "Active spots order not found.",
+"data": null
+}
+```
 
 ## 撤销所有订单
 
@@ -185,14 +204,14 @@ API响应样例：
 
 ```json
 {
-    "results": {
-        "cancelled" : 10 // 成功取消的订单数量
-    }
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "result": "ok"
+  }
 }
 ```
-
 说明：
-
 该接口是服务端代为执行的批处理操作，并非所有订单同时尝试取消。所以不能保证所有订单取消的时间有效性。
 
 ## 查询订单详情
@@ -216,52 +235,50 @@ API响应样例：订单详细信息
 
 ```json
 {
-    "id": 3527072007,
-    "features": 0,
-    "price": 9132.5,
-    "fee": 0,
-    "fillPrice": 0.0,
-    "marginTrade": false,
-    "chargeQuote": false,
-    "quantity": 0.1803,
-    "unfilledQuantity": 0.1803,
-    "makerFeeRate": 0.000100000000000000,
-    "takerFeeRate": 0.000200000000000000,
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": 128598358884418,
+    "userId": 10030,
+    "accountId": 0,
+    "clientOrderId": null,
+    "symbolId": 101103,
+    "sequenceId": 539693,
     "type": "LIMIT",
-    "status": "PENDING",
+    "status": "FULLY_FILLED",
     "direction": "LONG",
-    "triggerDirection": "LONG",
-    "triggerOn": 0,
-    "trailingBasePrice": 0,
-    "trailingDistance": 0,
-    "createdAt": 1595253140322,
-    "updatedAt": 1595253140322,
-    "symbol": "BTC_USDT",
-    "trailing": false
+    "features": 0,
+    "price": 1148.000000000000000000,
+    "fee": 0.000175000000000000,
+    "fillPrice": 1148.0,
+    "makerFeeRate": 0.001000000000000000,
+    "takerFeeRate": 0.002000000000000000,
+    "createdAt": 1687861319658,
+    "updatedAt": 1687861319658,
+    "chargeQuote": false,
+    "quantity": 0.010000000000000000,
+    "unfilledQuantity": 0E-18,
+    "symbol": "ETH_USDT"
+  }
 }
 ```
 
 OrderStatus：订单状态说明
 
-- STOP_PENDING：正在等待触发的Stop单；
 - PENDING：正在等待成交的活动单；
 - FAILED：订单执行失败（无足够保证金等原因），最终状态；
-- STOP_FAILED：Stop订单触发后执行失败（无足够保证金等原因），最终状态；
 - FULLY_FILLED：全部成交，最终状态；
 - PARTIAL_FILLED：已部分成交；
 - PARTIAL_CANCELLED：部分成交后被用户取消，最终状态；
-- STOP_CANCELLED：Stop订单尚未触发就被用户取消，最终状态；
 - FULLY_CANCELLED：订单尚未成交就被用户取消，最终状态；
 
-说明：目前未启用止盈止损（Stop Order）订单，所以STOP_*状态不会出现在系统中。
 
 
-
-## 查询订单详情（通过自定义订单ID）
+## 查询订单详情（通过自定义订单ID，仅支持活跃订单）
 
 API描述：通过自定义订单ID查询订单的详情。
 
-API路径：GET /v1/trading/:accountId/spots/orders/client/:client_order_id
+API路径：GET /v1/trading/:accountId/spots/clientOrders/open/:client_order_id
 
 API请求参数(Path Param)：
 
@@ -278,45 +295,33 @@ API响应样例：订单详细信息
 
 ```json
 {
-    "id": 3527072007,
-  	"clientOrderId": "clientOrderId", // 用户自定义OrderId
-    "features": 0,
-    "price": 9132.5,
-    "fee": 0,
-    "fillPrice": 0.0,
-    "marginTrade": false,
-    "chargeQuote": false,
-    "quantity": 0.1803,
-    "unfilledQuantity": 0.1803,
-    "makerFeeRate": 0.000100000000000000,
-    "takerFeeRate": 0.000200000000000000,
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": 128598358884418,
+    "userId": 10030,
+    "accountId": 0,
+    "clientOrderId": null,
+    "symbolId": 101103,
+    "sequenceId": 539693,
     "type": "LIMIT",
     "status": "PENDING",
     "direction": "LONG",
-    "triggerDirection": "LONG",
-    "triggerOn": 0,
-    "trailingBasePrice": 0,
-    "trailingDistance": 0,
-    "createdAt": 1595253140322,
-    "updatedAt": 1595253140322,
-    "symbol": "BTC_USDT",
-    "trailing": false
+    "features": 0,
+    "price": 1148.000000000000000000,
+    "fee": 0.000175000000000000,
+    "fillPrice": 1148.0,
+    "makerFeeRate": 0.001000000000000000,
+    "takerFeeRate": 0.002000000000000000,
+    "createdAt": 1687861319658,
+    "updatedAt": 1687861319658,
+    "chargeQuote": false,
+    "quantity": 0.010000000000000000,
+    "unfilledQuantity": 0E-18,
+    "symbol": "ETH_USDT"
+  }
 }
 ```
-
-OrderStatus：订单状态说明
-
-- STOP_PENDING：正在等待触发的Stop单；
-- PENDING：正在等待成交的活动单；
-- FAILED：订单执行失败（无足够保证金等原因），最终状态；
-- STOP_FAILED：Stop订单触发后执行失败（无足够保证金等原因），最终状态；
-- FULLY_FILLED：全部成交，最终状态；
-- PARTIAL_FILLED：已部分成交；
-- PARTIAL_CANCELLED：部分成交后被用户取消，最终状态；
-- STOP_CANCELLED：Stop订单尚未触发就被用户取消，最终状态；
-- FULLY_CANCELLED：订单尚未成交就被用户取消，最终状态；
-
-说明：目前未启用止盈止损（Stop Order）订单，所以STOP_*状态不会出现在系统中。
 
 
 
@@ -342,23 +347,19 @@ API响应样例：订单成交详细信息，按时间排序
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "results": [
-        {
-            "taker": true, // 是否是taker
-            "price": 9801.5, // 成交价
-            "quantity": 120, // 成交数量
-            "fee": 0.0012845, // 手续费
-            "createdAt": 1564558783608 // 创建时间
-        },
-        {
-            "taker": false, // 是否是taker
-            "price": 9801.0, // 成交价
-            "quantity": 26, // 成交数量
-            "fee": -0.0006175, // 手续费，负数表示反佣
-            "createdAt": 1564558790832 // 创建时间
-        },
-        ...
+      {
+        "taker": true,
+        "price": 40000.000000000000000000,
+        "quantity": 0.500000000000000000,
+        "fee": 40.000000000000000000,
+        "createdAt": 1688386253562
+      }
     ]
+  }
 }
 ```
 
@@ -394,31 +395,38 @@ API响应样例：订单成交详细信息，按时间排序
 
 ```json
 {
-    "range": "202007",
-    "hasMore": true,
-    "nextOffsetId": 1039651,
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "range": "202307",
+    "hasMore": false,
+    "nextOffsetId": 0,
     "results": [
-        {
-            "id": 1039652,
-            "orderId": 4059332007,
-            "symbol": "BTC_USDT",
-            "sequenceId": 405933,
-            "direction": "LONG",
-            "type": "TAKER",
-            "matchPrice": 9182.900000000000000000,
-            "matchQuantity": 0.010200000000000000,
-            "orderStatusAfterClearing": "FULLY_FILLED",
-            "orderUnfilledQuantityAfterClearing": 0E-18,
-            "feeCurrency": "BTC",
-            "fee": 0.000002040000000000,
-            "rate": 0.000200000000000000,
-            "createdAt": 1595300043398
-        }
+      {
+        "id": 10012,
+        "orderId": 133001413394496,
+        "userId": 10030,
+        "accountId": 0,
+        "sequenceId": 597555,
+        "direction": "LONG",
+        "type": "MAKER",
+        "matchPrice": 40000.000000000000000000,
+        "matchQuantity": 0.500000000000000000,
+        "orderStatusAfterClearing": "FULLY_FILLED",
+        "orderUnfilledQuantityAfterClearing": 0E-18,
+        "feeCurrency": "BTC",
+        "fee": 0.000500000000000000,
+        "rate": 0.001000000000000000,
+        "createdAt": 1688386253562,
+        "txHash": "0x42027101d6739a9b95d94701f6886620500fa853a27cd4d7d147a7bdfba46722",
+        "symbol": "BTC_USDT"
+      }
     ]
+  }
 }
 ```
 
-## 查询所有活跃订单
+## 查询所有活跃订单（todo）
 
 API描述：查询当前用户活跃订单。
 
