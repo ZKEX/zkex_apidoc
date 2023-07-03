@@ -384,7 +384,7 @@
                     <a href="#4d72cb1d3b" class="toc-h2 toc-link" data-title="查询用户费率">查询用户费率</a>
                   </li>
                   <li>
-                    <a href="#fd6ce2a756" class="toc-h2 toc-link" data-title="下单">下单</a>
+                    <a href="#todo" class="toc-h2 toc-link" data-title="下单（todo）">下单（todo）</a>
                   </li>
                   <li>
                     <a href="#fc150cab0e" class="toc-h2 toc-link" data-title="撤单">撤单</a>
@@ -1569,24 +1569,24 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </thead><tbody>
 <tr>
 <td style="text-align: left"><em>accountId</em></td>
-<td><strong>int</strong></td>
+<td><strong>path</strong></td>
 <td style="text-align: left"><strong>必填</strong><br>账户id</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"BTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mf">493.81081575</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">现货可用</span><span class="w">
-        </span><span class="mf">5.9716</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">现货冻结</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ETH"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mf">10.9967000</span><span class="p">,</span><span class="w">
-        </span><span class="mi">0</span><span class="w">
+      </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可用</span><span class="w"> 
+      </span><span class="s2">"0"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">现货冻结</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="mf">9937490.3587324070000000</span><span class="p">,</span><span class="w">
-        </span><span class="mi">0E-16</span><span class="w">
+      </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"0"</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='4d72cb1d3b'>查询用户费率</h2>
 <p>API描述：查询用户现货交易费率。</p>
@@ -1610,11 +1610,15 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000300000000000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">taker费率</span><span class="w">
-    </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000100000000000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">maker费率</span><span class="w">
-    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595297714823</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688386621807</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='fd6ce2a756'>下单</h2>
+</span></code></pre></div><h2 id='todo'>下单（todo）</h2>
 <p>API描述：创建一个新订单。</p>
 
 <p>API路径：POST /v1/trading/:accountId/spots/orders</p>
