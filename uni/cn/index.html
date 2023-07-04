@@ -460,6 +460,9 @@
                   <li>
                     <a href="#symbol" class="toc-h2 toc-link" data-title="平仓根据symbol">平仓根据symbol</a>
                   </li>
+                  <li>
+                    <a href="#46356dbef3" class="toc-h2 toc-link" data-title="市价单价格获取">市价单价格获取</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -1748,7 +1751,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>异步返回订单Id，订单交易结果回通过ws通知，也可以主动去查询交易结果</p>
+<p>异步返回订单Id，订单交易结果回通过ws通知，也可以主动去查询交易结果
+注:市价单也需要价格，价格从接口/v1/trading/market/price/:type 获取</p>
 <h2 id='fc150cab0e'>撤单</h2>
 <p>API描述：撤销一个订单。</p>
 
@@ -3176,6 +3180,47 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">129218386067520</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='46356dbef3'>市价单价格获取</h2>
+<p>API描述：用户需对市价单价格进行签名 系统会在该价格附近成交</p>
+
+<p>API路径: POST /v1/trading/market/price/:type</p>
+
+<p>API请求参数(Path Param)：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><strong>type</strong></td>
+<td><strong>int</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> 现货 0 合约 1</td>
+</tr>
+</tbody></table>
+
+<p>API请求参数(Request Json Body)：</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"marketPriceList"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">下单symbolId</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">下单方向</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">支持多个查询</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"SHORT"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h1 id='websocket-api'>WebSocket API</h1>
