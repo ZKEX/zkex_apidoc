@@ -668,3 +668,42 @@ API响应样例:
 ```
 
 
+## 平仓根据symbol
+
+API描述：以市价单平掉该symbol仓位
+
+API路径: POST /v1/trading/:accountId/contracts/positions/close
+
+API请求参数(Path Param)：
+
+| 参数          | 类型    | 说明               |
+| :------------ | ------- | :----------------- |
+| **accountId** | **int** | **必填**<br>账户ID |
+
+API请求参数(Request Json Body)：
+
+```json
+{
+  "symbol": "XBTC",
+  "slotId": 2,  // 参照下单
+  "signature": "test", // 参照下单
+  "nonce": 11,  // 参照下单
+  "price": 40000 // 调用接口获取市价单价格
+}
+```
+
+```
+API响应样例:
+```
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "orderId": 129218386067520
+  }
+}
+```
+
+
