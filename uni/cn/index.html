@@ -437,22 +437,13 @@
                     <a href="#id" class="toc-h2 toc-link" data-title="查询活跃订单（通过订单ID）（合约）">查询活跃订单（通过订单ID）（合约）</a>
                   </li>
                   <li>
-                    <a href="#id-2" class="toc-h2 toc-link" data-title="查询活动订单（通过自定义订单ID）">查询活动订单（通过自定义订单ID）</a>
-                  </li>
-                  <li>
-                    <a href="#id-3" class="toc-h2 toc-link" data-title="查询订单（通过订单ID）">查询订单（通过订单ID）</a>
-                  </li>
-                  <li>
-                    <a href="#id-4" class="toc-h2 toc-link" data-title="查询订单（通过自定义订单ID）">查询订单（通过自定义订单ID）</a>
+                    <a href="#id-2" class="toc-h2 toc-link" data-title="查询订单（通过订单ID）">查询订单（通过订单ID）</a>
                   </li>
                   <li>
                     <a href="#0066a57f74" class="toc-h2 toc-link" data-title="查询历史订单（合约）">查询历史订单（合约）</a>
                   </li>
                   <li>
-                    <a href="#3eedd32d80" class="toc-h2 toc-link" data-title="取消订单">取消订单</a>
-                  </li>
-                  <li>
-                    <a href="#id-5" class="toc-h2 toc-link" data-title="取消订单（通过自定义订单ID）">取消订单（通过自定义订单ID）</a>
+                    <a href="#orderid" class="toc-h2 toc-link" data-title="取消订单(根据orderId)">取消订单(根据orderId)</a>
                   </li>
                   <li>
                     <a href="#b63b779508" class="toc-h2 toc-link" data-title="取消所有订单">取消所有订单</a>
@@ -465,9 +456,6 @@
                   </li>
                   <li>
                     <a href="#1f3c3e9aed" class="toc-h2 toc-link" data-title="查询仓位清算列表">查询仓位清算列表</a>
-                  </li>
-                  <li>
-                    <a href="#21dd07728a" class="toc-h2 toc-link" data-title="设置仓位风险等级">设置仓位风险等级</a>
                   </li>
               </ul>
           </li>
@@ -1700,7 +1688,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>price</strong></td>
 <td><strong>decimal</strong></td>
-<td><strong>仅限限价单</strong><br/>订单价格，例如<code>7123.5</code></td>
+<td><strong>必填</strong><br/>订单价格，例如<code>7123.5</code></td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>quantity</strong></td>
@@ -1730,7 +1718,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>clientOrderId</strong></td>
 <td><strong>string</strong></td>
-<td><strong>选填</strong><br/>用户自定义OrderId，可用于订单查询、撤单。自定义OrderId activity Order 可以查询使用。</td>
+<td><strong>选填</strong><br/>用户自定义OrderId，可用于查询 activity Order</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>slotId</strong></td>
@@ -2329,76 +2317,51 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"totalSpotsAssets"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"contractsPositions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10001</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10001_0_131"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLimitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLimit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"initialMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"maintenanceMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"marginRateStep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"maxLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"riskLimitBase"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"riskLimitStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"maxRiskLimitSteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546956010600</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maxQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1617156405270</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"realizedPNL"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"entryValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"minimumMaintenanceMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"requiredMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"minimumMaintenanceMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unrealizedPNL"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"totalAvailableMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="mi">0</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"totalTransferableMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">46000.000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalSpotsAssets"</span><span class="p">:</span><span class="w"> </span><span class="mf">50000.000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalAvailableMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">46000.000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"minimumMaintenanceMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"contractsUnrealized"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"totalUsedMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"contractsPrices"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="mf">60263.882909000000000000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"XBCH"</span><span class="p">:</span><span class="w"> </span><span class="mf">951.041529000000000000</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"XETH"</span><span class="p">:</span><span class="w"> </span><span class="mf">2715.660442000000000000</span><span class="w">
+      </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.133333000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"XBCH"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.000410000000000000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"XETH"</span><span class="p">:</span><span class="w"> </span><span class="mf">546.001820000000000000</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nl">"priceInfos"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"BTC"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">55313.23</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"BCH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">952.24</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"ETH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">2294.28</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+      </span><span class="nl">"BTC"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.00</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"BCH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">123.00</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"ETH"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">546.00</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"totalMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">46000.000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"contractsOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"contractsPositions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"balances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mf">46000.000</span><span class="p">,</span><span class="w">
+        </span><span class="mf">4000.000</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"totalUsedMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"totalFrozenMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"totalMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"totalMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"totalNetValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="nl">"totalNetValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">50000.000</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='a67e1bad7e'>查询用户费率 （合约）</h2>
 <p>API描述：查询用户合约交易费率(期货、合约)。</p>
@@ -2417,14 +2380,18 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称,例如<code>XBTCUSD_PERP</code></td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称,例如<code>XBTC</code></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000200000000000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">taker费率</span><span class="w">
-    </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000100000000000000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">maker费率</span><span class="w">
-    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595297714823</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"maker"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471068462</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='8be954be0d'>创建新订单</h2>
 <p>API描述：创建一个新的订单。</p>
@@ -2447,129 +2414,118 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tr>
 </tbody></table>
 
-<p>API请求参数(Request Json Body)：</p>
+<p>API请求参数(Request Json Body):</p>
 
 <table><thead>
 <tr>
-<th>字段名称</th>
+<th style="text-align: left">字段名称</th>
 <th>字段类型</th>
 <th>是否必须</th>
 <th>默认值</th>
-<th>描述</th>
+<th style="text-align: left">描述</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>symbol</td>
+<td style="text-align: left"><strong>symbol</strong></td>
 <td>string</td>
 <td>Y</td>
 <td></td>
-<td>合约代码，例如&quot;XBTCUSD_PERP&quot;</td>
+<td style="text-align: left">合约代码，例如&quot;XBTC&quot;</td>
 </tr>
 <tr>
-<td>type</td>
+<td style="text-align: left"><strong>type</strong></td>
 <td>enum</td>
 <td>Y</td>
 <td></td>
-<td>订单类型，限价单LIMIT与市价单MARKET</td>
+<td style="text-align: left">订单类型，限价单LIMIT与市价单MARKET</td>
 </tr>
 <tr>
-<td>direction</td>
+<td style="text-align: left"><strong>direction</strong></td>
 <td>enum</td>
 <td>Y</td>
 <td></td>
-<td>订单方向，LONG与SHORT</td>
+<td style="text-align: left">订单方向，LONG与SHORT</td>
 </tr>
 <tr>
-<td>source</td>
-<td>string</td>
-<td></td>
-<td>&quot;&quot;</td>
-<td>订单来源标识，例如&quot;WEB&quot;, &quot;APP&quot;，字母和数字组合，不超过20个字符</td>
-</tr>
-<tr>
-<td>price</td>
+<td style="text-align: left"><strong>price</strong></td>
 <td>decimal</td>
-<td>仅限价单</td>
+<td>Y</td>
 <td></td>
-<td>限价单报价</td>
+<td style="text-align: left">限价单报价</td>
 </tr>
 <tr>
-<td>quantity</td>
+<td style="text-align: left"><strong>quantity</strong></td>
 <td>long</td>
 <td>Y</td>
 <td></td>
-<td>订单数量，至少为1</td>
+<td style="text-align: left">订单数量，至少为1</td>
 </tr>
 <tr>
-<td>triggerOn</td>
-<td>decimal</td>
-<td></td>
-<td></td>
-<td>订单触发价格，如果不填，则立刻执行</td>
-</tr>
-<tr>
-<td>triggerDirection</td>
-<td>enum</td>
-<td></td>
-<td></td>
-<td>价格触发方向，LONG与SHORT</td>
-</tr>
-<tr>
-<td>trailingDistance</td>
-<td>decimal</td>
-<td></td>
-<td></td>
-<td>TrailingStop订单触发距离，如果不填，则不是TrailingStop</td>
-</tr>
-<tr>
-<td>fillOrKill</td>
+<td style="text-align: left"><strong>fillOrKill</strong></td>
 <td>boolean</td>
 <td></td>
 <td>false</td>
-<td>是否设置FOK订单</td>
+<td style="text-align: left">是否设置FOK订单</td>
 </tr>
 <tr>
-<td>immediateOrCancel</td>
+<td style="text-align: left"><strong>immediateOrCancel</strong></td>
 <td>boolean</td>
 <td></td>
 <td>false</td>
-<td>是否设置IOC订单</td>
+<td style="text-align: left">是否设置IOC订单</td>
 </tr>
 <tr>
-<td>postOnly</td>
+<td style="text-align: left"><strong>postOnly</strong></td>
 <td>boolean</td>
 <td></td>
 <td>false</td>
-<td>是否设置PostOnly订单</td>
+<td style="text-align: left">是否设置PostOnly订单</td>
 </tr>
 <tr>
-<td>hidden</td>
+<td style="text-align: left"><strong>hidden</strong></td>
 <td>boolean</td>
 <td></td>
 <td>false</td>
-<td>是否设置Hidden订单</td>
+<td style="text-align: left">是否设置Hidden订单</td>
 </tr>
 <tr>
-<td>reduceOnly</td>
+<td style="text-align: left"><strong>reduceOnly</strong></td>
 <td>boolean</td>
 <td></td>
 <td>false</td>
-<td>是否设置ReduceOnly订单</td>
+<td style="text-align: left">是否设置ReduceOnly订单</td>
 </tr>
 <tr>
-<td>clientOrderId</td>
+<td style="text-align: left"><strong>clientOrderId</strong></td>
 <td>string</td>
 <td>N</td>
 <td></td>
-<td>用户自定义订单ID，可用于查询、撤销订单，24小时内可用</td>
+<td style="text-align: left">用户自定义订单ID，可用于查询activityOrder</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>slotId</strong></td>
+<td><strong>long</strong></td>
+<td>Y</td>
+<td></td>
+<td style="text-align: left">订单slotId，通过接口/v1/orderNonce/gen获取 例如<code>1</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>nonce</strong></td>
+<td><strong>long</strong></td>
+<td>Y</td>
+<td></td>
+<td style="text-align: left">订单NonceId，通过接口/v1/orderNonce/gen获取 例如<code>0</code></td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>signature</strong></td>
+<td><strong>String</strong></td>
+<td>Y</td>
+<td></td>
+<td style="text-align: left">请求参数签名串，通过2层私钥签名</td>
 </tr>
 </tbody></table>
 
 <p>请注意：</p>
-
-<p>订单类型如果为LIMIT，则必须填写price；</p>
-
-<p>triggerOn与trailingDistance不能同时填写；</p>
 
 <p>若fillOrKill=true，则无法设置immediateOrCancel、postOnly、hidden和reduceOnly；</p>
 
@@ -2582,41 +2538,13 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>只有MARKET订单与IOC订单可以设置reduceOnly=true。</p>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="mi">3854532008</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="s2">"clientOrderId"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="mf">6000.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">-0.0002</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0007</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112074952</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112074952</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>API错误响应：</p>
-
-<ul>
-<li><code>PARAMETER_INVALID</code>：参数错误。</li>
-<li><code>ORDER_EXCEEDED</code>：当前活动订单数量超出限制，无法创建新的订单。</li>
-<li><code>ORDER_INVALID</code>：无法创建Market订单或Stop订单，因为当前没有市场价。</li>
-<li><code>PRICE_EXCEEDED</code>：无法创建订单，因为报价超出允许范围。</li>
-<li><code>ACCOUNT_NO_ENOUGH_AVAILABLE</code>：无法创建订单，因为没有足够的可用保证金。</li>
-</ul>
-<h2 id='e26062753d'>查询活跃订单</h2>
+</span></code></pre></div><h2 id='e26062753d'>查询活跃订单</h2>
 <p>API描述：查询当前用户的所有活跃订单。</p>
 
 <p>API路径：GET /v1/trading/:accountId/contracts/orders/open</p>
@@ -2638,53 +2566,36 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：订单信息
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"893f9e20df579fb248ed349406c82c2d"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">11898</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000003361916629248</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mf">11897.975</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">102</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112143138</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112149959</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">11903</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000001722254893724</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mi">11903</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">86</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112147859</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112152051</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-        </span><span class="err">...</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@133718622601283"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">620679</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frozenMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">1600.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='id'>查询活跃订单（通过订单ID）（合约）</h2>
 <p>API描述：通过订单ID查询当前用户活跃订单（合约）。</p>
@@ -2723,79 +2634,35 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">11898</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000003361916629248</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mf">11897.975</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">102</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112143138</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112149959</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='id-2'>查询活动订单（通过自定义订单ID）</h2>
-<p>API描述：通过订单ID查询当前用户活跃订单。</p>
-
-<p>API路径：GET /v1/trading/:accountId/contracts/orders/open/client/:client_order_id</p>
-
-<p>API请求参数(Path Param)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>accountId</strong></td>
-<td><strong>int</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>账户ID</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>client_order_id</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>自定义订单Id,例如&quot;clientOrderId&quot;</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientOrderId"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">11898</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000003361916629248</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mf">11897.975</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">102</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112143138</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112149959</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@133718622601283"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">620679</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frozenMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">1600.000000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='id-3'>查询订单（通过订单ID）</h2>
+</span></code></pre></div><h2 id='id-2'>查询订单（通过订单ID）</h2>
 <p>API描述：通过订单ID查询当前用户订单。</p>
 
 <p>API路径：GET /v1/trading/:accountId/contracts/orders/:order_id</p>
@@ -2817,80 +2684,37 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>order_id</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>自定义订单Id,例如&quot;25f2fd62fdf2a6bf33e9431ba184dd2e&quot;</td>
+<td style="text-align: left"><strong>选填</strong><br>订单Id,例如&quot;133718622601283&quot;</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">11898</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000003361916629248</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mf">11897.975</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">102</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112143138</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112149959</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='id-4'>查询订单（通过自定义订单ID）</h2>
-<p>API描述：通过订单ID查询当前用户订单。</p>
-
-<p>API路径：GET /v1/trading/:accountId/contracts/orders/client/:client_order_id</p>
-
-<p>API请求参数(Path Param)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>accountId</strong></td>
-<td><strong>int</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>账户ID</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>client_order_id</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>自定义订单Id,例如&quot;clientOrderId&quot;</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientOrderId"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">11898</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000003361916629248</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mf">11897.975</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">102</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112143138</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112149959</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@133718622601283"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">620679</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"frozenMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">1600.000000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='0066a57f74'>查询历史订单（合约）</h2>
 <p>API描述：查询当前用户的历史订单记录。</p>
@@ -2925,7 +2749,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>XBTCUSD_PERP</code>，默认空</td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>XBTC</code>，默认空</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>limit</strong></td>
@@ -2945,59 +2769,39 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">订单集所在范围:</span><span class="w">
-    </span><span class="nl">"range"</span><span class="p">:</span><span class="s2">"202008"</span><span class="p">,</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">是否有下一页:</span><span class="w">            
-    </span><span class="nl">"hasMore"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="err">//</span><span class="w"> </span><span class="err">下一页查询的起始ID:</span><span class="w">            
-    </span><span class="nl">"nextOffsetId"</span><span class="p">:</span><span class="mi">3857772008</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="mf">13097.5</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.000001511461919556</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mi">11909</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">36</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"MARKET"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"FULLY_FILLED"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112483928</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112483928</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"b14de0b92ea48fa41c57109059df2540"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"features"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="mf">10718.5</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.00000151171579743</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mi">11907</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">36</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"MARKET"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"FULLY_FILLED"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1597112483895</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597112483895</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"trailing"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-        </span><span class="err">...</span><span class="w"> </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202307"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hasMore"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nextOffsetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132847776038979</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">592222</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULLY_FILLED"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688367889917</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688367889917</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frozenMargin"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
@@ -3005,7 +2809,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>历史订单总是按页查询，第一页的offsetId传入0或者不传；</p>
 
 <p>如果API响应样例返回的hasMore=true，则可以根据nextOffsetId构造下一页查询的URL。</p>
-<h2 id='3eedd32d80'>取消订单</h2>
+<h2 id='orderid'>取消订单(根据orderId)</h2>
 <p>API描述：取消一个活动订单。</p>
 
 <p>API路径：GET /v1/trading/:accountId/contracts/orders/:order_id/cancel</p>
@@ -3032,79 +2836,11 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b14de0b92ea48fa41c57109059df2540"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULLY_CANCELLED"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1597112497928</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1597112615906</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='id-5'>取消订单（通过自定义订单ID）</h2>
-<p>API描述：通过自定义订单ID取消一个活动订单。</p>
-
-<p>API路径：GET /v1/trading/:accountId/contracts/orders/client/:client_order_id/cancel</p>
-
-<p>API请求参数(Path Param)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>accountId</strong></td>
-<td><strong>int</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>账户ID</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>client_order_id</strong></td>
-<td><strong>path</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>自定义订单ID</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b14de0b92ea48fa41c57109059df2540"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"clientOrderId"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FULLY_CANCELLED"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1597112497928</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1597112615906</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"triggerDirection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"triggerOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailingBasePrice"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailingDistance"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"trailing"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='b63b779508'>取消所有订单</h2>
 <p>API描述：取消所有活动订单。</p>
@@ -3129,7 +2865,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API请求参数(Request Json Body)：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTC"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -3142,12 +2878,16 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称,例如<code>XBTCUSD_PERP</code>，为空则撤销所有交易对活动订单</td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称,例如<code>XBTC</code>，为空则撤销所有交易对活动订单</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
-  </span><span class="nl">"cancelled"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">成功取消的订单数量</span><span class="w">  
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='5028402e1a'>查询订单成交详情（合约）</h2>
 <p>API描述：查询当前用户的某个订单成交详情。</p>
@@ -3177,23 +2917,19 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API响应样例：订单成交详细信息，按时间排序</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">是否是taker</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9801.5</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">成交价</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">成交数量</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0012845</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">手续费</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564558783608</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">创建时间</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">是否是taker</span><span class="w">
-            </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">9801.0</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">成交价</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">成交数量</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0006175</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">手续费，负数表示反佣</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1564558790832</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">创建时间</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="err">...</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"taker"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">32.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688367889917</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>-如果一个订单的成交记录超过1000条，则最多返回前1000条记录。</p>
@@ -3219,27 +2955,44 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"122019_14"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"leverage"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"riskLevel"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"maxQuantity"</span><span class="p">:</span><span class="mi">100000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"margin"</span><span class="p">:</span><span class="mf">0.000279798244065283</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"realizedPNL"</span><span class="p">:</span><span class="mf">-0.000869129308091017</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"bankruptcyPrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597116449876</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">555</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="mf">11866.877971329317</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"minimumMaintenanceMarginRate"</span><span class="p">:</span><span class="mf">0.005</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"closed"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="err">...</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10031</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10031_0_132"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLimitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"riskLimit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">105</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"initialMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"maintenanceMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"marginRateStep"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"maxLeverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskLimitBase"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"riskLimitStep"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"maxRiskLimitSteps"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546956010600</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"maxQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688367889917</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"realizedPNL"</span><span class="p">:</span><span class="w"> </span><span class="mf">-16.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"entryValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">16000.0000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"minimumMaintenanceMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"requiredMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">1600.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"minimumMaintenanceMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">80.0000000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unrealizedPNL"</span><span class="p">:</span><span class="w"> </span><span class="mf">2999.645208400000000000000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"closed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='1f3c3e9aed'>查询仓位清算列表</h2>
 <p>API描述：获取仓位清算列表。</p>
@@ -3274,7 +3027,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>XBTCUSD_PERP</code>，默认空</td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>XBTC</code>，默认空</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>limit</strong></td>
@@ -3294,118 +3047,98 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202007"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"hasMore"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"nextOffsetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">35905</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35925</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b14de0b92ea48fa41c57109059df2540"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121577</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">9178.000000000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000005229897581172</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.000005229897581172</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"positionMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000047069078230551</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1594711903062</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35920</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25f2fd62fdf2a6bf33e9431ba184dd2e"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">121576</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">9170.000000000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002000000000000000</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000007415485278080</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">-34</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.000007415485278080</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"positionMargin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-18</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1594711902592</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-        </span><span class="err">...</span><span class="w"> </span><span class="err">...</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="s2">"202306"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"hasMore"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nextOffsetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">22979</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22991</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">550183</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIQUIDATE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">30001.700000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-18</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-18</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4999.150000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1687937250385</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22987</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">129221917671488</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">549851</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-20.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1687935674303</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x8f9bfeacbc18398d2303935672eeea0515a867531ed7920846f822b47254dce1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22983</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">129219359146048</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">549817</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.800000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.800000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1687935391136</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x5fe2e858dbfa721198d71a6514dccca5669f3defad5ac132733a83e9a8288514"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22981</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">129217966637120</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">549799</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-4.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1687935232397</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd71871b40cb775d96af462e086fbf22bdb725fa8a01c6cae313cee9fa69efcba"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22980</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">129217966637120</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">549799</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLOSE"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"clearingPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantityAfterClearing"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"realizedPNLChanged"</span><span class="p">:</span><span class="w"> </span><span class="mf">-8.000000000000000000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1687935232397</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd71871b40cb775d96af462e086fbf22bdb725fa8a01c6cae313cee9fa69efcba"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='21dd07728a'>设置仓位风险等级</h2>
-<p>API描述：为指定仓位设置风险等级。如果设置成功，继续增加仓位时最小维持保证金率可能会增加。</p>
 
-<p>API路径：POST /v1/trading/:accountId/contracts/positions/:symbol/riskLevel</p>
-
-<p>API请求参数(PATH)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>accountId</strong></td>
-<td><strong>int</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>账户ID</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>symbol</strong></td>
-<td><strong>string</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>XBTCUSD_PERP</code></td>
-</tr>
-</tbody></table>
-
-<ul>
-<li>POST参数：JSON Object：</li>
-</ul>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"riskLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>riskLevel</strong></td>
-<td><strong>integer</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>0～最大允许值</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"122019_14"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="mi">1597137704240</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">36</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"leverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"riskLevel"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"maxQuantity"</span><span class="p">:</span><span class="mi">150000</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"realizedPNL"</span><span class="p">:</span><span class="mf">-0.000001531654186521</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="mf">0.0005</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"margin"</span><span class="p">:</span><span class="mf">0.000151633764465623</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"bankruptcyPrice"</span><span class="p">:</span><span class="mf">12357.836927932667</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"liquidationPrice"</span><span class="p">:</span><span class="mf">12296.016833245661</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="mi">11752</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTCUSD_PERP"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"closed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"minimumMaintenanceMarginRate"</span><span class="p">:</span><span class="mf">0.005</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>API错误响应：</p>
-
-<ul>
-<li><code>PARAMETER_INVALID</code>：无效的riskLevel参数：null，负数或高于该Symbol允许的最大风险等级。</li>
-<li><code>ACCOUNT_NO_ENOUGH_AVAILABLE</code>: 没有足够的可用保证金。</li>
-</ul>
-<h1 id='websocket-api'>WebSocket API</h1>
+</span></code></pre></div><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
 <p>WebSocket只支持wss协议，地址是wss://uniwss.876ex.com/v2/market/notification</p>
