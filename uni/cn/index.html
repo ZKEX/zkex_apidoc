@@ -396,10 +396,10 @@
                     <a href="#64640ec751" class="toc-h2 toc-link" data-title="撤销所有订单">撤销所有订单</a>
                   </li>
                   <li>
-                    <a href="#92d59b6aad" class="toc-h2 toc-link" data-title="查询订单详情">查询订单详情</a>
+                    <a href="#id" class="toc-h2 toc-link" data-title="查询订单详情根据订单Id">查询订单详情根据订单Id</a>
                   </li>
                   <li>
-                    <a href="#id" class="toc-h2 toc-link" data-title="查询订单详情（通过自定义订单ID，仅支持活跃订单）">查询订单详情（通过自定义订单ID，仅支持活跃订单）</a>
+                    <a href="#clientorderid" class="toc-h2 toc-link" data-title="查询订单详情根据clientOrderId(仅支持活跃订单）">查询订单详情根据clientOrderId(仅支持活跃订单）</a>
                   </li>
                   <li>
                     <a href="#e13713753c" class="toc-h2 toc-link" data-title="查询订单成交详情">查询订单成交详情</a>
@@ -1847,7 +1847,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div>
 <p>说明：
 该接口是服务端代为执行的批处理操作，并非所有订单同时尝试取消。所以不能保证所有订单取消的时间有效性。</p>
-<h2 id='92d59b6aad'>查询订单详情</h2>
+<h2 id='id'>查询订单详情根据订单Id</h2>
 <p>API描述：查询某个指定订单的详情。</p>
 
 <p>API路径：GET /v1/trading/:accountId/spots/orders/:orderId</p>
@@ -1911,7 +1911,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>PARTIAL_CANCELLED：部分成交后被用户取消，最终状态；</li>
 <li>FULLY_CANCELLED：订单尚未成交就被用户取消，最终状态；</li>
 </ul>
-<h2 id='id'>查询订单详情（通过自定义订单ID，仅支持活跃订单）</h2>
+<h2 id='clientorderid'>查询订单详情根据clientOrderId(仅支持活跃订单）</h2>
 <p>API描述：通过自定义订单ID查询订单的详情。</p>
 
 <p>API路径：GET /v1/trading/:accountId/spots/clientOrders/open/:client_order_id</p>
