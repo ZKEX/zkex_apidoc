@@ -109,21 +109,21 @@ API请求参数(PATH)：
 
 API请求参数(Request Json Body)：
 
-| 参数          | 类型          | 说明                                                                  |
-| :------------ |-------------|---------------------------------------------------------------------|
-| **symbol**    | **string**  | **必填**<br>交易对名称,例如`BTC_USDT`                                        |
-| **type**      | **enum**    | **必填**<br/>订单类型：限价单="LIMIT"，市价单="MARKET"                            |
-| **direction** | **enum**    | **必填**<br/>订单方向：买入="LONG"，卖出="SHORT"                                |
-| **price**     | **decimal** | **仅限限价单**<br/>订单价格，例如`7123.5`                                       |
-| **quantity**  | **decimal** | **必填**<br/>订单数量，例如`1.02`                                            |
-| **fillOrKill**  | **boolean** | **非必填**<br/>是否FOK订单，例如`true`                                        |
-| **immediateOrCancel**  | **boolean** | **非必填**<br/>是否IOC订单，例如`true`                                        |
-| **postOnly**  | **boolean** | **必填**<br/>是否被动委托订单，例如`true`                                        |
-| **hidden**  | **boolean** | **必填**<br/>是否冰山委托订单，例如`true`，冰山委托订单手续费率使用taker费率                    |
-| **clientOrderId** | **string**  | **选填**<br/>用户自定义OrderId，可用于订单查询、撤单。自定义OrderId activity Order 可以查询使用。 |
-| **slotId**| **long**    | **必填**<br/>订单slotId，通过接口/v1/orderNonce/gen获取 例如`1`                  |
-| **nonce**| **long**    | **必填**<br/>订单NonceId，通过接口/v1/orderNonce/gen获取 例如`0`                 |
-| **signature**| **String**  | **必填**<br/>请求参数签名串，通过2层私钥签名          |
+| 参数                    | 类型          | 说明                                                  |
+|:----------------------|-------------|-----------------------------------------------------|
+| **symbol**            | **string**  | **必填**<br>交易对名称,例如`BTC_USDT`                        |
+| **type**              | **enum**    | **必填**<br/>订单类型：限价单="LIMIT"，市价单="MARKET"            |
+| **direction**         | **enum**    | **必填**<br/>订单方向：买入="LONG"，卖出="SHORT"                |
+| **price**             | **decimal** | **必填**<br/>订单价格，例如`7123.5`                          |
+| **quantity**          | **decimal** | **必填**<br/>订单数量，例如`1.02`                            |
+| **fillOrKill**        | **boolean** | **非必填**<br/>是否FOK订单，例如`true`                        |
+| **immediateOrCancel** | **boolean** | **非必填**<br/>是否IOC订单，例如`true`                        |
+| **postOnly**          | **boolean** | **必填**<br/>是否被动委托订单，例如`true`                        |
+| **hidden**            | **boolean** | **必填**<br/>是否冰山委托订单，例如`true`，冰山委托订单手续费率使用taker费率    |
+| **clientOrderId**     | **string**  | **选填**<br/>用户自定义OrderId，可用于查询 activity Order        |
+| **slotId**            | **long**    | **必填**<br/>订单slotId，通过接口/v1/orderNonce/gen获取 例如`1`  |
+| **nonce**             | **long**    | **必填**<br/>订单NonceId，通过接口/v1/orderNonce/gen获取 例如`0` |
+| **signature**         | **String**  | **必填**<br/>请求参数签名串，通过2层私钥签名                         |
 
 
 

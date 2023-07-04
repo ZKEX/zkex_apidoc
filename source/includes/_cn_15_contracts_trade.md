@@ -26,76 +26,51 @@ API响应样例:
 
 ```json
 {
-    "totalSpotsAssets": 2,
-    "contractsPositions": {
-        "XBTC": {
-            "direction": "LONG",
-            "userId": 10001,
-            "accountId": 0,
-            "symbolId": 131,
-            "id": "10001_0_131",
-            "riskLevel": 0,
-            "riskLimitId": 105,
-            "riskLimit": {
-                "id": 105,
-                "initialMarginRate": 0.01,
-                "maintenanceMarginRate": 0.005,
-                "marginRateStep": 0.005,
-                "maxLeverage": 10,
-                "riskLimitBase": 200,
-                "riskLimitStep": 100,
-                "maxRiskLimitSteps": 9,
-                "createdAt": 1546956010600
-            },
-            "quantity": 0,
-            "maxQuantity": 200,
-            "updatedAt": 1617156405270,
-            "realizedPNL": 0,
-            "entryPrice": 0,
-            "entryValue": 0,
-            "minimumMaintenanceMarginRate": 0.005,
-            "requiredMargin": 0,
-            "minimumMaintenanceMargin": 0,
-            "unrealizedPNL": 0,
-            "symbol": "XBTC",
-            "closed": true
-        }
-    },
-    "totalAvailableMargin": 2,
-    "balances": {
-        "USDT": [
-            2,
-            0
-        ]
-    },
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "totalTransferableMargin": 46000.000,
+    "totalSpotsAssets": 50000.000,
+    "totalAvailableMargin": 46000.000,
+    "minimumMaintenanceMargin": 0,
     "contractsUnrealized": 0,
-    "totalUsedMargin": 0,
     "contractsPrices": {
-        "XBTC": 60263.882909000000000000,
-        "XBCH": 951.041529000000000000,
-        "XETH": 2715.660442000000000000
+      "XBTC": 40000.133333000000000000,
+      "XBCH": 123.000410000000000000,
+      "XETH": 546.001820000000000000
     },
     "priceInfos": {
-        "BTC": {
-            "price": 55313.23,
-            "conversionRatio": 1
-        },
-        "BCH": {
-            "price": 952.24,
-            "conversionRatio": 0.8
-        },
-        "ETH": {
-            "price": 2294.28,
-            "conversionRatio": 0.9
-        },
-        "USDT": {
-            "price": 1,
-            "conversionRatio": 1
-        }
+      "BTC": {
+        "price": 40000.00,
+        "conversionRatio": 1
+      },
+      "BCH": {
+        "price": 123.00,
+        "conversionRatio": 0.8
+      },
+      "ETH": {
+        "price": 546.00,
+        "conversionRatio": 0.9
+      },
+      "USDT": {
+        "price": 1,
+        "conversionRatio": 1
+      }
     },
+    "totalMargin": 46000.000,
+    "contractsOrders": [],
+    "contractsPositions": {},
+    "balances": {
+      "USDT": [
+        46000.000,
+        4000.000
+      ]
+    },
+    "totalUsedMargin": 0,
+    "totalFrozenMargin": 0,
     "totalMarginRate": 0,
-    "totalMargin": 2,
-    "totalNetValue": 2
+    "totalNetValue": 50000.000
+  }
 }
 ```
 
@@ -107,9 +82,9 @@ API路径：GET /v1/trading/contracts/fee/rate
 
 API请求参数(Query Param)：
 
-| 参数       | 类型       | 说明                                                         |
-| :--------- | ---------- | :----------------------------------------------------------- |
-| **symbol** | **string** | **选填**<br>交易对名称,例如`XBTCUSD_PERP`|
+| 参数       | 类型       | 说明                                                 |
+| :--------- | ---------- | :--------------------------------------------------- |
+| **symbol** | **string** | **选填**<br>交易对名称,例如`XBTC`|
 
 
 ```
@@ -118,9 +93,13 @@ API响应样例:
 
 ```json
 {
-    "taker": 0.000200000000000000, // taker费率
-    "maker": 0.000100000000000000, // maker费率
-    "timestamp": 1595297714823 // 时间戳
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "taker": 0.002,
+    "maker": 0.001,
+    "timestamp": 1688471068462
+  }
 }
 ```
 
@@ -138,31 +117,26 @@ API请求参数(PATH)：
 | :---------- | ------- | :----------------- |
 | *accountId* | **int** | **必填**<br>账户id |
 
-API请求参数(Request Json Body)：
+API请求参数(Request Json Body):
 
-| 字段名称           | 字段类型  | 是否必须 | 默认值 | 描述 |
-|-------------------|---------|---|--|------|
-| symbol            | string  | Y |  | 合约代码，例如"XBTCUSD_PERP" |
-| type              | enum    | Y |  | 订单类型，限价单LIMIT与市价单MARKET |
-| direction         | enum    | Y |  | 订单方向，LONG与SHORT |
-| source            | string  |   | "" | 订单来源标识，例如"WEB", "APP"，字母和数字组合，不超过20个字符 |
-| price             | decimal | 仅限价单 |  | 限价单报价 |
-| quantity          | long    | Y |  | 订单数量，至少为1 |
-| triggerOn         | decimal |   |  | 订单触发价格，如果不填，则立刻执行 |
-| triggerDirection  | enum    |   |  | 价格触发方向，LONG与SHORT |
-| trailingDistance  | decimal |   |  | TrailingStop订单触发距离，如果不填，则不是TrailingStop |
-| fillOrKill        | boolean |   | false | 是否设置FOK订单 |
-| immediateOrCancel | boolean |   | false | 是否设置IOC订单 |
-| postOnly          | boolean |   | false | 是否设置PostOnly订单 |
-| hidden            | boolean |   | false | 是否设置Hidden订单 |
-| reduceOnly        | boolean |   | false | 是否设置ReduceOnly订单 |
-| clientOrderId | string | N |  | 用户自定义订单ID，可用于查询、撤销订单，24小时内可用 |
+| 字段名称                  | 字段类型       | 是否必须 | 默认值   | 描述                                       |
+|:----------------------|------------|------|-------|:-----------------------------------------|
+| **symbol**            | string     | Y    |       | 合约代码，例如"XBTC"                            |
+| **type**              | enum       | Y    |       | 订单类型，限价单LIMIT与市价单MARKET                  |
+| **direction**         | enum       | Y    |       | 订单方向，LONG与SHORT                          |
+| **price**             | decimal    | Y    |       | 限价单报价                                    |
+| **quantity**          | long       | Y    |       | 订单数量，至少为1                                |
+| **fillOrKill**        | boolean    |      | false | 是否设置FOK订单                                |
+| **immediateOrCancel** | boolean    |      | false | 是否设置IOC订单                                |
+| **postOnly**          | boolean    |      | false | 是否设置PostOnly订单                           |
+| **hidden**            | boolean    |      | false | 是否设置Hidden订单                             |
+| **reduceOnly**        | boolean    |      | false | 是否设置ReduceOnly订单                         |
+| **clientOrderId**     | string     | N    |       | 用户自定义订单ID，可用于查询activityOrder             |            |
+| **slotId**            | **long**   | Y    |       | 订单slotId，通过接口/v1/orderNonce/gen获取 例如`1`  |
+| **nonce**             | **long**   | Y    |       | 订单NonceId，通过接口/v1/orderNonce/gen获取 例如`0` |
+| **signature**         | **String** | Y    |       | 请求参数签名串，通过2层私钥签名                         |
 
 请注意：
-
-订单类型如果为LIMIT，则必须填写price；
-
-triggerOn与trailingDistance不能同时填写；
 
 若fillOrKill=true，则无法设置immediateOrCancel、postOnly、hidden和reduceOnly；
 
@@ -180,39 +154,13 @@ API响应样例:
 
 ```json
 {
-    "id":3854532008,
-  	"clientOrderId":"clientOrderId",
-    "sequenceId":0,
-    "type":"LIMIT",
-    "status":"PENDING",
-    "direction":"LONG",
-    "features":0,
-    "fillPrice":0,
-    "price":6000.0,
-    "makerFeeRate":-0.0002,
-    "takerFeeRate":0.0007,
-    "fee":0,
-    "createdAt":1597112074952,
-    "updatedAt":1597112074952,
-    "triggerDirection":"LONG",
-    "triggerOn":0,
-    "trailingBasePrice":0,
-    "trailingDistance":0,
-    "marginCurrencyId":null,
-    "quantity":1,
-    "unfilledQuantity":1,
-    "symbol":"XBTCUSD_PERP",
-    "trailing":false
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "orderId": 133718622601283
+  }
 }
 ```
-
-API错误响应：
-
-- `PARAMETER_INVALID`：参数错误。
-- `ORDER_EXCEEDED`：当前活动订单数量超出限制，无法创建新的订单。
-- `ORDER_INVALID`：无法创建Market订单或Stop订单，因为当前没有市场价。
-- `PRICE_EXCEEDED`：无法创建订单，因为报价超出允许范围。
-- `ACCOUNT_NO_ENOUGH_AVAILABLE`：无法创建订单，因为没有足够的可用保证金。
 
 ## 查询活跃订单
 
@@ -232,53 +180,36 @@ API响应样例：订单信息
 
 ```json
 {
-    "results":[
-        {
-            "id":"893f9e20df579fb248ed349406c82c2d",
-            "features":0,
-            "price":11898,
-            "fee":0.000003361916629248,
-            "fillPrice":11897.975,
-            "quantity":102,
-            "unfilledQuantity":22,
-            "makerFeeRate":0.0005,
-            "takerFeeRate":0.0005,
-            "type":"LIMIT",
-            "status":"PARTIAL_FILLED",
-            "direction":"LONG",
-            "triggerDirection":"LONG",
-            "triggerOn":0,
-            "trailingBasePrice":0,
-            "trailingDistance":0,
-            "createdAt":1597112143138,
-            "updatedAt":1597112149959,
-            "symbol":"XBTCUSD_PERP",
-            "trailing":false
-        },
-        {
-            "id":"25f2fd62fdf2a6bf33e9431ba184dd2e",
-            "features":0,
-            "price":11903,
-            "fee":0.000001722254893724,
-            "fillPrice":11903,
-            "quantity":86,
-            "unfilledQuantity":45,
-            "makerFeeRate":0.0005,
-            "takerFeeRate":0.0005,
-            "type":"LIMIT",
-            "status":"PARTIAL_FILLED",
-            "direction":"SHORT",
-            "triggerDirection":"LONG",
-            "triggerOn":0,
-            "trailingBasePrice":0,
-            "trailingDistance":0,
-            "createdAt":1597112147859,
-            "updatedAt":1597112152051,
-            "symbol":"XBTCUSD_PERP",
-            "trailing":false
-        }
-      	... ...
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "results": [
+      {
+        "id": 133718622601283,
+        "userId": 10030,
+        "accountId": 0,
+        "clientOrderId": "@133718622601283",
+        "symbolId": 132,
+        "sequenceId": 620679,
+        "type": "LIMIT",
+        "status": "PENDING",
+        "direction": "LONG",
+        "features": 0,
+        "price": 40000.0,
+        "fee": 0,
+        "fillPrice": 0.0,
+        "makerFeeRate": 0.001,
+        "takerFeeRate": 0.002,
+        "createdAt": 1688471702940,
+        "updatedAt": 1688471702940,
+        "marginCurrencyId": 103,
+        "quantity": 4,
+        "unfilledQuantity": 4,
+        "frozenMargin": 1600.000000000000000000,
+        "symbol": "XBTC"
+      }
     ]
+  }
 }
 ```
 
@@ -307,79 +238,35 @@ API响应样例:
 ```
 
 ```json
-
 {
-  "id":"25f2fd62fdf2a6bf33e9431ba184dd2e",
-  "features":0,
-  "price":11898,
-  "fee":0.000003361916629248,
-  "fillPrice":11897.975,
-  "quantity":102,
-  "unfilledQuantity":22,
-  "makerFeeRate":0.0005,
-  "takerFeeRate":0.0005,
-  "type":"LIMIT",
-  "status":"PARTIAL_FILLED",
-  "direction":"LONG",
-  "triggerDirection":"LONG",
-  "triggerOn":0,
-  "trailingBasePrice":0,
-  "trailingDistance":0,
-  "createdAt":1597112143138,
-  "updatedAt":1597112149959,
-  "symbol":"XBTCUSD_PERP",
-  "trailing":false
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": 133718622601283,
+    "userId": 10030,
+    "accountId": 0,
+    "clientOrderId": "@133718622601283",
+    "symbolId": 132,
+    "sequenceId": 620679,
+    "type": "LIMIT",
+    "status": "PENDING",
+    "direction": "LONG",
+    "features": 0,
+    "price": 40000.0,
+    "fee": 0,
+    "fillPrice": 0.0,
+    "makerFeeRate": 0.001,
+    "takerFeeRate": 0.002,
+    "createdAt": 1688471702940,
+    "updatedAt": 1688471702940,
+    "marginCurrencyId": 103,
+    "quantity": 4,
+    "unfilledQuantity": 4,
+    "frozenMargin": 1600.000000000000000000,
+    "symbol": "XBTC"
+  }
 }
 ```
-
-
-
-## 查询活动订单（通过自定义订单ID）
-
-API描述：通过订单ID查询当前用户活跃订单。
-
-API路径：GET /v1/trading/:accountId/contracts/orders/open/client/:client_order_id
-
-API请求参数(Path Param)：
-
-| 参数                | 类型       | 说明                                         |
-| :------------------ | ---------- | :------------------------------------------- |
-| **accountId**       | **int**    | **必填**<br>账户ID                           |
-| **client_order_id** | **string** | **选填**<br>自定义订单Id,例如"clientOrderId" |
-
-```
-API响应样例:
-```
-
-```json
-{
-  "id":"25f2fd62fdf2a6bf33e9431ba184dd2e",
-  "clientOrderId": "clientOrderId",
-  "features":0,
-  "price":11898,
-  "fee":0.000003361916629248,
-  "fillPrice":11897.975,
-  "quantity":102,
-  "unfilledQuantity":22,
-  "makerFeeRate":0.0005,
-  "takerFeeRate":0.0005,
-  "type":"LIMIT",
-  "status":"PARTIAL_FILLED",
-  "direction":"LONG",
-  "triggerDirection":"LONG",
-  "triggerOn":0,
-  "trailingBasePrice":0,
-  "trailingDistance":0,
-  "createdAt":1597112143138,
-  "updatedAt":1597112149959,
-  "symbol":"XBTCUSD_PERP",
-  "trailing":false
-}
-```
-
-
-
-
 
 ## 查询订单（通过订单ID）
 
@@ -389,10 +276,10 @@ API路径：GET /v1/trading/:accountId/contracts/orders/:order_id
 
 API请求参数(Path Param)：
 
-| 参数          | 类型       | 说明                                                         |
-| :------------ | ---------- | :----------------------------------------------------------- |
-| **accountId** | **int**    | **必填**<br>账户ID                                           |
-| **order_id**  | **string** | **选填**<br>自定义订单Id,例如"25f2fd62fdf2a6bf33e9431ba184dd2e" |
+| 参数          | 类型       | 说明                                                      |
+| :------------ | ---------- |:--------------------------------------------------------|
+| **accountId** | **int**    | **必填**<br>账户ID                                          |
+| **order_id**  | **string** | **选填**<br>订单Id,例如"133718622601283"                      |
 
 ```
 API响应样例:
@@ -400,75 +287,34 @@ API响应样例:
 
 ```json
 {
-  "id":"25f2fd62fdf2a6bf33e9431ba184dd2e",
-  "features":0,
-  "price":11898,
-  "fee":0.000003361916629248,
-  "fillPrice":11897.975,
-  "quantity":102,
-  "unfilledQuantity":22,
-  "makerFeeRate":0.0005,
-  "takerFeeRate":0.0005,
-  "type":"LIMIT",
-  "status":"PARTIAL_FILLED",
-  "direction":"LONG",
-  "triggerDirection":"LONG",
-  "triggerOn":0,
-  "trailingBasePrice":0,
-  "trailingDistance":0,
-  "createdAt":1597112143138,
-  "updatedAt":1597112149959,
-  "symbol":"XBTCUSD_PERP",
-  "trailing":false
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "id": 133718622601283,
+    "userId": 10030,
+    "accountId": 0,
+    "clientOrderId": "@133718622601283",
+    "symbolId": 132,
+    "sequenceId": 620679,
+    "type": "LIMIT",
+    "status": "PENDING",
+    "direction": "LONG",
+    "features": 0,
+    "price": 40000.0,
+    "fee": 0,
+    "fillPrice": 0.0,
+    "makerFeeRate": 0.001,
+    "takerFeeRate": 0.002,
+    "createdAt": 1688471702940,
+    "updatedAt": 1688471702940,
+    "marginCurrencyId": 103,
+    "quantity": 4,
+    "unfilledQuantity": 4,
+    "frozenMargin": 1600.000000000000000000,
+    "symbol": "XBTC"
+  }
 }
 ```
-
-
-
-## 查询订单（通过自定义订单ID）
-
-API描述：通过订单ID查询当前用户订单。
-
-API路径：GET /v1/trading/:accountId/contracts/orders/client/:client_order_id
-
-API请求参数(Path Param)：
-
-| 参数                | 类型       | 说明                                         |
-| :------------------ | ---------- | :------------------------------------------- |
-| **accountId**       | **int**    | **必填**<br>账户ID                           |
-| **client_order_id** | **string** | **选填**<br>自定义订单Id,例如"clientOrderId" |
-
-```
-API响应样例:
-```
-
-```json
-{
-  "id":"25f2fd62fdf2a6bf33e9431ba184dd2e",
-  "clientOrderId": "clientOrderId",
-  "features":0,
-  "price":11898,
-  "fee":0.000003361916629248,
-  "fillPrice":11897.975,
-  "quantity":102,
-  "unfilledQuantity":22,
-  "makerFeeRate":0.0005,
-  "takerFeeRate":0.0005,
-  "type":"LIMIT",
-  "status":"PARTIAL_FILLED",
-  "direction":"LONG",
-  "triggerDirection":"LONG",
-  "triggerOn":0,
-  "trailingBasePrice":0,
-  "trailingDistance":0,
-  "createdAt":1597112143138,
-  "updatedAt":1597112149959,
-  "symbol":"XBTCUSD_PERP",
-  "trailing":false
-}
-```
-
-
 
 ## 查询历史订单（合约）
 
@@ -484,12 +330,12 @@ API请求参数(Path Param)：
 
 API请求参数(Request Param)：
 
-| 参数         | 类型       | 说明                                                         |
-| :----------- | ---------- | :----------------------------------------------------------- |
-| **symbol**   | **string** | **选填**<br>交易对名称，例如`XBTCUSD_PERP`，默认空           |
-| **limit**    | **long**   | **选填**<br/>返回结果集的最大记录数量，范围1～100，默认为100 |
-| **range**    | **string** | **选填**<br/>查询月份，格式为YYYYMM，例如"201907"，默认为""，表示当前月份 |
-| **offsetId** | **long**   | **选填**<br/>传入当前页的起始id，默认为0，表示第一页         |
+| 参数         | 类型       | 说明                                                 |
+| :----------- | ---------- |:---------------------------------------------------|
+| **symbol**   | **string** | **选填**<br>交易对名称，例如`XBTC`，默认空                       |
+| **limit**    | **long**   | **选填**<br/>返回结果集的最大记录数量，范围1～100，默认为100             |
+| **range**    | **string** | **选填**<br/>查询月份，格式为YYYYMM，例如"201907"，默认为""，表示当前月份  |
+| **offsetId** | **long**   | **选填**<br/>传入当前页的起始id，默认为0，表示第一页                   |
 
 ```
 API响应样例:
@@ -497,59 +343,39 @@ API响应样例:
 
 ```json
 {
-    // 订单集所在范围:
-    "range":"202008",
-    // 是否有下一页:            
-    "hasMore":true,
-    // 下一页查询的起始ID:            
-    "nextOffsetId":3857772008,
-    "results":[
-        {
-            "id":"25f2fd62fdf2a6bf33e9431ba184dd2e",
-            "features":8,
-            "price":13097.5,
-            "fee":0.000001511461919556,
-            "fillPrice":11909,
-            "quantity":36,
-            "unfilledQuantity":0,
-            "makerFeeRate":0.0005,
-            "takerFeeRate":0.0005,
-            "type":"MARKET",
-            "status":"FULLY_FILLED",
-            "direction":"LONG",
-            "triggerDirection":"LONG",
-            "triggerOn":0,
-            "trailingBasePrice":0,
-            "trailingDistance":0,
-            "createdAt":1597112483928,
-            "updatedAt":1597112483928,
-            "symbol":"XBTCUSD_PERP",
-            "trailing":false
-        },
-        {
-            "id":"b14de0b92ea48fa41c57109059df2540",
-            "features":8,
-            "price":10718.5,
-            "fee":0.00000151171579743,
-            "fillPrice":11907,
-            "quantity":36,
-            "unfilledQuantity":0,
-            "makerFeeRate":0.0005,
-            "takerFeeRate":0.0005,
-            "type":"MARKET",
-            "status":"FULLY_FILLED",
-            "direction":"SHORT",
-            "triggerDirection":"LONG",
-            "triggerOn":0,
-            "trailingBasePrice":0,
-            "trailingDistance":0,
-            "createdAt":1597112483895,
-            "updatedAt":1597112483895,
-            "symbol":"XBTCUSD_PERP",
-            "trailing":false
-        }
-      	... ...
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "range": "202307",
+    "hasMore": false,
+    "nextOffsetId": 0,
+    "results": [
+      {
+        "id": 132847776038979,
+        "userId": 10030,
+        "accountId": 0,
+        "clientOrderId": null,
+        "symbolId": 132,
+        "sequenceId": 592222,
+        "type": "LIMIT",
+        "status": "FULLY_FILLED",
+        "direction": "LONG",
+        "features": 0,
+        "price": 40000.000000000000000000,
+        "fee": 32.000000000000000000,
+        "fillPrice": 40000.0,
+        "makerFeeRate": 0.001000000000000000,
+        "takerFeeRate": 0.002000000000000000,
+        "createdAt": 1688367889917,
+        "updatedAt": 1688367889917,
+        "marginCurrencyId": 103,
+        "quantity": 4,
+        "unfilledQuantity": 0,
+        "frozenMargin": null,
+        "symbol": "XBTC"
+      }
     ]
+  }
 }
 ```
 
@@ -559,7 +385,8 @@ API响应样例:
 
 如果API响应样例返回的hasMore=true，则可以根据nextOffsetId构造下一页查询的URL。
 
-## 取消订单
+
+## 取消订单(根据orderId)
 
 API描述：取消一个活动订单。
 
@@ -578,75 +405,11 @@ API响应样例:
 
 ```json
 {
-    "id": "b14de0b92ea48fa41c57109059df2540",
-    "sequenceId": 0,
-    "type": "LIMIT",
-    "status": "FULLY_CANCELLED",
-    "direction": "SHORT",
-    "features": 0,
-    "fillPrice": 0.0,
-    "price": null,
-    "makerFeeRate": 0.0005,
-    "takerFeeRate": 0.0005,
-    "fee": 0,
-    "createdAt": 1597112497928,
-    "updatedAt": 1597112615906,
-    "triggerDirection": "LONG",
-    "triggerOn": 0,
-    "trailingBasePrice": 0,
-    "trailingDistance": 0,
-    "marginCurrencyId": null,
-    "quantity": 52,
-    "unfilledQuantity": 52,
-    "symbol": "XBTCUSD_PERP",
-    "trailing": false
-}
-```
-
-
-
-## 取消订单（通过自定义订单ID）
-
-API描述：通过自定义订单ID取消一个活动订单。
-
-API路径：GET /v1/trading/:accountId/contracts/orders/client/:client_order_id/cancel
-
-API请求参数(Path Param)：
-
-| 参数                | 类型     | 说明                     |
-| :------------------ | -------- | :----------------------- |
-| **accountId**       | **int**  | **必填**<br>账户ID       |
-| **client_order_id** | **path** | **必填**<br>自定义订单ID |
-
-```
-API响应样例:
-```
-
-```json
-{
-    "id": "b14de0b92ea48fa41c57109059df2540",
-  	"clientOrderId": "clientOrderId",
-    "sequenceId": 0,
-    "type": "LIMIT",
-    "status": "FULLY_CANCELLED",
-    "direction": "SHORT",
-    "features": 0,
-    "fillPrice": 0.0,
-    "price": null,
-    "makerFeeRate": 0.0005,
-    "takerFeeRate": 0.0005,
-    "fee": 0,
-    "createdAt": 1597112497928,
-    "updatedAt": 1597112615906,
-    "triggerDirection": "LONG",
-    "triggerOn": 0,
-    "trailingBasePrice": 0,
-    "trailingDistance": 0,
-    "marginCurrencyId": null,
-    "quantity": 52,
-    "unfilledQuantity": 52,
-    "symbol": "XBTCUSD_PERP",
-    "trailing": false
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "orderId": 133718622601283
+  }
 }
 ```
 
@@ -668,21 +431,25 @@ API请求参数(Request Json Body)：
 
 ```json
 {
-    "symbol":"XBTCUSD_PERP"
+    "symbol":"XBTC"
 }
 ```
 
 | 参数       | 类型       | 说明                                                         |
 | :--------- | ---------- | :----------------------------------------------------------- |
-| **symbol** | **string** | **选填**<br>交易对名称,例如`XBTCUSD_PERP`，为空则撤销所有交易对活动订单 |
+| **symbol** | **string** | **选填**<br>交易对名称,例如`XBTC`，为空则撤销所有交易对活动订单 |
 
 ```
 API响应样例:
 ```
 
 ```json
-{ 
-  "cancelled" : 10 // 成功取消的订单数量  
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "result": "ok"
+  }
 }
 ```
 
@@ -703,23 +470,19 @@ API响应样例：订单成交详细信息，按时间排序
 
 ```json
 {
+  "code": 200,
+  "msg": "success",
+  "data": {
     "results": [
-        {
-            "taker": true, // 是否是taker
-            "price": 9801.5, // 成交价
-            "quantity": 120, // 成交数量
-            "fee": 0.0012845, // 手续费
-            "createdAt": 1564558783608 // 创建时间
-        },
-        {
-            "taker": false, // 是否是taker
-            "price": 9801.0, // 成交价
-            "quantity": 26, // 成交数量
-            "fee": -0.0006175, // 手续费，负数表示反佣
-            "createdAt": 1564558790832 // 创建时间
-        },
-        ...
+      {
+        "taker": true,
+        "price": 40000.000000000000000000,
+        "quantity": 4.000000000000000000,
+        "fee": 32.000000000000000000,
+        "createdAt": 1688367889917
+      }
     ]
+  }
 }
 ```
 
@@ -743,27 +506,44 @@ API响应样例:
 
 ```json
 {
-    "results":[
-        {
-            "id":"122019_14",
-            "leverage":0,
-            "riskLevel":0,
-            "maxQuantity":100000,
-            "margin":0.000279798244065283,
-            "realizedPNL":-0.000869129308091017,
-            "takerFeeRate":0.0005,
-            "symbol":"XBTCUSD_PERP",
-            "bankruptcyPrice":0,
-            "liquidationPrice":0,
-            "updatedAt":1597116449876,
-            "direction":"SHORT",
-            "quantity":555,
-            "entryPrice":11866.877971329317,
-            "minimumMaintenanceMarginRate":0.005,
-            "closed":false
-        }
-      ...
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "results": [
+      {
+        "direction": "SHORT",
+        "userId": 10031,
+        "accountId": 0,
+        "symbolId": 132,
+        "id": "10031_0_132",
+        "riskLevel": 0,
+        "riskLimitId": 105,
+        "riskLimit": {
+          "id": 105,
+          "initialMarginRate": 0.01,
+          "maintenanceMarginRate": 0.005,
+          "marginRateStep": 0.005,
+          "maxLeverage": 10,
+          "riskLimitBase": 200,
+          "riskLimitStep": 100,
+          "maxRiskLimitSteps": 9,
+          "createdAt": 1546956010600
+        },
+        "quantity": 4,
+        "maxQuantity": 200,
+        "updatedAt": 1688367889917,
+        "realizedPNL": -16.000000000000000000,
+        "entryPrice": 40000.0,
+        "entryValue": 16000.0000000000000000000,
+        "minimumMaintenanceMarginRate": 0.005,
+        "requiredMargin": 1600.000000000000000000,
+        "minimumMaintenanceMargin": 80.0000000000000000000000,
+        "unrealizedPNL": 2999.645208400000000000000000000000000000,
+        "symbol": "XBTC",
+        "closed": false
+      }
     ]
+  }
 }
 ```
 
@@ -781,12 +561,12 @@ API请求参数(Path Param)：
 
 API请求参数(Request Param)：
 
-| 参数         | 类型       | 说明                                                         |
-| :----------- | ---------- | :----------------------------------------------------------- |
-| **symbol**   | **string** | **选填**<br>交易对名称，例如`XBTCUSD_PERP`，默认空           |
-| **limit**    | **long**   | **选填**<br/>返回结果集的最大记录数量，范围1～100，默认为100 |
+| 参数         | 类型       | 说明                                                |
+| :----------- | ---------- |:--------------------------------------------------|
+| **symbol**   | **string** | **选填**<br>交易对名称，例如`XBTC`，默认空                      |
+| **limit**    | **long**   | **选填**<br/>返回结果集的最大记录数量，范围1～100，默认为100            |
 | **range**    | **string** | **选填**<br/>查询月份，格式为YYYYMM，例如"201907"，默认为""，表示当前月份 |
-| **offsetId** | **long**   | **选填**<br/>传入当前页的起始id，默认为0，表示第一页         |
+| **offsetId** | **long**   | **选填**<br/>传入当前页的起始id，默认为0，表示第一页                  |
 
 ```
 API响应样例:
@@ -794,99 +574,97 @@ API响应样例:
 
 ```json
 {
-    "range": "202007",
-    "hasMore": true,
-    "nextOffsetId": 35905,
-    "results": [
-        {
-            "id": 35925,
-            "orderId": "b14de0b92ea48fa41c57109059df2540",
-            "symbol": "XBTCUSD_PERP",
-            "sequenceId": 121577,
-            "direction": "SHORT",
-            "type": "OPEN",
-            "clearingPrice": 9178.000000000000000000,
-            "rate": 0.001000000000000000,
-            "fee": 0.000005229897581172,
-            "quantityChanged": 48,
-            "quantityAfterClearing": 48,
-            "realizedPNLChanged": -0.000005229897581172,
-            "positionMargin": 0.000047069078230551,
-            "createdAt": 1594711903062
-        },
-        {
-            "id": 35920,
-            "orderId": "25f2fd62fdf2a6bf33e9431ba184dd2e",
-            "symbol": "XBTCUSD_PERP",
-            "sequenceId": 121576,
-            "direction": "LONG",
-            "type": "CLOSE",
-            "clearingPrice": 9170.000000000000000000,
-            "rate": 0.002000000000000000,
-            "fee": 0.000007415485278080,
-            "quantityChanged": -34,
-            "quantityAfterClearing": 0,
-            "realizedPNLChanged": -0.000007415485278080,
-            "positionMargin": 0E-18,
-            "createdAt": 1594711902592
-        }
-      	... ...
-    ]
+    "code": 200,
+    "msg": "success",
+    "data": {
+        "range": "202306",
+        "hasMore": true,
+        "nextOffsetId": 22979,
+        "results": [
+            {
+                "id": 22991,
+                "orderId": 0,
+                "sequenceId": 550183,
+                "direction": "LONG",
+                "type": "LIQUIDATE",
+                "clearingPrice": 30001.700000000000000000,
+                "rate": 0E-18,
+                "fee": 0E-18,
+                "quantityChanged": -5,
+                "quantityAfterClearing": 0,
+                "realizedPNLChanged": -4999.150000000000000000,
+                "createdAt": 1687937250385,
+                "txHash": "",
+                "symbol": "XBTC"
+            },
+            {
+                "id": 22987,
+                "orderId": 129221917671488,
+                "sequenceId": 549851,
+                "direction": "LONG",
+                "type": "OPEN",
+                "clearingPrice": 40000.000000000000000000,
+                "rate": 0.001000000000000000,
+                "fee": 20.000000000000000000,
+                "quantityChanged": 5,
+                "quantityAfterClearing": 5,
+                "realizedPNLChanged": -20.000000000000000000,
+                "createdAt": 1687935674303,
+                "txHash": "0x8f9bfeacbc18398d2303935672eeea0515a867531ed7920846f822b47254dce1",
+                "symbol": "XBTC"
+            },
+            {
+                "id": 22983,
+                "orderId": 129219359146048,
+                "sequenceId": 549817,
+                "direction": "LONG",
+                "type": "CLOSE",
+                "clearingPrice": 40000.000000000000000000,
+                "rate": 0.001000000000000000,
+                "fee": 4.800000000000000000,
+                "quantityChanged": -1,
+                "quantityAfterClearing": 0,
+                "realizedPNLChanged": -4.800000000000000000,
+                "createdAt": 1687935391136,
+                "txHash": "0x5fe2e858dbfa721198d71a6514dccca5669f3defad5ac132733a83e9a8288514",
+                "symbol": "XBTC"
+            },
+            {
+                "id": 22981,
+                "orderId": 129217966637120,
+                "sequenceId": 549799,
+                "direction": "LONG",
+                "type": "OPEN",
+                "clearingPrice": 40000.000000000000000000,
+                "rate": 0.001000000000000000,
+                "fee": 4.000000000000000000,
+                "quantityChanged": 1,
+                "quantityAfterClearing": 1,
+                "realizedPNLChanged": -4.000000000000000000,
+                "createdAt": 1687935232397,
+                "txHash": "0xd71871b40cb775d96af462e086fbf22bdb725fa8a01c6cae313cee9fa69efcba",
+                "symbol": "XBTC"
+            },
+            {
+                "id": 22980,
+                "orderId": 129217966637120,
+                "sequenceId": 549799,
+                "direction": "SHORT",
+                "type": "CLOSE",
+                "clearingPrice": 40000.000000000000000000,
+                "rate": 0.001000000000000000,
+                "fee": 8.000000000000000000,
+                "quantityChanged": -2,
+                "quantityAfterClearing": 0,
+                "realizedPNLChanged": -8.000000000000000000,
+                "createdAt": 1687935232397,
+                "txHash": "0xd71871b40cb775d96af462e086fbf22bdb725fa8a01c6cae313cee9fa69efcba",
+                "symbol": "XBTC"
+            }
+        ]
+    }
 }
-```
-
-
-## 设置仓位风险等级
-
-API描述：为指定仓位设置风险等级。如果设置成功，继续增加仓位时最小维持保证金率可能会增加。
-
-API路径：POST /v1/trading/:accountId/contracts/positions/:symbol/riskLevel
-
-API请求参数(PATH)：
-
-| 参数          | 类型       | 说明                                      |
-| :------------ | ---------- | :---------------------------------------- |
-| **accountId** | **int**    | **必填**<br>账户ID                        |
-| **symbol**    | **string** | **必填**<br>交易对名称,例如`XBTCUSD_PERP` |
-
-- POST参数：JSON Object：
-
-```json
-{
-    "riskLevel": 1
-}
-```
-
-| 参数          | 类型        | 说明                      |
-| :------------ | ----------- | :------------------------ |
-| **riskLevel** | **integer** | **必填**<br>0～最大允许值 |
 
 ```
-API响应样例:
-```
 
-```json
-{
-    "id":"122019_14",
-    "direction":"SHORT",
-    "updatedAt":1597137704240,
-    "quantity":36,
-    "leverage":20,
-    "riskLevel":1,
-    "maxQuantity":150000,
-    "realizedPNL":-0.000001531654186521,
-    "takerFeeRate":0.0005,
-    "margin":0.000151633764465623,
-    "bankruptcyPrice":12357.836927932667,
-    "liquidationPrice":12296.016833245661,
-    "entryPrice":11752,
-    "symbol":"XBTCUSD_PERP",
-    "closed":false,
-    "minimumMaintenanceMarginRate":0.005
-}
-```
 
-API错误响应：
-
-- `PARAMETER_INVALID`：无效的riskLevel参数：null，负数或高于该Symbol允许的最大风险等级。
-- `ACCOUNT_NO_ENOUGH_AVAILABLE`: 没有足够的可用保证金。
