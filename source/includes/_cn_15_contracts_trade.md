@@ -706,4 +706,44 @@ API响应样例:
 }
 ```
 
+## 市价单价格获取
 
+API描述：用户需对市价单价格进行签名 系统会在该价格附近成交
+
+API路径: POST /v1/trading/market/price/:type
+
+API请求参数(Path Param)：
+
+| 参数          | 类型    | 说明                   |
+| :------------ | ------- |:---------------------|
+| **type** | **int** | **必填**<br> 现货 0 合约 1 |
+
+API请求参数(Request Json Body)：
+
+```json
+{
+  "marketPriceList":[
+    {
+    "symbolId": 132,   // 下单symbolId
+    "direction": "SHORT"  // 下单方向
+    }
+    // 支持多个查询
+  ]
+}
+```
+
+```
+API响应样例:
+```
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "SHORT": {
+      "XBTC": "0"
+    }
+  }
+}
+```
