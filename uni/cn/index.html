@@ -475,6 +475,9 @@
                     <a href="#4ade1cf0af" class="toc-h2 toc-link" data-title="用户认证">用户认证</a>
                   </li>
                   <li>
+                    <a href="#ws" class="toc-h2 toc-link" data-title="连接用户认证WS：">连接用户认证WS：</a>
+                  </li>
+                  <li>
                     <a href="#todo" class="toc-h2 toc-link" data-title="订阅（todo）">订阅（todo）</a>
                   </li>
                   <li>
@@ -3254,16 +3257,11 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 </code></pre></div>
 <p>此Token默认有效期1分钟。</p>
-
-<ol>
-<li>立刻连接WSS：</li>
-</ol>
-
-<p>将获取的token作为参数附加到wss连接：</p>
+<h2 id='ws'>连接用户认证WS：</h2>
+<p>将获取的token作为参数附加到wss连接</p>
 <div class="highlight"><pre class="highlight plaintext"><code>ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
-</code></pre></div>
-<p>WSS连接成功后，服务器会立刻推送一条status信息</p>
-<div class="highlight"><pre class="highlight plaintext"><code>如果WSS服务器验证用户成功，推送消息
+
+如果WSS服务器验证用户成功，推送消息
 
 {
   "status": "connected",
@@ -3279,9 +3277,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 }
 
 </code></pre></div>
-<ol>
-<li>认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。</li>
-</ol>
+<p>认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。</p>
 <h2 id='todo'>订阅（todo）</h2>
 <p>连接WSS后，需要订阅指定topic，发送消息如下：</p>
 <div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
