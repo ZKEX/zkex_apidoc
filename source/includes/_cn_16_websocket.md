@@ -457,10 +457,114 @@ OrderBook消息如下：
 - data 对象里面status会细化取消和filled
 
 
-## 仓位变化消息（todo）
+## 仓位变化消息
 
-## 爆仓消息 （todo）
+当用户仓位发生变动后，获得仓位变化消息：
+```
+{
+    "sequenceId":630902,
+    "userId":10030,
+    "type":"position_changed",
+    "data":{
+        "symbolId":132,
+        "createdAt":1688555522202,
+        "symbol":"XBTC",
+        "orderId":134421336293440,
+        "price":40000,
+        "fee":16,
+        "feeCurrency":"USDT",
+        "type":"OPEN",
+        "txHash":"0xb88f84d1b73a04593ea63c08251a190c544ab558302a548ec471b4fa069d544a",
+        "quantityChanged":4,
+        "direction":"SHORT"
+    }
+}
 
-## 账户资产变化消息 （todo）
+```
+
+说明：
+- 是否需要认证：需要
+
+
+## 爆仓消息
+
+当用户仓位发生爆仓后，获得爆仓消息
+
+```
+{
+    "sequenceId":630941,
+    "userId":10030,
+    "type":"position_liquidated",
+    "data":{
+        "accountId":0,
+        "balances":{
+            "USDT":4000
+        },
+        "contractsPrices":{
+            "145":546.004777,
+            "132":50000.4375,
+            "119":114.000997
+        },
+        "positions":[
+            {
+                "symbolId":132,
+                "quantity":4,
+                "requiredMargin":1600,
+                "entryPrice":40000,
+                "entryTotalValue":16000,
+                "minimumMaintenanceMarginRate":0.005,
+                "minimumMaintenanceMargin":80,
+                "unrealizedPNL":-4000.175
+            }
+        ],
+        "priceInfos":{
+            "100":{
+                "price":45714.29,
+                "conversionRatio":1
+            },
+            "101":{
+                "price":546,
+                "conversionRatio":0.9
+            },
+            "102":{
+                "price":114,
+                "conversionRatio":0.8
+            },
+            "103":{
+                "price":1,
+                "conversionRatio":1
+            }
+        },
+        "userId":10030
+    }
+}
+```
+
+说明：
+- 是否需要认证：需要
+
+## 账户资产变化消息
+当用户资产发生改变后，获取账户资产信息
+```
+{
+    "sequenceId":630878,
+    "userId":10030,
+    "type":"account_changed",
+    "data":{
+        "accountId":0,
+        "createdAt":1688555305545,
+        "total":49908,
+        "available":45908,
+        "currencyId":103,
+        "userId":10030,
+        "spotsFrozen":4000,
+        "sequenceId":630878
+    }
+}
+```
+
+
+说明：
+- 是否需要认证：需要
 
 
