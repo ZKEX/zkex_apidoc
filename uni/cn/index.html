@@ -3225,64 +3225,53 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <h2 id='b98a1892b6'>连接信息</h2>
 <p>WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notification</p>
 <h2 id='4ade1cf0af'>用户认证</h2>
-<p>要以认证用户连接wss，必须提供一个有效的wss token。获取wss token的方式是：</p>
+<p>要以认证用户连接wss，必须提供一个有效的wss token</p>
+
+<p>获取wss token的方式是：</p>
 
 <p>以API方式请求wss token，可以访问如下API地址（需要API签名）：</p>
 
 <p>用户API请求：GET <a href="http://54.199.66.35:8080/v1/users/wss/token">/v1/users/wss/token</a></p>
-
-<p>如果用户未登录，返回结果如下:
-```json</p>
-
-<p>{
-  &quot;code&quot;: 1003,
-  &quot;msg&quot;: &quot;AUTH_SIGNIN_REQUIRED&quot;,
-  &quot;data&quot;: null
+<div class="highlight"><pre class="highlight plaintext"><code>如果用户未登录，返回结果如下:
+{
+  "code": 1003,
+  "msg": "AUTH_SIGNIN_REQUIRED",
+  "data": null
 }
-```</p>
+如果用户已登录，返回包含Token的JSON：
 
-<p>如果用户已登录，返回包含Token的JSON：
-```json</p>
-
-<p>{
-  &quot;code&quot;: 200,
-  &quot;msg&quot;: &quot;success&quot;,
-  &quot;data&quot;: {
-    &quot;result&quot;: &quot;ZVBkOHFYMDAwMDAyNzJlMTg5MjQxMjAxM2ZjZWQzYmRhYTUxNjM2OGQ4YjI4NjU5NDhjZjA3ZDQ3MjMyYWE5MDNlYTBkNTRlMWMxYTVhZGNlOGQ0YmI0YTA5&quot;
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "result": "ZVBkOHFYMDAwMDAyNzJlMTg5MjQxMjAxM2ZjZWQzYmRhYTUxNjM2OGQ4YjI4NjU5NDhjZjA3ZDQ3MjMyYWE5MDNlYTBkNTRlMWMxYTVhZGNlOGQ0YmI0YTA5"
   }
 }
-```</p>
 
+</code></pre></div>
 <p>此Token默认有效期1分钟。</p>
 
 <ol>
 <li>立刻连接WSS：</li>
 </ol>
 
-<p>将获取的token作为参数附加到wss连接：<br>
-ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw</p>
-
-<p>WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：
-```json</p>
-
-<p>{
+<p>将获取的token作为参数附加到wss连接：</p>
+<div class="highlight"><pre class="highlight plaintext"><code>ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
+</code></pre></div>
+<p>WSS连接成功后，服务器会立刻推送一条status信息
+```
+如果WSS服务器验证用户成功，推送消息如下：
+{
   &quot;status&quot;: &quot;connected&quot;,
   &quot;message&quot;: &quot;connected as signed user&quot;,
   &quot;userId&quot;: 10030
 }
-```</p>
-
-<p>如果WSS服务器验证用户失败，推送的消息不含userId：
-```json</p>
-
-<p>{
+如果WSS服务器验证用户失败，推送的消息不含userId
+{
   &quot;status&quot;: &quot;connected&quot;,
   &quot;message&quot;: &quot;connected as anonymous user&quot;
 }</p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-
-
-3. 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
+<div class="highlight"><pre class="highlight plaintext"><code>3. 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
 
 ## 订阅
 
