@@ -10,25 +10,22 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
 
 ## 用户认证
 
-要以认证用户连接wss，必须提供一个有效的wss token。获取wss token的方式是：
+要以认证用户连接wss，必须提供一个有效的wss token
+
+获取wss token的方式是：
 
 以API方式请求wss token，可以访问如下API地址（需要API签名）：
 
 用户API请求：GET [/v1/users/wss/token](http://54.199.66.35:8080/v1/users/wss/token)
 
+```
 如果用户未登录，返回结果如下:
-```json
-
 {
   "code": 1003,
   "msg": "AUTH_SIGNIN_REQUIRED",
   "data": null
 }
-```
-
-
 如果用户已登录，返回包含Token的JSON：
-```json
 
 {
   "code": 200,
@@ -37,38 +34,33 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
     "result": "ZVBkOHFYMDAwMDAyNzJlMTg5MjQxMjAxM2ZjZWQzYmRhYTUxNjM2OGQ4YjI4NjU5NDhjZjA3ZDQ3MjMyYWE5MDNlYTBkNTRlMWMxYTVhZGNlOGQ0YmI0YTA5"
   }
 }
-```
 
+```
 此Token默认有效期1分钟。
 
 2. 立刻连接WSS：
 
-将获取的token作为参数附加到wss连接：<br>
+将获取的token作为参数附加到wss连接：
+
+```
 ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
+```
 
-
-WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：
-```json
-
+WSS连接成功后，服务器会立刻推送一条status信息
+```
+如果WSS服务器验证用户成功，推送消息如下：
 {
   "status": "connected",
   "message": "connected as signed user",
   "userId": 10030
 }
-```
-
-如果WSS服务器验证用户失败，推送的消息不含userId：
-```json
-
+如果WSS服务器验证用户失败，推送的消息不含userId
 {
   "status": "connected",
   "message": "connected as anonymous user"
 }
 
 ```
-
-
-
 3. 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
 
 ## 订阅
