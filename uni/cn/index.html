@@ -545,7 +545,9 @@
 <h2 id='70bdef7e25'>返回参数</h2>
 <p>如果API调用成功，返回200，内容总是JSON，且具有<code>Content-Type: application/json</code>。</p>
 
-<p>如果API调用失败，返回code非200，内容总是JSON，且具有<code>Content-Type: application/json</code>，格式为固定的Error，请参考<a href="https://54.199.66.35:8080/v1/market/error">https://54.199.66.35:8080/v1/market/error</a>。</p>
+<p>如果API调用失败，返回code非200，内容总是JSON，且具有<code>Content-Type: application/json</code>，</p>
+
+<p>格式为固定的Error，请参考<a href="https://54.199.66.35:8080/v1/market/error">https://54.199.66.35:8080/v1/market/error</a>。</p>
 
 <p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
@@ -1846,8 +1848,9 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>说明：
-该接口是服务端代为执行的批处理操作，并非所有订单同时尝试取消。所以不能保证所有订单取消的时间有效性。</p>
+<p>说明：</p>
+
+<p>该接口是服务端代为执行的批处理操作，并非所有订单同时尝试取消。所以不能保证所有订单取消的时间有效性。</p>
 <h2 id='id'>查询订单详情根据订单Id</h2>
 <p>API描述：查询某个指定订单的详情。</p>
 
