@@ -304,15 +304,7 @@ OrderBook消息如下：
   ]
 }
 ```
-				tick.timestamp = message.timestamp;
-				tick.takerOrderId = message.takerOrderId;
-				tick.takerDirection = message.takerDirection == Direction.LONG;
-				tick.makerOrderId = matchRecord.makerOrderId;
-				tick.price = matchRecord.matchPrice;
-				tick.sequenceId = message.sequenceId;
-				tick.symbolId = message.symbolId;
-				tick.volume = matchRecord.matchVolume;
-				tick.amount = matchRecord.matchVolume.multiply(matchRecord.matchPrice).multiply(multiplier);
+
 说明：
 
 - 消息类型：tick
