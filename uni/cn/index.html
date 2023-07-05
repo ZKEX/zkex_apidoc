@@ -475,6 +475,9 @@
                     <a href="#4ade1cf0af" class="toc-h2 toc-link" data-title="用户认证">用户认证</a>
                   </li>
                   <li>
+                    <a href="#todo" class="toc-h2 toc-link" data-title="订阅（todo）">订阅（todo）</a>
+                  </li>
+                  <li>
                     <a href="#b109d834a1" class="toc-h2 toc-link" data-title="取消订阅">取消订阅</a>
                   </li>
                   <li>
@@ -3233,13 +3236,14 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>用户API请求：GET <a href="http://54.199.66.35:8080/v1/users/wss/token">/v1/users/wss/token</a></p>
 <div class="highlight"><pre class="highlight plaintext"><code>如果用户未登录，返回结果如下:
+
 {
   "code": 1003,
   "msg": "AUTH_SIGNIN_REQUIRED",
   "data": null
 }
-如果用户已登录，返回包含Token的JSON：
 
+如果用户已登录，返回包含Token的JSON：
 {
   "code": 200,
   "msg": "success",
@@ -3258,30 +3262,32 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>将获取的token作为参数附加到wss连接：</p>
 <div class="highlight"><pre class="highlight plaintext"><code>ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
 </code></pre></div>
-<p>WSS连接成功后，服务器会立刻推送一条status信息
-```
-如果WSS服务器验证用户成功，推送消息如下：
+<p>WSS连接成功后，服务器会立刻推送一条status信息</p>
+<div class="highlight"><pre class="highlight plaintext"><code>如果WSS服务器验证用户成功，推送消息
+
 {
-  &quot;status&quot;: &quot;connected&quot;,
-  &quot;message&quot;: &quot;connected as signed user&quot;,
-  &quot;userId&quot;: 10030
+  "status": "connected",
+  "message": "connected as signed user",
+  "userId": 10030
 }
+
 如果WSS服务器验证用户失败，推送的消息不含userId
+
 {
-  &quot;status&quot;: &quot;connected&quot;,
-  &quot;message&quot;: &quot;connected as anonymous user&quot;
-}</p>
-<div class="highlight"><pre class="highlight plaintext"><code>3. 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
+  "status": "connected",
+  "message": "connected as anonymous user"
+}
 
-## 订阅
-
-连接WSS后，需要订阅指定topic，发送消息如下：
-
-```javascript
-socket.send(JSON.stringify({
-    action: "subscribe",
-    topic: "tick.BTC_USDT"
-});
+</code></pre></div>
+<ol>
+<li>认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。</li>
+</ol>
+<h2 id='todo'>订阅（todo）</h2>
+<p>连接WSS后，需要订阅指定topic，发送消息如下：</p>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="na">action</span><span class="p">:</span> <span class="dl">"</span><span class="s2">subscribe</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tick.BTC_USDT</span><span class="dl">"</span>
+<span class="p">});</span>
 </code></pre></div>
 <p>返回格式：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
