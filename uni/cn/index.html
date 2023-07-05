@@ -511,6 +511,9 @@
                     <a href="#5415c9f72e" class="toc-h2 toc-link" data-title="仓位变化消息">仓位变化消息</a>
                   </li>
                   <li>
+                    <a href="#e729bd3a90" class="toc-h2 toc-link" data-title="爆仓消息">爆仓消息</a>
+                  </li>
+                  <li>
                     <a href="#c7efd92007" class="toc-h2 toc-link" data-title="账户资产变化消息">账户资产变化消息</a>
                   </li>
               </ul>
@@ -3618,90 +3621,88 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 - type: order_pending,order_cancelled,order_filled,order_failed
 - data 对象里面status会细化取消和filled</p>
 <h2 id='5415c9f72e'>仓位变化消息</h2>
-<p>当用户仓位发生变动后，获得仓位变化消息：
-```
-{
-    &quot;sequenceId&quot;:630902,
-    &quot;userId&quot;:10030,
-    &quot;type&quot;:&quot;position_changed&quot;,
-    &quot;data&quot;:{
-        &quot;symbolId&quot;:132,
-        &quot;createdAt&quot;:1688555522202,
-        &quot;symbol&quot;:&quot;XBTC&quot;,
-        &quot;orderId&quot;:134421336293440,
-        &quot;price&quot;:40000,
-        &quot;fee&quot;:16,
-        &quot;feeCurrency&quot;:&quot;USDT&quot;,
-        &quot;type&quot;:&quot;OPEN&quot;,
-        &quot;txHash&quot;:&quot;0xb88f84d1b73a04593ea63c08251a190c544ab558302a548ec471b4fa069d544a&quot;,
-        &quot;quantityChanged&quot;:4,
-        &quot;direction&quot;:&quot;SHORT&quot;
-    }
-}</p>
-<div class="highlight"><pre class="highlight plaintext"><code>
-说明：
-- 是否需要认证：需要
+<p>当用户仓位发生变动后，获得仓位变化消息</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">630902</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"position_changed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="mi">132</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="mi">1688555522202</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"XBTC"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="mi">134421336293440</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">40000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"feeCurrency"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txHash"</span><span class="p">:</span><span class="s2">"0xb88f84d1b73a04593ea63c08251a190c544ab558302a548ec471b4fa069d544a"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
+</span></code></pre></div>
+<p>说明：
+- 是否需要认证：需要</p>
+<h2 id='e729bd3a90'>爆仓消息</h2>
+<p>当用户仓位发生爆仓后，获得爆仓消息</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">630941</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"position_liquidated"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"balances"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"USDT"</span><span class="p">:</span><span class="mi">4000</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"contractsPrices"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"145"</span><span class="p">:</span><span class="mf">546.004777</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"132"</span><span class="p">:</span><span class="mf">50000.4375</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"119"</span><span class="p">:</span><span class="mf">114.000997</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"positions"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="mi">132</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"requiredMargin"</span><span class="p">:</span><span class="mi">1600</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"entryPrice"</span><span class="p">:</span><span class="mi">40000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"entryTotalValue"</span><span class="p">:</span><span class="mi">16000</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"minimumMaintenanceMarginRate"</span><span class="p">:</span><span class="mf">0.005</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"minimumMaintenanceMargin"</span><span class="p">:</span><span class="mi">80</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"unrealizedPNL"</span><span class="p">:</span><span class="mf">-4000.175</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"priceInfos"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"100"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="mf">45714.29</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"101"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">546</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="mf">0.9</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"102"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">114</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="mf">0.8</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"103"</span><span class="p">:{</span><span class="w">
+                </span><span class="nl">"price"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-## 爆仓消息
-
-当用户仓位发生爆仓后，获得爆仓消息
-
-```json
-{
-    "sequenceId":630941,
-    "userId":10030,
-    "type":"position_liquidated",
-    "data":{
-        "accountId":0,
-        "balances":{
-            "USDT":4000
-        },
-        "contractsPrices":{
-            "145":546.004777,
-            "132":50000.4375,
-            "119":114.000997
-        },
-        "positions":[
-            {
-                "symbolId":132,
-                "quantity":4,
-                "requiredMargin":1600,
-                "entryPrice":40000,
-                "entryTotalValue":16000,
-                "minimumMaintenanceMarginRate":0.005,
-                "minimumMaintenanceMargin":80,
-                "unrealizedPNL":-4000.175
-            }
-        ],
-        "priceInfos":{
-            "100":{
-                "price":45714.29,
-                "conversionRatio":1
-            },
-            "101":{
-                "price":546,
-                "conversionRatio":0.9
-            },
-            "102":{
-                "price":114,
-                "conversionRatio":0.8
-            },
-            "103":{
-                "price":1,
-                "conversionRatio":1
-            }
-        },
-        "userId":10030
-    }
-}
-
-</code></pre></div>
+</span></code></pre></div>
 <p>说明：
 - 是否需要认证：需要</p>
 <h2 id='c7efd92007'>账户资产变化消息</h2>
 <p>当用户资产发生改变后，获取账户资产信息</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
     </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">630878</span><span class="p">,</span><span class="w">
     </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="p">,</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"account_changed"</span><span class="p">,</span><span class="w">
