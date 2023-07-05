@@ -453,7 +453,9 @@ OrderBook消息如下：
 
 说明：
 - 是否需要认证：需要
+
 - type: order_pending,order_cancelled,order_filled,order_failed
+
 - data 对象里面status会细化取消和filled
 
 
