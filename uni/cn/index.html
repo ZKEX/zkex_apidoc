@@ -3477,16 +3477,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>tick.timestamp = message.timestamp;
-                tick.takerOrderId = message.takerOrderId;
-                tick.takerDirection = message.takerDirection == Direction.LONG;
-                tick.makerOrderId = matchRecord.makerOrderId;
-                tick.price = matchRecord.matchPrice;
-                tick.sequenceId = message.sequenceId;
-                tick.symbolId = message.symbolId;
-                tick.volume = matchRecord.matchVolume;
-                tick.amount = matchRecord.matchVolume.multiply(matchRecord.matchPrice).multiply(multiplier);
-说明：</p>
+<p>说明：</p>
 
 <ul>
 <li>消息类型：tick</li>
