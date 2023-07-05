@@ -124,7 +124,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 ## public 不需要用户认证
 
 
-### Price消息
+## Price消息
 
 服务器以固定频率推送市场价格摘要消息如下：
 
@@ -171,7 +171,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 
 
-### ALL-TICKER消息(todo)
+## ALL-TICKER消息(todo)
 
 服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。
 
@@ -224,7 +224,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 
 
-### Bar信息
+## Bar信息
 
 服务器会根据实际成交以固定频率推送bar（candle）信息：
 
@@ -250,7 +250,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 - 消息类型：bar
 - 数据格式：[timestamp, open, high, low, close, volume,amount]
 
-### OrderBook消息
+## OrderBook消息
 
 服务器会根据用户成交信息增量推送,用户需要通过restApi请求orderBook并本地维护
 
@@ -285,7 +285,7 @@ OrderBook消息如下：
 - 是否需要订阅：需要
 - 深度数据格式：`[price, amount]`
 
-### Tick消息
+## Tick消息
 
 服务器不定期推送最新成交的Tick消息如下：
 
@@ -331,7 +331,7 @@ OrderBook消息如下：
 
 ## private 需要用户认证
   
-### 订单成交消息
+## 订单成交消息
 
 当用户订单成交后，获得订单成交消息：
 
@@ -362,7 +362,7 @@ OrderBook消息如下：
 
 
 
-### 订单状态变更消息
+## 订单状态变更消息
 
 当用户订单状态发生变动后，获得订单状态变化消息：
 
@@ -461,10 +461,10 @@ OrderBook消息如下：
 - data 对象里面status会细化取消和filled
 
 
-### 仓位变化消息（todo）
+## 仓位变化消息（todo）
 
-### 爆仓消息 （todo）
+## 爆仓消息 （todo）
 
-### 账户资产变化消息 （todo）
+## 账户资产变化消息 （todo）
 
 
