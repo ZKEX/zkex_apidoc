@@ -3617,9 +3617,12 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 </code></pre></div>
 <p>说明：
-- 是否需要认证：需要
-- type: order_pending,order_cancelled,order_filled,order_failed
-- data 对象里面status会细化取消和filled</p>
+- 是否需要认证：需要</p>
+
+<ul>
+<li><p>type: order_pending,order_cancelled,order_filled,order_failed</p></li>
+<li><p>data 对象里面status会细化取消和filled</p></li>
+</ul>
 <h2 id='5415c9f72e'>仓位变化消息</h2>
 <p>当用户仓位发生变动后，获得仓位变化消息</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
