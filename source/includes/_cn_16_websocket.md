@@ -18,15 +18,17 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
 
 用户API请求：GET [/v1/users/wss/token](http://54.199.66.35:8080/v1/users/wss/token)
 
+
 ```
 如果用户未登录，返回结果如下:
+
 {
   "code": 1003,
   "msg": "AUTH_SIGNIN_REQUIRED",
   "data": null
 }
-如果用户已登录，返回包含Token的JSON：
 
+如果用户已登录，返回包含Token的JSON：
 {
   "code": 200,
   "msg": "success",
@@ -47,14 +49,18 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 ```
 
 WSS连接成功后，服务器会立刻推送一条status信息
+
 ```
-如果WSS服务器验证用户成功，推送消息如下：
+如果WSS服务器验证用户成功，推送消息
+
 {
   "status": "connected",
   "message": "connected as signed user",
   "userId": 10030
 }
+
 如果WSS服务器验证用户失败，推送的消息不含userId
+
 {
   "status": "connected",
   "message": "connected as anonymous user"
@@ -63,7 +69,7 @@ WSS连接成功后，服务器会立刻推送一条status信息
 ```
 3. 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
 
-## 订阅
+## 订阅（todo）
 
 连接WSS后，需要订阅指定topic，发送消息如下：
 
