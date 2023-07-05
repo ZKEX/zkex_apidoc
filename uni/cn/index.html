@@ -475,16 +475,13 @@
                     <a href="#4ade1cf0af" class="toc-h2 toc-link" data-title="用户认证">用户认证</a>
                   </li>
                   <li>
-                    <a href="#ws" class="toc-h2 toc-link" data-title="连接用户认证WS：">连接用户认证WS：</a>
+                    <a href="#ae896f0330" class="toc-h2 toc-link" data-title="用户认证连接">用户认证连接</a>
                   </li>
                   <li>
                     <a href="#todo" class="toc-h2 toc-link" data-title="订阅（todo）">订阅（todo）</a>
                   </li>
                   <li>
-                    <a href="#b109d834a1" class="toc-h2 toc-link" data-title="取消订阅">取消订阅</a>
-                  </li>
-                  <li>
-                    <a href="#f4a84d8f74" class="toc-h2 toc-link" data-title="接收消息">接收消息</a>
+                    <a href="#todo-2" class="toc-h2 toc-link" data-title="取消订阅（todo）">取消订阅（todo）</a>
                   </li>
                   <li>
                     <a href="#94a9a32795" class="toc-h2 toc-link" data-title="心跳">心跳</a>
@@ -493,7 +490,7 @@
                     <a href="#price" class="toc-h2 toc-link" data-title="Price消息">Price消息</a>
                   </li>
                   <li>
-                    <a href="#all-ticker" class="toc-h2 toc-link" data-title="ALL-TICKER消息">ALL-TICKER消息</a>
+                    <a href="#all-ticker-todo" class="toc-h2 toc-link" data-title="ALL-TICKER消息(todo)">ALL-TICKER消息(todo)</a>
                   </li>
                   <li>
                     <a href="#websocket-bar" class="toc-h2 toc-link" data-title="Websocket Bar信息">Websocket Bar信息</a>
@@ -503,9 +500,6 @@
                   </li>
                   <li>
                     <a href="#websocket-tick" class="toc-h2 toc-link" data-title="Websocket Tick消息">Websocket Tick消息</a>
-                  </li>
-                  <li>
-                    <a href="#websocket-index" class="toc-h2 toc-link" data-title="Websocket Index消息">Websocket Index消息</a>
                   </li>
                   <li>
                     <a href="#f4310d52cf" class="toc-h2 toc-link" data-title="订单成交消息">订单成交消息</a>
@@ -3257,7 +3251,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 </code></pre></div>
 <p>此Token默认有效期1分钟。</p>
-<h2 id='ws'>连接用户认证WS：</h2>
+<h2 id='ae896f0330'>用户认证连接</h2>
 <p>将获取的token作为参数附加到wss连接</p>
 <div class="highlight"><pre class="highlight plaintext"><code>ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
 
@@ -3280,94 +3274,74 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。</p>
 <h2 id='todo'>订阅（todo）</h2>
 <p>连接WSS后，需要订阅指定topic，发送消息如下：</p>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-    <span class="na">action</span><span class="p">:</span> <span class="dl">"</span><span class="s2">subscribe</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tick.BTC_USDT</span><span class="dl">"</span>
-<span class="p">});</span>
-</code></pre></div>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <p>返回格式：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"TOPICS"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w"> </span><span class="s2">"tick.btc_usdt"</span><span class="p">]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">所有已经订阅的topic</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribed"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">该币对的所有信息都会被订阅</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>目前支持的topic</p>
+<p>目前支持的type</p>
 
 <ol>
-<li>ORDERBOOK.{symbol_name}</li>
-<li>TICK.{symbol_name}</li>
-<li>TICKER.{symbol_name}</li>
-<li>ALL-TICKER</li>
-<li>BAR.{MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}.{symbol_name}</li>
-<li>ORDER_STATUS_CHANGED</li>
-<li>ORDER_MATCHED</li>
-<li>ACCOUNT_CHANGED</li>
-<li>POSITION_CHANGED</li>
-<li>INDEX.{index_name}</li>
+<li>orderbook </li>
+<li>tick</li>
+<li>bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}</li>
 </ol>
-
-<p>目前服务端返回消息的type list</p>
-
-<ol>
-<li>CONNECTED</li>
-<li>ORDERBOOK</li>
-<li>TICK</li>
-<li>TICKER</li>
-<li>ALL-TICKER</li>
-<li>BAR</li>
-<li>ORDER_STATUS_CHANGED</li>
-<li>ORDER_MATCHED</li>
-<li>ACCOUNT_CHANGED</li>
-<li>POSITION_CHANGED</li>
-<li>INDEX</li>
-</ol>
-<h2 id='b109d834a1'>取消订阅</h2>
+<h2 id='todo-2'>取消订阅（todo）</h2>
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-    <span class="na">action</span><span class="p">:</span> <span class="dl">"</span><span class="s2">unsubscribe</span><span class="dl">"</span><span class="p">,</span>
-    <span class="na">topic</span><span class="p">:</span> <span class="dl">"</span><span class="s2">tick.BTC_USDT</span><span class="dl">"</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>支持的topic与订阅相同</p>
-<h2 id='f4a84d8f74'>接收消息</h2>
-<p>服务器向客户端推送的消息均为JSON文本，格式如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message-type"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">消息类型</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">序列ID</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限已订阅的symbol</span><span class="w">
-    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">34567</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限针对单用户的消息，例如order_filled</span><span class="w">
-    </span><span class="nl">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可选，仅限针对bar类型的消息，表示bar的类型</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">消息其他字段</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>JavaScript代码如下：</p>
-<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">orderbook</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">processOrderBook</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">message</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">bar</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">processBar</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">...</span>
-<span class="p">};</span>
-</code></pre></div><h2 id='94a9a32795'>心跳</h2>
+<p>支持的topic与订阅相同</p>
+<h2 id='94a9a32795'>心跳</h2>
 <p>客户端需要每<code>15秒</code>发送ping消息来维持连接心跳，格式如下</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"ping"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1595844075067</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">client端时间戳</span><span class="p">,</span><span class="w"> </span><span class="err">单位ms</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"ping"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>服务器响应：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"PONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1595844075403</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">服务器端时间戳</span><span class="w">
-    </span><span class="nl">"gap"</span><span class="p">:</span><span class="mi">336</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">服务器时间与client时间的差值，可以用来判断连接网络状态</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pong"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='price'>Price消息</h2>
 <p>服务器以固定频率推送市场价格摘要消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1576656730000</span><span class="p">,</span><span class="w"> </span><span class="mf">7243.67</span><span class="p">,</span><span class="w"> </span><span class="mf">7966.01</span><span class="p">,</span><span class="w"> </span><span class="mf">7201.9</span><span class="p">,</span><span class="w"> </span><span class="mf">7226.5</span><span class="p">,</span><span class="w"> </span><span class="mf">450.3</span><span class="p">]</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prices"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"XBTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688458520000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
+      </span><span class="mf">40000.000000</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">open</span><span class="w">
+      </span><span class="mf">40000.000000</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">high</span><span class="w">
+      </span><span class="mf">40000.000000</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">low</span><span class="w">
+      </span><span class="mf">40000.000000</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">close</span><span class="w">
+      </span><span class="mf">0.000000</span><span class="p">,</span><span class="w">      </span><span class="err">//</span><span class="w"> </span><span class="err">volume</span><span class="w">
+      </span><span class="mf">0.000000</span><span class="w">       </span><span class="err">//</span><span class="w"> </span><span class="err">amount</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"XBCH"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688458520000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.500000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.500000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.500000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">117.500000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.000000</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ETH_USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688458520000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1148.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">654.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">654.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">1.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">654.000000</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
@@ -3377,7 +3351,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>只有24小时内有交易的symbol会出现，没有交易的symbol不会出现</li>
 <li>数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）</li>
 </ul>
-<h2 id='all-ticker'>ALL-TICKER消息</h2>
+<h2 id='all-ticker-todo'>ALL-TICKER消息(todo)</h2>
 <p>服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。</p>
 
 <p>订阅：</p>
@@ -3421,42 +3395,53 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='websocket-bar'>Websocket Bar信息</h2>
-<p>服务器会根据实际成交以最低0.5s的速度推送bar（candle）信息：</p>
+<p>服务器会根据实际成交以固定频率推送bar（candle）信息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BAR"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"resolution"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">24918</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1594973040000</span><span class="p">,</span><span class="mf">9100.8</span><span class="p">,</span><span class="mf">9109.4</span><span class="p">,</span><span class="mf">9099.7</span><span class="p">,</span><span class="mf">9109.4</span><span class="p">,</span><span class="mf">0.2004</span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629050</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">1688198400000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+    </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+    </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="mi">4000</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">  
 </span></code></pre></div>
 <p>说明：</p>
 
 <ul>
 <li>消息类型：bar</li>
-<li>数据格式：[1594973040000,9100.8,9109.4,9099.7,9109.4,0.2004] --- [timestamp, open, high, low, close, volume]</li>
+<li>数据格式：[timestamp, open, high, low, close, volume,amount]</li>
 </ul>
 <h2 id='websocket-orderbook'>Websocket OrderBook消息</h2>
-<p>服务器以固定频率推送OrderBook消息如下：</p>
+<p>服务器会根据用户成交信息增量推送,用户需要通过restApi请求orderBook并本地维护</p>
+
+<p>OrderBook消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORDERBOOK"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderbook"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"lastSequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629050</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629112</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1130</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">6705.5</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">[</span><span class="mf">6704.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mi">6704</span><span class="p">,</span><span class="w"> </span><span class="mf">1.1</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">6703.5</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">6702.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">[</span><span class="mf">6705.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mi">6706</span><span class="p">,</span><span class="w"> </span><span class="mf">1.3</span><span class="p">],</span><span class="w">
-            </span><span class="p">[</span><span class="mf">6706.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">]</span><span class="w">
-        </span><span class="err">}</span><span class="w">
-    </span><span class="err">}</span><span class="w">
-</span><span class="err">}</span><span class="w">
+    </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">[</span><span class="w">
+        </span><span class="mi">40000</span><span class="p">,</span><span class="w">
+        </span><span class="mf">0.1</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100103</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629112</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：</p>
 
@@ -3468,98 +3453,164 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <h2 id='websocket-tick'>Websocket Tick消息</h2>
 <p>服务器不定期推送最新成交的Tick消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TICK"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1131</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1576743711096</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">7200.4</span><span class="p">,</span><span class="w"> </span><span class="mf">0.11</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w">
-        </span><span class="p">[</span><span class="mi">1576743711096</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">7200.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.24</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tick"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629128</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1688546965845</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="p">,</span><span class="w">   
+      </span><span class="mf">40000.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">0.100000</span><span class="p">,</span><span class="w">
+      </span><span class="mf">4000.000000</span><span class="p">,</span><span class="w">
+      </span><span class="mi">0</span><span class="w">
     </span><span class="p">]</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>说明：</p>
+<p>tick.timestamp = message.timestamp;
+                tick.takerOrderId = message.takerOrderId;
+                tick.takerDirection = message.takerDirection == Direction.LONG;
+                tick.makerOrderId = matchRecord.makerOrderId;
+                tick.price = matchRecord.matchPrice;
+                tick.sequenceId = message.sequenceId;
+                tick.symbolId = message.symbolId;
+                tick.volume = matchRecord.matchVolume;
+                tick.amount = matchRecord.matchVolume.multiply(matchRecord.matchPrice).multiply(multiplier);
+说明：</p>
 
 <ul>
 <li>消息类型：tick</li>
 <li>是否需要订阅：需要</li>
 <li>一个tick消息包含一个或多个成交信息</li>
-<li>tick数据格式：<code>[timestamp, dir, price, amount, flag]</code>
+<li>tick数据格式：<code>[timestamp, dir, price, volume ,amount, flag]</code>
 
 <ul>
 <li>timestamp: 时间戳</li>
 <li>dir: 1=主动买入, 0=主动卖出</li>
 <li>price: 成交价格</li>
-<li>amount: 成交数量</li>
+<li>volume: 成交数量</li>
+<li>amount: 成交价值</li>
 <li>flag: 0=普通成交（后续增加爆仓标志）</li>
 </ul></li>
 </ul>
-<h2 id='websocket-index'>Websocket Index消息</h2>
-<p>服务器会定期推送Index消息</p>
-
-<p>订阅：</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"INDEX.BBTCUSD"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>消息格式:</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"INDEX"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"indexName"</span><span class="p">:</span><span class="s2">"BBTCUSD"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-        </span><span class="mi">1596620650000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
-        </span><span class="mf">11373.57</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">指数值</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='f4310d52cf'>订单成交消息</h2>
+<h2 id='f4310d52cf'>订单成交消息</h2>
 <p>当用户订单成交后，获得订单成交消息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"ORDER_MATCHED"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">627926</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="mi">6279262007</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"price"</span><span class="p">:</span><span class="mf">9514.7</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"matchType"</span><span class="p">:</span><span class="s2">"TAKER"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">0.055090113</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"matchedQuantity"</span><span class="p">:</span><span class="mf">0.0193</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">123</span><span class="w">
+  </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629244</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100103</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"matchQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">134357624815680</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"matchType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"feeCurrency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688547890569</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"matchPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x0d2378a304e5b9681362ed6da7b1cdf42e6e4a9888aef5f494b7b0d6a955b3ce"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tradeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_matched"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>说明：</p>
-
-<ul>
-<li>消息类型：<code>ORDER_MATCHED</code></li>
-<li>是否需要认证：需要</li>
-</ul>
+<p>说明：
+- 是否需要认证：需要</p>
 <h2 id='cee43df56e'>订单状态变更消息</h2>
 <p>当用户订单状态发生变动后，获得订单状态变化消息：</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"ORDER_STATUS_CHANGED"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:{</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="mf">0.8443</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="mf">0.3315</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"orderId"</span><span class="p">:</span><span class="mi">6290602007</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"price"</span><span class="p">:</span><span class="mf">9509.8</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="mf">-0.00005128</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="mf">9509.8</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"PARTIAL_FILLED"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">629078</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>说明：</p>
+<div class="highlight"><pre class="highlight plaintext"><code>// order_pending
+{
+  "sequenceId": 629212,
+  "data": {
+    "symbolId": 100103,
+    "symbol": "BTC_USDT",
+    "quantity": 0.1,
+    "orderId": 134355368280128,
+    "fee": 0,
+    "type": "LIMIT",
+    "fillPrice": 0.0,
+    "createdAt": 1688547608090,
+    "unfilledQuantity": 0.1,
+    "price": 40000.0,
+    "tradeType": "SPOTS",
+    "status": "PENDING",
+    "direction": "SHORT"
+  },
+  "type": "order_pending",
+  "userId": 10030
+}
+// order_cancelled
+{
+  "sequenceId": 629219,
+  "data": {
+    "symbolId": 100103,
+    "symbol": "BTC_USDT",
+    "quantity": 0.1,
+    "orderId": 134355368280128,
+    "fee": 0,
+    "type": "LIMIT",
+    "fillPrice": 0.0,
+    "createdAt": 1688547608090,
+    "unfilledQuantity": 0.1,
+    "price": 40000.0,
+    "tradeType": "SPOTS",
+    "status": "FULLY_CANCELLED",
+    "direction": "SHORT"
+  },
+  "type": "order_cancelled",
+  "userId": 10030
+}
+// order_filled
+{
+    "sequenceId": 629244,
+    "data": {
+        "symbolId": 100103,
+        "symbol": "BTC_USDT",
+        "quantity": 0.1,
+        "orderId": 134357624815680,
+        "fee": 4.0,
+        "type": "LIMIT",
+        "fillPrice": 40000.0,
+        "createdAt": 1688547877777,
+        "unfilledQuantity": 0.0,
+        "price": 40000.0,
+        "tradeType": "SPOTS",
+        "status": "FULLY_FILLED",
+        "direction": "SHORT"
+    },
+    "type": "order_filled",
+    "userId": 10030
+}
+// order_failed
+{
+    "sequenceId": 629378,
+    "data": {
+        "symbolId": 100103,
+        "symbol": "BTC_USDT",
+        "quantity": 10.0,
+        "orderId": 134366348968000,
+        "fee": 0,
+        "type": "LIMIT",
+        "fillPrice": 0.0,
+        "createdAt": 1688548917424,
+        "unfilledQuantity": 10.0,
+        "price": 40000.0,
+        "failReason": "ACCOUNT_NO_ENOUGH_AVAILABLE",
+        "tradeType": "SPOTS",
+        "status": "FAILED",
+        "direction": "LONG"
+    },
+    "type": "order_failed",
+    "userId": 10030
+}
 
-<ul>
-<li>消息类型：ORDER_STATUS_CHANGED`</li>
-<li>是否需要认证：需要</li>
-</ul>
+</code></pre></div>
+<p>说明：
+- 是否需要认证：需要
+- type: order_pending,order_cancelled,order_filled,order_failed
+- data 对象里面status会细化取消和filled</p>
 
       </div>
       <div class="dark-box">
