@@ -16,11 +16,8 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
 
 用户API请求：GET [/v1/users/wss/token](http://54.199.66.35:8080/v1/users/wss/token)
 
-
-
-```json
-
 如果用户未登录，返回结果如下:
+```json
 {
   "code": 1003,
   "msg": "AUTH_SIGNIN_REQUIRED",
@@ -29,9 +26,8 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
 ```
 
 
-
-```json
 如果用户已登录，返回包含Token的JSON如下：
+```json
 {
   "code": 200,
   "msg": "success",
@@ -45,15 +41,12 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
 
 2. 立刻连接WSS：
 
-将获取的token作为参数附加到wss连接：
-
-```
+将获取的token作为参数附加到wss连接：<br>
 ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
-```
 
 
-```json
 WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服务器验证用户成功，推送消息如下：
+```json
 {
   "status": "connected",
   "message": "connected as signed user",
@@ -61,9 +54,8 @@ WSS连接成功后，服务器会立刻推送一条status信息。如果WSS服�
 }
 ```
 
-
-```json
 如果WSS服务器验证用户失败，推送的消息不含userId：
+```json
 {
   "status": "connected",
   "message": "connected as anonymous user"
