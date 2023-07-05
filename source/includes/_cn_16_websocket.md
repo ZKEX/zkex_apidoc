@@ -121,8 +121,6 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
   "type": "pong"
 }
 ```
-## public 不需要用户认证
-
 
 ## Price消息
 
@@ -328,8 +326,6 @@ OrderBook消息如下：
   - amount: 成交价值
   - flag: 0=普通成交（后续增加爆仓标志）
 
-
-## private 需要用户认证
   
 ## 订单成交消息
 
