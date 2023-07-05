@@ -40,17 +40,13 @@ WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notific
 ```
 此Token默认有效期1分钟。
 
-2. 立刻连接WSS：
+## 连接用户认证WS：
 
-将获取的token作为参数附加到wss连接：
+将获取的token作为参数附加到wss连接
 
 ```
 ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
-```
 
-WSS连接成功后，服务器会立刻推送一条status信息
-
-```
 如果WSS服务器验证用户成功，推送消息
 
 {
@@ -67,7 +63,7 @@ WSS连接成功后，服务器会立刻推送一条status信息
 }
 
 ```
-3. 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
+认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
 
 ## 订阅（todo）
 
