@@ -13,7 +13,8 @@ toc_footers:
   - <a href='#'>API Key Guide</a>
 
 includes:
-  - cn_11_basic
+  - cn_10_basic
+  - cn_11_user
   - cn_12_api_signature
   - cn_13_public_market
   - cn_14_spots_trade
