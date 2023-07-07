@@ -3323,7 +3323,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div>
 <p>服务器响应：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pong"</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"pong"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1688721638247</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='price'>Price消息</h2>
 <p>服务器以固定频率推送市场价格摘要消息如下：</p>
@@ -3520,7 +3521,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_matched"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="w">
+  </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1688721638247</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>说明：
@@ -3546,7 +3548,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     "direction": "SHORT"
   },
   "type": "order_pending",
-  "userId": 10030
+  "userId": 10030,
+  "timestamp":1688721638247
 }
 // order_cancelled
 {
@@ -3567,7 +3570,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     "direction": "SHORT"
   },
   "type": "order_cancelled",
-  "userId": 10030
+  "userId": 10030,
+  "timestamp":1688721638247
 }
 // order_filled
 {
@@ -3588,7 +3592,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         "direction": "SHORT"
     },
     "type": "order_filled",
-    "userId": 10030
+    "userId": 10030,
+    "timestamp":1688721638247
 }
 // order_failed
 {
@@ -3610,7 +3615,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         "direction": "LONG"
     },
     "type": "order_failed",
-    "userId": 10030
+    "userId": 10030,
+    "timestamp":1688721638247
 }
 
 </code></pre></div>
@@ -3640,7 +3646,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         </span><span class="nl">"txHash"</span><span class="p">:</span><span class="s2">"0xb88f84d1b73a04593ea63c08251a190c544ab558302a548ec471b4fa069d544a"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"quantityChanged"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
         </span><span class="nl">"direction"</span><span class="p">:</span><span class="s2">"SHORT"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1688721638247</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div>
@@ -3693,7 +3700,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
                 </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="mi">1</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1688721638247</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -3716,7 +3724,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         </span><span class="nl">"userId"</span><span class="p">:</span><span class="mi">10030</span><span class="p">,</span><span class="w">
         </span><span class="nl">"spotsFrozen"</span><span class="p">:</span><span class="mi">4000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">630878</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1688721638247</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div>
