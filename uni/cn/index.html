@@ -481,10 +481,10 @@
                     <a href="#ae896f0330" class="toc-h2 toc-link" data-title="用户认证连接">用户认证连接</a>
                   </li>
                   <li>
-                    <a href="#todo" class="toc-h2 toc-link" data-title="订阅（todo）">订阅（todo）</a>
+                    <a href="#5319af762d" class="toc-h2 toc-link" data-title="订阅">订阅</a>
                   </li>
                   <li>
-                    <a href="#todo-2" class="toc-h2 toc-link" data-title="取消订阅（todo）">取消订阅（todo）</a>
+                    <a href="#b109d834a1" class="toc-h2 toc-link" data-title="取消订阅">取消订阅</a>
                   </li>
                   <li>
                     <a href="#94a9a32795" class="toc-h2 toc-link" data-title="心跳">心跳</a>
@@ -3290,8 +3290,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 </code></pre></div>
 <p>认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。</p>
-<h2 id='todo'>订阅（todo）</h2>
-<p>连接WSS后，需要订阅指定topic，发送消息如下：</p>
+<h2 id='5319af762d'>订阅</h2>
+<p>连接WSS后，需要订阅指定symbol，发送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
@@ -3302,22 +3302,20 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribed"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">该币对的所有信息都会被订阅</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>目前支持的type</p>
+<p>订阅后会推送的type如下</p>
 
 <ol>
 <li>orderbook </li>
 <li>tick</li>
 <li>bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}</li>
 </ol>
-<h2 id='todo-2'>取消订阅（todo）</h2>
+<h2 id='b109d834a1'>取消订阅</h2>
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>支持的topic与订阅相同</p>
-<h2 id='94a9a32795'>心跳</h2>
+</span></code></pre></div><h2 id='94a9a32795'>心跳</h2>
 <p>客户端需要每<code>15秒</code>发送ping消息来维持连接心跳，格式如下</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"ping"</span><span class="w">
