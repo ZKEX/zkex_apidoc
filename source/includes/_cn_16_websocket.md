@@ -168,7 +168,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 
 
-## ALL-TICKER消息(todo)
+## ALL-TICKER消息(暂不支持)
 
 服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。
 
