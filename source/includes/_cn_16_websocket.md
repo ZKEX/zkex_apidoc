@@ -272,7 +272,9 @@ OrderBook消息如下：
       ]
     ],
     "symbolId": 100103,
-    "sequenceId": 629112
+    "sequenceId": 629112,
+    "timestamp":1688721638247
+
   }
 }
 ```
