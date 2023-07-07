@@ -117,7 +117,8 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 ```json
 {
-  "type": "pong"
+  "type":"pong",
+  "timestamp":1688721638247
 }
 ```
 
@@ -340,7 +341,8 @@ OrderBook消息如下：
     "direction": "SHORT"
   },
   "type": "order_matched",
-  "userId": 10030
+  "userId": 10030,
+  "timestamp":1688721638247
 }
 ```
 
@@ -373,7 +375,8 @@ OrderBook消息如下：
     "direction": "SHORT"
   },
   "type": "order_pending",
-  "userId": 10030
+  "userId": 10030,
+  "timestamp":1688721638247
 }
 // order_cancelled
 {
@@ -394,7 +397,8 @@ OrderBook消息如下：
     "direction": "SHORT"
   },
   "type": "order_cancelled",
-  "userId": 10030
+  "userId": 10030,
+  "timestamp":1688721638247
 }
 // order_filled
 {
@@ -415,7 +419,8 @@ OrderBook消息如下：
         "direction": "SHORT"
     },
     "type": "order_filled",
-    "userId": 10030
+    "userId": 10030,
+    "timestamp":1688721638247
 }
 // order_failed
 {
@@ -437,7 +442,8 @@ OrderBook消息如下：
         "direction": "LONG"
     },
     "type": "order_failed",
-    "userId": 10030
+    "userId": 10030,
+    "timestamp":1688721638247
 }
 
 ```
@@ -472,7 +478,8 @@ OrderBook消息如下：
         "txHash":"0xb88f84d1b73a04593ea63c08251a190c544ab558302a548ec471b4fa069d544a",
         "quantityChanged":4,
         "direction":"SHORT"
-    }
+    },
+    "timestamp":1688721638247
 }
 
 ```
@@ -531,7 +538,8 @@ OrderBook消息如下：
                 "conversionRatio":1
             }
         },
-        "userId":10030
+        "userId":10030,
+        "timestamp":1688721638247
     }
 }
 
@@ -559,7 +567,8 @@ OrderBook消息如下：
         "userId":10030,
         "spotsFrozen":4000,
         "sequenceId":630878
-    }
+    },
+    "timestamp":1688721638247
 }
 
 ```
