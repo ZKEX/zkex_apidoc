@@ -493,9 +493,6 @@
                     <a href="#price" class="toc-h2 toc-link" data-title="Price消息">Price消息</a>
                   </li>
                   <li>
-                    <a href="#all-ticker" class="toc-h2 toc-link" data-title="ALL-TICKER消息(暂不支持)">ALL-TICKER消息(暂不支持)</a>
-                  </li>
-                  <li>
                     <a href="#bar" class="toc-h2 toc-link" data-title="Bar信息">Bar信息</a>
                   </li>
                   <li>
@@ -3368,50 +3365,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>只有24小时内有交易的symbol会出现，没有交易的symbol不会出现</li>
 <li>数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）</li>
 </ul>
-<h2 id='all-ticker'>ALL-TICKER消息(暂不支持)</h2>
-<p>服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。</p>
-
-<p>订阅：</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"topic"</span><span class="p">:</span><span class="s2">"ALL-TICKER"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>消息格式：</p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"ALL-TICKER"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="mi">1596445560000</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11299.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">12111.9</span><span class="p">,</span><span class="w">
-                </span><span class="mi">10940</span><span class="p">,</span><span class="w">
-                </span><span class="mf">11223.2</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2052.8359</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="s2">"2268111"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1596445607162</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"PRICE"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"ETH_USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="mi">1596445560000</span><span class="p">,</span><span class="w">
-                </span><span class="mf">376.9</span><span class="p">,</span><span class="w">
-                </span><span class="mf">388.3</span><span class="p">,</span><span class="w">
-                </span><span class="mf">354.5</span><span class="p">,</span><span class="w">
-                </span><span class="mf">382.9</span><span class="p">,</span><span class="w">
-                </span><span class="mf">2196.89</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="s2">"2268112"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"ts"</span><span class="p">:</span><span class="mi">1596445607746</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='bar'>Bar信息</h2>
+<h2 id='bar'>Bar信息</h2>
 <p>服务器会根据实际成交以固定频率推送bar（candle）信息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
