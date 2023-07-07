@@ -65,9 +65,9 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 ```
 认证成功的WSS连接会推送用户的订单成交、取消信息等用户相关信息。
 
-## 订阅（todo）
+## 订阅
 
-连接WSS后，需要订阅指定topic，发送消息如下：
+连接WSS后，需要订阅指定symbol，发送消息如下：
 
 ```json
 {
@@ -84,14 +84,14 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 }
 ```
 
-目前支持的type
+订阅后会推送的type如下
 
 1. orderbook 
 2. tick
 3. bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}
 
 
-##  取消订阅（todo）
+##  取消订阅
 
 已经订阅的topic可以通过`unsubscribe`的action取消，发送消息如下：
 
@@ -101,7 +101,6 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
     "symbol":"BTC_USDT"   // 订阅指定的币对
 }
 ```
-支持的topic与订阅相同
 
 
 ## 心跳
