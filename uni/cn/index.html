@@ -370,7 +370,7 @@
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="获取OrderBook">获取OrderBook</a>
                   </li>
                   <li>
-                    <a href="#rest-tick-todo" class="toc-h2 toc-link" data-title="获取REST Tick数据（todo）">获取REST Tick数据（todo）</a>
+                    <a href="#rest-tick" class="toc-h2 toc-link" data-title="获取REST Tick数据（暂不支持）">获取REST Tick数据（暂不支持）</a>
                   </li>
                   <li>
                     <a href="#bar" class="toc-h2 toc-link" data-title="获取Bar数据">获取Bar数据</a>
@@ -493,7 +493,7 @@
                     <a href="#price" class="toc-h2 toc-link" data-title="Price消息">Price消息</a>
                   </li>
                   <li>
-                    <a href="#all-ticker-todo" class="toc-h2 toc-link" data-title="ALL-TICKER消息(todo)">ALL-TICKER消息(todo)</a>
+                    <a href="#all-ticker" class="toc-h2 toc-link" data-title="ALL-TICKER消息(暂不支持)">ALL-TICKER消息(暂不支持)</a>
                   </li>
                   <li>
                     <a href="#bar" class="toc-h2 toc-link" data-title="Bar信息">Bar信息</a>
@@ -1281,7 +1281,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHORT"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='rest-tick-todo'>获取REST Tick数据（todo）</h2>
+</span></code></pre></div><h2 id='rest-tick'>获取REST Tick数据（暂不支持）</h2>
 <p>API描述：获取某个交易对的最近tick信息。接口不区分现货、合约。</p>
 
 <p>API路径：GET /v1/market/ticks/:symbol_name</p>
@@ -3367,7 +3367,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>只有24小时内有交易的symbol会出现，没有交易的symbol不会出现</li>
 <li>数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）</li>
 </ul>
-<h2 id='all-ticker-todo'>ALL-TICKER消息(todo)</h2>
+<h2 id='all-ticker'>ALL-TICKER消息(暂不支持)</h2>
 <p>服务器以固定频率推送全交易对市场价格摘要。首次订阅将返回所有交易对的价格摘要，后续会只推送有数据更新的交易对价格摘要。</p>
 
 <p>订阅：</p>
