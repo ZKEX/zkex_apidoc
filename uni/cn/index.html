@@ -2237,6 +2237,11 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>BTC_USDT</code>，默认空</td>
 </tr>
 <tr>
+<td style="text-align: left"><strong>status</strong></td>
+<td><strong>string</strong></td>
+<td style="text-align: left"><strong>选填</strong><br/> 订单状态 例如 FULLY_FILLED</td>
+</tr>
+<tr>
 <td style="text-align: left"><strong>limit</strong></td>
 <td><strong>long</strong></td>
 <td style="text-align: left"><strong>选填</strong><br/>返回结果集的最大记录数量，范围1～100，默认为100</td>
@@ -2310,7 +2315,15 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='5bf19eee5a'>合约交易</h1>
+</span></code></pre></div>
+<p>说明：</p>
+
+<p>历史订单总是按页查询，第一页的offsetId传入0或者不传；</p>
+
+<p>如果API响应样例返回的hasMore=true，则可以根据nextOffsetId构造下一页查询的URL。</p>
+
+<p>该接口不支持跨月查询</p>
+<h1 id='5bf19eee5a'>合约交易</h1>
 <p>合约交易API可用于合约交易，包括仓位、下单、撤单、查看当前活动订单以及查询历史订单。</p>
 
 <p>交易API必须附带用户的API签名，以便验证用户身份。</p>
@@ -2771,6 +2784,11 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>XBTC</code>，默认空</td>
 </tr>
 <tr>
+<td style="text-align: left"><strong>status</strong></td>
+<td><strong>string</strong></td>
+<td style="text-align: left"><strong>选填</strong><br/> 订单状态 例如 FULLY_FILLED</td>
+</tr>
+<tr>
 <td style="text-align: left"><strong>limit</strong></td>
 <td><strong>long</strong></td>
 <td style="text-align: left"><strong>选填</strong><br/>返回结果集的最大记录数量，范围1～100，默认为100</td>
@@ -2828,6 +2846,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>历史订单总是按页查询，第一页的offsetId传入0或者不传；</p>
 
 <p>如果API响应样例返回的hasMore=true，则可以根据nextOffsetId构造下一页查询的URL。</p>
+
+<p>该接口不支持跨月查询</p>
 <h2 id='orderid'>取消订单(根据orderId)</h2>
 <p>API描述：取消一个活动订单。</p>
 
