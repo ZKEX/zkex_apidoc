@@ -236,7 +236,7 @@ OrderBook消息如下：
 
 服务器会根据系统订单薄发生变化时固定频率推送bbo数据
 
-OrderBook消息如下：
+BBO消息如下：
 
 ```json
 {
