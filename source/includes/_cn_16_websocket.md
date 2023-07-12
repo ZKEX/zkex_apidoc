@@ -89,6 +89,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 1. orderbook 
 2. tick
 3. bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}
+4. bbo
 
 
 ##  取消订阅
@@ -196,7 +197,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 ## OrderBook消息
 
-服务器会根据用户成交信息增量推送,用户需要通过restApi请求orderBook并本地维护
+服务器会根据用户挂单及成交信息增量推送,用户需要通过restApi请求orderBook并本地维护
 
 OrderBook消息如下：
 
@@ -230,6 +231,32 @@ OrderBook消息如下：
 - 消息类型：orderbook
 - 是否需要订阅：需要
 - 深度数据格式：`[price, amount]`
+
+## BBO消息
+
+服务器会根据系统订单薄发生变化时固定频率推送bbo数据
+
+OrderBook消息如下：
+
+```json
+{
+  "type": "bbo",
+  "symbol": "BTC_USDT",
+  "data": {
+    "sequenceId": 656695,
+    "timestamp": 1689129928255,
+    "bidPrice": 39000.0,
+    "bidVolume": 0.10,
+    "askPrice": 39200.0,
+    "askVolume": 0.10
+  }
+}
+```
+
+说明：
+
+- 消息类型：bbo
+- 是否需要订阅：需要
 
 ## Tick消息
 
