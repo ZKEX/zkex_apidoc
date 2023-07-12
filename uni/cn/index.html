@@ -499,6 +499,9 @@
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="OrderBook消息">OrderBook消息</a>
                   </li>
                   <li>
+                    <a href="#bbo" class="toc-h2 toc-link" data-title="BBO消息">BBO消息</a>
+                  </li>
+                  <li>
                     <a href="#tick" class="toc-h2 toc-link" data-title="Tick消息">Tick消息</a>
                   </li>
                   <li>
@@ -3334,6 +3337,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>orderbook </li>
 <li>tick</li>
 <li>bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}</li>
+<li>bbo</li>
 </ol>
 <h2 id='b109d834a1'>取消订阅</h2>
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
@@ -3419,7 +3423,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>数据格式：[timestamp, open, high, low, close, volume,amount]</li>
 </ul>
 <h2 id='orderbook'>OrderBook消息</h2>
-<p>服务器会根据用户成交信息增量推送,用户需要通过restApi请求orderBook并本地维护</p>
+<p>服务器会根据用户挂单及成交信息增量推送,用户需要通过restApi请求orderBook并本地维护</p>
 
 <p>OrderBook消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
@@ -3451,6 +3455,29 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>消息类型：orderbook</li>
 <li>是否需要订阅：需要</li>
 <li>深度数据格式：<code>[price, amount]</code></li>
+</ul>
+<h2 id='bbo'>BBO消息</h2>
+<p>服务器会根据系统订单薄发生变化时固定频率推送bbo数据</p>
+
+<p>OrderBook消息如下：</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbo"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">656695</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689129928255</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bidPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">39000.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"bidVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"askPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">39200.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"askVolume"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>说明：</p>
+
+<ul>
+<li>消息类型：bbo</li>
+<li>是否需要订阅：需要</li>
 </ul>
 <h2 id='tick'>Tick消息</h2>
 <p>服务器不定期推送最新成交的Tick消息如下：</p>
