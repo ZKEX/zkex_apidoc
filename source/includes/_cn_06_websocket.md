@@ -92,6 +92,8 @@ socket.send(JSON.stringify({
 
 目前服务端返回消息的type list
 
+
+
 1. CONNECTED
 2. ORDERBOOK
 3. TICK
@@ -152,7 +154,7 @@ socket.onmessage = function (event) {
 ```json
 {
     "action":"ping",
-    "ts":1595844075067 // client端时间戳, 单位ms
+    "ts":  1690525573204
 }
 ```
 
