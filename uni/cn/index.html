@@ -535,7 +535,7 @@
         <h1 id='46ae2946a2'>基础介绍</h1>
 <p>API使用HTTPS。</p>
 
-<p>针对终端用户的API域名是<code>http://54.199.66.35:8080</code>。</p>
+<p>针对终端用户的API域名是<code>http://18.181.46.207:28080</code>。</p>
 
 <p>API调用方式：</p>
 
@@ -545,7 +545,7 @@
 </ul>
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
-<li>GET请求以URL参数传入，例如：<a href="http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&amp;end=1">http://54.199.66.35:8080/v1/market/bars/BTC_USDT/SEC?start=0&amp;end=1</a>。</li>
+<li>GET请求以URL参数传入，例如：<a href="http://18.181.46.207:28080/v1/market/bars/BTC_USDT/SEC?start=0&amp;end=1">http://18.181.46.207:28080/v1/market/bars/BTC_USDT/SEC?start=0&amp;end=1</a>。</li>
 <li>POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json</li>
 </ul>
 <h2 id='70bdef7e25'>返回参数</h2>
@@ -553,7 +553,7 @@
 
 <p>如果API调用失败，返回code非200，内容总是JSON，且具有<code>Content-Type: application/json</code>，</p>
 
-<p>格式为固定的Error，请参考<a href="https://54.199.66.35:8080/v1/market/error">https://54.199.66.35:8080/v1/market/error</a>。</p>
+<p>格式为固定的Error，请参考<a href="https://18.181.46.207:28080/v1/market/error">https://18.181.46.207:28080/v1/market/error</a>。</p>
 
 <p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
@@ -637,7 +637,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <h2 id='9161c1f667'>获取交易信息</h2>
 <p>API描述：获取交易所当前所有交易。</p>
 
-<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/trades">/v1/market/trades</a></p>
+<p>API路径：GET <a href="http://18.181.46.207:28080/v1/market/trades">/v1/market/trades</a></p>
 
 <p>API请求参数：</p>
 
@@ -1088,7 +1088,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h2 id='4b9a55b0b9'>获取时间</h2>
 <p>API描述：获取服务器当前时间，以毫秒为单位。</p>
 
-<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/timestamp">/v1/market/timestamp</a></p>
+<p>API路径：GET <a href="http://18.181.46.207:28080/v1/market/timestamp">/v1/market/timestamp</a></p>
 
 <p>API请求参数：</p>
 
@@ -1106,7 +1106,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h2 id='1cc2931276'>获取汇率</h2>
 <p>API描述：获取当前市场汇率。</p>
 
-<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/fex">/v1/market/fex</a></p>
+<p>API路径：GET <a href="http://18.181.46.207:28080/v1/market/fex">/v1/market/fex</a></p>
 
 <p>API请求参数：</p>
 
@@ -1153,7 +1153,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h2 id='03372bcd75'>获取系统错误代码</h2>
 <p>API描述：获取系统定义的全部错误代码。</p>
 
-<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/errorCodes">/v1/market/errorCodes</a></p>
+<p>API路径：GET <a href="http://18.181.46.207:28080/v1/market/errorCodes">/v1/market/errorCodes</a></p>
 
 <p>API请求参数：</p>
 
@@ -1173,7 +1173,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h2 id='ff112f8d6f'>获取当前系统指数(合约)</h2>
 <p>API描述：获取当前所有指数的最新值。</p>
 
-<p>API路径：GET <a href="http://54.199.66.35:8080/v1/market/indexes">/v1/market/indexes</a></p>
+<p>API路径：GET <a href="http://18.181.46.207:28080/v1/market/indexes">/v1/market/indexes</a></p>
 
 <p>API请求参数：</p>
 
@@ -1205,7 +1205,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/indexes/:index_name</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/indexes/ETH_USD_FAIR">/v1/market/indexes/ETH_USD_FAIR</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/indexes/ETH_USD_FAIR">/v1/market/indexes/ETH_USD_FAIR</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1266,7 +1266,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/ticker/:symbolName</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticker/WBTC_USDC">/v1/market/ticker/WBTC_USDC</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/ticker/WBTC_USDC">/v1/market/ticker/WBTC_USDC</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1312,7 +1312,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/allTicker</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/allTicker">/v1/market/allTicker</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/allTicker">/v1/market/allTicker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1358,7 +1358,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/spots/allTicker</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/spots/allTicker">/v1/market/spots/allTicker</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/spots/allTicker">/v1/market/spots/allTicker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1396,7 +1396,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/contracts/allTicker</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/contracts/allTicker">/v1/market/contracts/allTicker</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/contracts/allTicker">/v1/market/contracts/allTicker</a></p>
 
 <p>API请求参数：</p>
 
@@ -1424,7 +1424,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/orderBook/:symbol_name</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/orderBook/WBTC_USDC">/v1/market/orderBook/WBTC_USDC</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/orderBook/WBTC_USDC">/v1/market/orderBook/WBTC_USDC</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1479,7 +1479,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/bars/:symbol_name/:type</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/bars/WBTC_USDC/min">/v1/market/bars/WBTC_USDC/min</a></p>
+<p>API示例：GET <a href="http://18.181.46.207:28080/v1/market/bars/WBTC_USDC/min">/v1/market/bars/WBTC_USDC/min</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -3326,7 +3326,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
-<p>WebSocket只支持ws协议，地址是ws://13.230.140.54:18080/v1/market/notification</p>
+<p>WebSocket只支持ws协议，地址是ws://18.181.46.207:18080/v1/market/notification</p>
 <h2 id='4ade1cf0af'>用户认证</h2>
 <p>要以认证用户连接wss，必须提供一个有效的wss token</p>
 
@@ -3334,7 +3334,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>以API方式请求wss token，可以访问如下API地址（需要API签名）：</p>
 
-<p>用户API请求：GET <a href="http://54.199.66.35:8080/v1/users/wss/token">/v1/users/wss/token</a></p>
+<p>用户API请求：GET <a href="http://18.181.46.207:28080/v1/users/wss/token">/v1/users/wss/token</a></p>
 <div class="highlight"><pre class="highlight plaintext"><code>如果用户未登录，返回结果如下:
 
 {
