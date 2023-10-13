@@ -162,6 +162,61 @@ API响应样例:
 }
 ```
 
+
+## 查询订单详情根据clientOrderId(仅支持活跃订单）
+
+API描述：通过自定义订单ID查询订单的详情。
+
+API路径：GET /v1/trading/:accountId/contracts/clientOrders/open/:client_order_id
+
+API请求参数(Path Param)：
+
+| 参数                | 类型     | 说明                         |
+| :------------------ | -------- | :--------------------------- |
+| **accountId**       | **path** | **必填**<br/>账户ID          |
+| **client_order_id** | **path** | **必填**<br>用户自定义订单ID |
+
+
+
+```
+API响应样例：订单详细信息
+```
+
+```json
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "results": [
+      {
+        "id": 133718622601283,
+        "userId": 10030,
+        "accountId": 0,
+        "clientOrderId": "@133718622601283",
+        "symbolId": 132,
+        "sequenceId": 620679,
+        "type": "LIMIT",
+        "status": "PENDING",
+        "direction": "LONG",
+        "features": 0,
+        "price": 40000.0,
+        "fee": 0,
+        "fillPrice": 0.0,
+        "makerFeeRate": 0.001,
+        "takerFeeRate": 0.002,
+        "createdAt": 1688471702940,
+        "updatedAt": 1688471702940,
+        "marginCurrencyId": 103,
+        "quantity": 4,
+        "unfilledQuantity": 4,
+        "frozenMargin": 1600.000000000000000000,
+        "symbol": "XBTC"
+      }
+    ]
+  }
+}
+```
+
 ## 查询活跃订单
 
 API描述：查询当前用户的所有活跃订单。
@@ -229,9 +284,9 @@ API请求参数(PATH)：
 
 API请求参数(Path Param)：
 
-| 参数         | 类型       | 说明                                                      |
-| :----------- | ---------- | :-------------------------------------------------------- |
-| **order_id** | **string** | **选填**<br>订单Id,例如"25f2fd62fdf2a6bf33e9431ba184dd2e" |
+| 参数         | 类型       | 说明                                |
+| :----------- | ---------- |:----------------------------------|
+| **order_id** | **string** | **选填**<br>订单Id,例如"12345678654321" |
 
 ```
 API响应样例:
