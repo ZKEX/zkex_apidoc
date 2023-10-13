@@ -431,6 +431,9 @@
                     <a href="#8be954be0d" class="toc-h2 toc-link" data-title="创建新订单">创建新订单</a>
                   </li>
                   <li>
+                    <a href="#clientorderid" class="toc-h2 toc-link" data-title="查询订单详情根据clientOrderId(仅支持活跃订单）">查询订单详情根据clientOrderId(仅支持活跃订单）</a>
+                  </li>
+                  <li>
                     <a href="#e26062753d" class="toc-h2 toc-link" data-title="查询活跃订单">查询活跃订单</a>
                   </li>
                   <li>
@@ -2583,6 +2586,64 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='clientorderid'>查询订单详情根据clientOrderId(仅支持活跃订单）</h2>
+<p>API描述：通过自定义订单ID查询订单的详情。</p>
+
+<p>API路径：GET /v1/trading/:accountId/contracts/clientOrders/open/:client_order_id</p>
+
+<p>API请求参数(Path Param)：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><strong>accountId</strong></td>
+<td><strong>path</strong></td>
+<td style="text-align: left"><strong>必填</strong><br/>账户ID</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>client_order_id</strong></td>
+<td><strong>path</strong></td>
+<td style="text-align: left"><strong>必填</strong><br>用户自定义订单ID</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>API响应样例：订单详细信息
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">133718622601283</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10030</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"clientOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"@133718622601283"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">620679</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LIMIT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">40000.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fillPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"makerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"takerFeeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.002</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688471702940</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"marginCurrencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"frozenMargin"</span><span class="p">:</span><span class="w"> </span><span class="mf">1600.000000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XBTC"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='e26062753d'>查询活跃订单</h2>
 <p>API描述：查询当前用户的所有活跃订单。</p>
 
@@ -2669,7 +2730,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>order_id</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>订单Id,例如&quot;25f2fd62fdf2a6bf33e9431ba184dd2e&quot;</td>
+<td style="text-align: left"><strong>选填</strong><br>订单Id,例如&quot;12345678654321&quot;</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
