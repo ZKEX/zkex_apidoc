@@ -370,9 +370,6 @@
                     <a href="#orderbook" class="toc-h2 toc-link" data-title="获取OrderBook">获取OrderBook</a>
                   </li>
                   <li>
-                    <a href="#rest-tick" class="toc-h2 toc-link" data-title="获取REST Tick数据（暂不支持）">获取REST Tick数据（暂不支持）</a>
-                  </li>
-                  <li>
                     <a href="#bar" class="toc-h2 toc-link" data-title="获取Bar数据">获取Bar数据</a>
                   </li>
               </ul>
@@ -689,6 +686,190 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td>现货和合约与链上Id映射关系</td>
 </tr>
 </tbody></table>
+
+<p>数据格式：</p>
+
+<p><code>spotsSymbols</code></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><strong>id</strong></td>
+<td>现货交易对Id</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>name</strong></td>
+<td>现货交易对名称 如:WBTC_USDC</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>startTime</strong></td>
+<td>symbol 生效时间</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>endTime</strong></td>
+<td>symbol 结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>trade</strong></td>
+<td>交易类型 SPOTS</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseName</strong></td>
+<td>baseName</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseMinimumIncrement</strong></td>
+<td>base最小步长</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseScale</strong></td>
+<td>base精度</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseMinimumQuantity</strong></td>
+<td>base最小下单量</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseMaximumQuantity</strong></td>
+<td>base最大下单量</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteName</strong></td>
+<td>quote   Name</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteMinimumIncrement</strong></td>
+<td>quote最小步长</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteScale</strong></td>
+<td>quote精度</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>supportMarginTrade</strong></td>
+<td>supportMarginTrade</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>alwaysChargeQuote</strong></td>
+<td>是否总是以quote作为手续费</td>
+</tr>
+</tbody></table>
+
+<p><code>contractsSymbols</code></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><strong>id</strong></td>
+<td>合约Id</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>name</strong></td>
+<td>合约名称 如:XBTC</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>startTime</strong></td>
+<td>合约 生效时间</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>endTime</strong></td>
+<td>合约 结束时间</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>trade</strong></td>
+<td>交易类型 CONTRACTS</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>type</strong></td>
+<td>合约类型 PERPETUAL</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseCurrency</strong></td>
+<td>baseCurrency</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>marginCurrency</strong></td>
+<td>marginCurrency</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteCurrency</strong></td>
+<td>quoteCurrency</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>multiplier</strong></td>
+<td>面值</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteMinimumIncrement</strong></td>
+<td>quote最小步长</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteName</strong></td>
+<td>quote   Name</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseScale</strong></td>
+<td>base 精度</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>quoteScale</strong></td>
+<td>quote精度</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>baseMinimumIncrement</strong></td>
+<td>base最小步长</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>maximumQuantityPerOrder</strong></td>
+<td>每笔合约最大下单量</td>
+</tr>
+</tbody></table>
+
+<p><code>riskLimit</code></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><strong>initialMarginRate</strong></td>
+<td>初始保证金率</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>maintenanceMarginRate</strong></td>
+<td>维持保证金率</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>marginRateStep</strong></td>
+<td>保证金率变化步长</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>maxLeverage</strong></td>
+<td>最大杠杆倍数</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>riskLimitBase</strong></td>
+<td>基础持仓量</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>riskLimitStep</strong></td>
+<td>持仓量步长</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>maxRiskLimitSteps</strong></td>
+<td>最多风险梯度次数</td>
+</tr>
+</tbody></table>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
@@ -696,7 +877,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"spotsSymbols"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100103</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"startTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1680278400000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5995814400000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"trade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SPOTS"</span><span class="p">,</span><span class="w">
@@ -765,7 +946,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10110</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH_DAILYRATE"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH_DAILYRATE"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">日利率价格</span><span class="w">
         </span><span class="nl">"startTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5995814400000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"scale"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
@@ -807,7 +988,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10116</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH_FR8H"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BCH_FR8H"</span><span class="p">,</span><span class="w"> 
         </span><span class="nl">"startTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">5995814400000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"scale"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
@@ -847,15 +1028,15 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1546956010600</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"chains"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"145"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"chains"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">zk</span><span class="w"> </span><span class="err">支持的链信息</span><span class="w">
+      </span><span class="nl">"145"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">tokenId</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"chainTokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"chainId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x1f34934e3165b3e5428f6a4d873d2620302c7223"</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"decimals"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-          </span><span class="nl">"fastWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"chainTokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">145</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">tokenId</span><span class="w">
+          </span><span class="nl">"chainId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">chainId</span><span class="w">
+          </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x1f34934e3165b3e5428f6a4d873d2620302c7223"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">地址</span><span class="w">
+          </span><span class="nl">"decimals"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">精度</span><span class="w">
+          </span><span class="nl">"fastWithdraw"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">是否支持快速提现</span><span class="w">
           </span><span class="nl">"isSupport"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
           </span><span class="nl">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1684493403660</span><span class="w">
         </span><span class="p">},</span><span class="w">
@@ -871,14 +1052,14 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="nl">"tokenMappingList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"tokenMappingList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">zkex</span><span class="w"> </span><span class="err">symbol和zklink</span><span class="w"> </span><span class="err">映射关系</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"tokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"tokenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"mappingTokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"tokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">zkex</span><span class="w"> </span><span class="err">symbol</span><span class="w"> </span><span class="err">Id</span><span class="w">
+        </span><span class="nl">"tokenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">zkex</span><span class="w"> </span><span class="err">name</span><span class="w">
+        </span><span class="nl">"mappingTokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">zklink</span><span class="w"> </span><span class="err">Id</span><span class="w">
         </span><span class="nl">"tokenIconUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static.zk.link/token/icons/default/btc.svg"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"tokenType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="nl">"tokenType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">symbol</span><span class="w"> </span><span class="err">type</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">SPOTS</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">CONTRACTS</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
@@ -893,8 +1074,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
       </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"main"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">  
+        </span><span class="nl">"conversionRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">最为保证金币种的转化率</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bitcoin"</span><span class="w">
       </span><span class="p">}</span><span class="w">
@@ -1003,7 +1184,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"BTC_USD_PI"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"1688098860000"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">时间戳</span><span class="w">
-      </span><span class="s2">"0.000096"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">价格</span><span class="w">
+      </span><span class="s2">"0.000096"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">数值</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"BTC_MAXBTCUSDPI"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"1546272000000"</span><span class="p">,</span><span class="w">
@@ -1082,7 +1263,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/ticker/:symbolName</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticker/BTC_USDT">/v1/market/ticker/BTC_USDT</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticker/WBTC_USDC">/v1/market/ticker/WBTC_USDC</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1096,7 +1277,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbolName</strong></td>
 <td><strong>path</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
+<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>WBTC_USDC</code></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
@@ -1240,7 +1421,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API路径：GET /v1/market/orderBook/:symbol_name</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/orderBook/BTC_USDT">/v1/market/orderBook/BTC_USDT</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/orderBook/WBTC_USDC">/v1/market/orderBook/WBTC_USDC</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1254,7 +1435,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol_name</strong></td>
 <td><strong>path</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
+<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>WBTC_USDC</code></td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>depth</strong></td>
@@ -1268,13 +1449,13 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100103</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40000.0"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"39000.0"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"0.10"</span><span class="w">
+        </span><span class="s2">"39000.0"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">pirce</span><span class="w">
+        </span><span class="s2">"0.10"</span><span class="w">     </span><span class="err">//</span><span class="w"> </span><span class="err">size</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="p">[</span><span class="w">
         </span><span class="s2">"38000.0"</span><span class="p">,</span><span class="w">
@@ -1290,203 +1471,12 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689064825725</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='rest-tick'>获取REST Tick数据（暂不支持）</h2>
-<p>API描述：获取某个交易对的最近tick信息。接口不区分现货、合约。</p>
-
-<p>API路径：GET /v1/market/ticks/:symbol_name</p>
-
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/ticks/BTC_USDT?limit=10">/v1/market/ticks/BTC_USDT</a></p>
-
-<p>API请求参数(Path Param)：</p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th>类型</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>symbol_name</strong></td>
-<td><strong>path</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>limit</strong></td>
-<td><strong>int</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>获取tick数量, 1-500，默认200</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
-</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"results"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666486</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194089219</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0119</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">],</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194089219</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.028</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666477</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194086281</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0239</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666474</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194085781</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0266</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666462</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194082834</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0162</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666460</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194081031</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">11183</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0266</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666459</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194081006</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0266</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666432</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194067487</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11171.6</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0137</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666423</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194065608</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11172.3</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0177</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666417</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194062609</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11175.2</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0146</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="mi">1666411</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"data"</span><span class="p">:[</span><span class="w">
-                </span><span class="p">[</span><span class="w">
-                    </span><span class="mi">1596194060078</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">11175.2</span><span class="p">,</span><span class="w">
-                    </span><span class="mf">0.0124</span><span class="p">,</span><span class="w">
-                    </span><span class="mi">0</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>说明：</p>
-
-<p>tick数据格式：<code>[timestamp, dir, price, amount, flag]</code></p>
-
-<table><thead>
-<tr>
-<th style="text-align: left">参数</th>
-<th style="text-align: left">说明</th>
-</tr>
-</thead><tbody>
-<tr>
-<td style="text-align: left"><strong>timestamp</strong></td>
-<td style="text-align: left">时间戳，单位毫秒</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>dir</strong></td>
-<td style="text-align: left">1=主动买入, 0=主动卖出</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>price</strong></td>
-<td style="text-align: left">成交价格</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>amount</strong></td>
-<td style="text-align: left">成交量</td>
-</tr>
-<tr>
-<td style="text-align: left"><strong>flag</strong></td>
-<td style="text-align: left">0=普通成交（后续增加爆仓标志）</td>
-</tr>
-</tbody></table>
-<h2 id='bar'>获取Bar数据</h2>
+</span></code></pre></div><h2 id='bar'>获取Bar数据</h2>
 <p>API描述：获取某个交易对的最近Bar数据。接口不区分现货、合约。</p>
 
 <p>API路径：GET /v1/market/bars/:symbol_name/:type</p>
 
-<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/bars/BTC_USDT/min">/v1/market/bars/BTC_USDT/min</a></p>
+<p>API示例：GET <a href="http://54.199.66.35:8080/v1/market/bars/WBTC_USDC/min">/v1/market/bars/WBTC_USDC/min</a></p>
 
 <p>API请求参数(Path Param)：</p>
 
@@ -1500,7 +1490,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td style="text-align: left"><strong>string</strong></td>
-<td><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
+<td><strong>必填</strong><br>交易对名称,例如<code>WBTC_USDC</code></td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>type</strong></td>
