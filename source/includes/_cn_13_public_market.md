@@ -27,6 +27,62 @@ API响应样例：
 | **currencies**          |  currency基础信息|
 | **tokenMappingList**    |  现货和合约与链上Id映射关系|
 
+数据格式：
+
+`spotsSymbols`
+
+| 字段                        | 说明                  |
+|:--------------------------|---------------------|
+| **id**                    | 现货交易对Id             |
+| **name**                  | 现货交易对名称 如:WBTC_USDC |
+| **startTime**             | symbol 生效时间         |
+| **endTime**               | symbol 结束时间         |
+| **trade**                 | 交易类型 SPOTS          |
+| **baseName**              | baseName            |
+| **baseMinimumIncrement**  | base最小步长            |
+| **baseScale**             | base精度              |
+| **baseMinimumQuantity**   | base最小下单量           |
+| **baseMaximumQuantity**   | base最大下单量           |
+| **quoteName**             | quote   Name        |
+| **quoteMinimumIncrement** | quote最小步长           |
+| **quoteScale**            | quote精度             |
+| **supportMarginTrade**    | supportMarginTrade  |
+| **alwaysChargeQuote**     | 是否总是以quote作为手续费     |
+
+`contractsSymbols`
+
+| 字段                              | 说明             |
+|:--------------------------------|----------------|
+| **id**                          | 合约Id           |
+| **name**                        | 合约名称 如:XBTC    |
+| **startTime**                   | 合约 生效时间        |
+| **endTime**                     | 合约 结束时间        |
+| **trade**                       | 交易类型 CONTRACTS |
+| **type**                        | 合约类型 PERPETUAL |
+| **baseCurrency**                | baseCurrency   |
+| **marginCurrency**              | marginCurrency |
+| **quoteCurrency**               | quoteCurrency  |
+| **multiplier**                  | 面值             |
+| **quoteMinimumIncrement**       | quote最小步长      |
+| **quoteName**                   | quote   Name   |
+| **baseScale**                   | base 精度        |
+| **quoteScale**                  | quote精度        |
+| **baseMinimumIncrement**        | base最小步长       |
+| **maximumQuantityPerOrder**     | 每笔合约最大下单量      |
+
+`riskLimit`
+
+| 字段                        | 说明       |
+|:--------------------------|----------|
+| **initialMarginRate**     | 初始保证金率   |
+| **maintenanceMarginRate** | 维持保证金率   |
+| **marginRateStep**        | 保证金率变化步长 |
+| **maxLeverage**           | 最大杠杆倍数   |
+| **riskLimitBase**         | 基础持仓量    |
+| **riskLimitStep**         | 持仓量步长    |
+| **maxRiskLimitSteps**     | 最多风险梯度次数 |
+
+
 ```json
 {
   "code": 200,
@@ -35,7 +91,7 @@ API响应样例：
     "spotsSymbols": [
       {
         "id": 100103,
-        "name": "BTC_USDT",
+        "name": "WBTC_USDC",
         "startTime": 1680278400000,
         "endTime": 5995814400000,
         "trade": "SPOTS",
@@ -104,7 +160,7 @@ API响应样例：
       },
       {
         "id": 10110,
-        "name": "BCH_DAILYRATE",
+        "name": "BCH_DAILYRATE", // 日利率价格
         "startTime": 0,
         "endTime": 5995814400000,
         "scale": 6
@@ -146,7 +202,7 @@ API响应样例：
       },
       {
         "id": 10116,
-        "name": "BCH_FR8H",
+        "name": "BCH_FR8H", 
         "startTime": 0,
         "endTime": 5995814400000,
         "scale": 6
@@ -186,15 +242,15 @@ API响应样例：
         "createdAt": 1546956010600
       }
     ],
-    "chains": {
-      "145": [
+    "chains": {  // zk 支持的链信息
+      "145": [    // tokenId
         {
           "id": 27,
-          "chainTokenId": 145,
-          "chainId": 1,
-          "address": "0x1f34934e3165b3e5428f6a4d873d2620302c7223",
-          "decimals": 18,
-          "fastWithdraw": true,
+          "chainTokenId": 145,  // tokenId
+          "chainId": 1,    // chainId
+          "address": "0x1f34934e3165b3e5428f6a4d873d2620302c7223", // 地址
+          "decimals": 18,  // 精度
+          "fastWithdraw": true, // 是否支持快速提现
           "isSupport": true,
           "updateTime": 1684493403660
         },
@@ -210,14 +266,14 @@ API响应样例：
         }
       ]
     },
-    "tokenMappingList": [
+    "tokenMappingList": [ // zkex symbol和zklink 映射关系
       {
         "id": 1,
-        "tokenId": 100,
-        "tokenName": "BTC",
-        "mappingTokenId": 1,
+        "tokenId": 100,  // zkex symbol Id
+        "tokenName": "BTC", // zkex name
+        "mappingTokenId": 1,  // zklink Id
         "tokenIconUrl": "https://static.zk.link/token/icons/default/btc.svg",
-        "tokenType": 0
+        "tokenType": 0    // symbol type 0 SPOTS 1 CONTRACTS
       },
       {
         "id": 3,
@@ -232,8 +288,8 @@ API响应样例：
       {
         "id": 100,
         "name": "BTC",
-        "main": false,
-        "conversionRatio": 1,
+        "main": false,  
+        "conversionRatio": 1,  // 最为保证金币种的转化率
         "createdAt": 0,
         "displayName": "Bitcoin"
       }
@@ -366,7 +422,7 @@ API响应样例：
   "data": {
     "BTC_USD_PI": [
       "1688098860000", // 时间戳
-      "0.000096"  // 价格
+      "0.000096"  // 数值
     ],
     "BTC_MAXBTCUSDPI": [
       "1546272000000",
@@ -428,13 +484,13 @@ API描述：获取某个交易对的最近24小时统计价格。接口不区分
 
 API路径：GET /v1/market/ticker/:symbolName
 
-API示例：GET [/v1/market/ticker/BTC_USDT](http://54.199.66.35:8080/v1/market/ticker/BTC_USDT)
+API示例：GET [/v1/market/ticker/WBTC_USDC](http://54.199.66.35:8080/v1/market/ticker/WBTC_USDC)
 
 API请求参数(Path Param)：
 
-| 参数             | 类型     | 说明                                  |
-|:---------------| -------- | :------------------------------------ |
-| **symbolName** | **path** | **必填**<br>交易对名称,例如`BTC_USDT` |
+| 参数             | 类型     | 说明                            |
+|:---------------| -------- |:------------------------------|
+| **symbolName** | **path** | **必填**<br>交易对名称,例如`WBTC_USDC` |
 
 ```
 API响应样例：
@@ -608,13 +664,13 @@ API描述：获取某个交易对的最近OrderBook。
 
 API路径：GET /v1/market/orderBook/:symbol_name
 
-API示例：GET [/v1/market/orderBook/BTC_USDT](http://54.199.66.35:8080/v1/market/orderBook/BTC_USDT)
+API示例：GET [/v1/market/orderBook/WBTC_USDC](http://54.199.66.35:8080/v1/market/orderBook/WBTC_USDC)
 
 API请求参数(Path Param)：
 
 | 参数       | 类型         | 说明                                  |
 | :--------- |------------|:------------------------------------|
-| **symbol_name** | **path**   | **必填**<br>交易对名称,例如`BTC_USDT`        |
+| **symbol_name** | **path**   | **必填**<br>交易对名称,例如`WBTC_USDC`       |
 | **depth** | **params** | **非必填**<br>订单薄深度 默认25 档位 最高 150 档位` |
 
 ```
@@ -627,13 +683,13 @@ API响应样例：
   "msg": "success",
   "data": {
     "symbolId": 100103,
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "price": "40000.0",
     "sellOrders": [],
     "buyOrders": [
       [
-        "39000.0",
-        "0.10"
+        "39000.0",  // pirce
+        "0.10"     // size
       ],
       [
         "38000.0",
@@ -651,187 +707,20 @@ API响应样例：
 }
 ```
 
-## 获取REST Tick数据（暂不支持）
-
-API描述：获取某个交易对的最近tick信息。接口不区分现货、合约。
-
-API路径：GET /v1/market/ticks/:symbol_name
-
-API示例：GET [/v1/market/ticks/BTC_USDT](http://54.199.66.35:8080/v1/market/ticks/BTC_USDT?limit=10)
-
-API请求参数(Path Param)：
-
-| 参数       | 类型     | 说明                                     |
-| :--------- | -------- | :--------------------------------------- |
-| **symbol_name** | **path** | **必填**<br>交易对名称,例如`BTC_USDT`    |
-| **limit**  | **int**  | **选填**<br>获取tick数量, 1-500，默认200 |
-
-```
-API响应样例：
-```
-
-```json
-{
-    "results":[
-        {
-            "sequenceId":1666486,
-            "data":[
-                [
-                    1596194089219,
-                    0,
-                    11171.6,
-                    0.0119,
-                    0
-                ],
-              	[
-                    1596194089219,
-                    0,
-                    11171.6,
-                    0.028,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666477,
-            "data":[
-                [
-                    1596194086281,
-                    0,
-                    11171.6,
-                    0.0239,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666474,
-            "data":[
-                [
-                    1596194085781,
-                    0,
-                    11171.6,
-                    0.0266,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666462,
-            "data":[
-                [
-                    1596194082834,
-                    0,
-                    11171.6,
-                    0.0162,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666460,
-            "data":[
-                [
-                    1596194081031,
-                    1,
-                    11183,
-                    0.0266,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666459,
-            "data":[
-                [
-                    1596194081006,
-                    0,
-                    11171.6,
-                    0.0266,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666432,
-            "data":[
-                [
-                    1596194067487,
-                    0,
-                    11171.6,
-                    0.0137,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666423,
-            "data":[
-                [
-                    1596194065608,
-                    0,
-                    11172.3,
-                    0.0177,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666417,
-            "data":[
-                [
-                    1596194062609,
-                    0,
-                    11175.2,
-                    0.0146,
-                    0
-                ]
-            ]
-        },
-        {
-            "sequenceId":1666411,
-            "data":[
-                [
-                    1596194060078,
-                    0,
-                    11175.2,
-                    0.0124,
-                    0
-                ]
-            ]
-        }
-    ]
-}
-```
-
-说明：
-
-tick数据格式：`[timestamp, dir, price, amount, flag]`
-
-| 参数          | 说明                           |
-| :------------ | :----------------------------- |
-| **timestamp** | 时间戳，单位毫秒               |
-| **dir**       | 1=主动买入, 0=主动卖出         |
-| **price**     | 成交价格                       |
-| **amount**    | 成交量                         |
-| **flag**      | 0=普通成交（后续增加爆仓标志） |
-
-
-
 ## 获取Bar数据
 
 API描述：获取某个交易对的最近Bar数据。接口不区分现货、合约。
 
 API路径：GET /v1/market/bars/:symbol_name/:type
 
-API示例：GET [/v1/market/bars/BTC_USDT/min](http://54.199.66.35:8080/v1/market/bars/BTC_USDT/min)
+API示例：GET [/v1/market/bars/WBTC_USDC/min](http://54.199.66.35:8080/v1/market/bars/WBTC_USDC/min)
 
 API请求参数(Path Param)：
 
-|参数| 类型 | 说明 |
-|:---|:---|----|
-|**symbol**|**string**|**必填**<br>交易对名称,例如`BTC_USDT`|
-|**type**|**enum**|**必填**<br>Bar类型，目前支持`MIN`、`MIN5`、`MIN15`、`MIN30`、`HOUR`、`HOUR4`、`DAY`、`WEEK`、`MONTH`几种类型|
+|参数| 类型 | 说明                                                                                       |
+|:---|:---|------------------------------------------------------------------------------------------|
+|**symbol**|**string**| **必填**<br>交易对名称,例如`WBTC_USDC`                                                            |
+|**type**|**enum**| **必填**<br>Bar类型，目前支持`MIN`、`MIN5`、`MIN15`、`MIN30`、`HOUR`、`HOUR4`、`DAY`、`WEEK`、`MONTH`几种类型 |
 
 API请求参数(Request Param)：
 
