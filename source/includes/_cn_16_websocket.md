@@ -72,7 +72,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 ```json
 {
   "action":"subscribe",
-  "symbol":"BTC_USDT"   // 订阅指定的币对
+  "symbol":"WBTC_USDC"   // 订阅指定的币对
 }
 ```
 
@@ -80,14 +80,14 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 ```json
 {
-  "status": "subscribed"  // 该币对的所有信息都会被订阅
+  "status": "subscribe"  // 该币对的所有信息都会被订阅
 }
 ```
 
-订阅后会推送的type如下
+ws推送的type如下
 
 1. orderbook 
-2. tick
+2. prices  
 3. bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}
 4. bbo
 
@@ -99,7 +99,7 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 ```json
 {
     "action":"unsubscribe",
-    "symbol":"BTC_USDT"   // 订阅指定的币对
+    "symbol":"WBTC_USDC"   // 订阅指定的币对
 }
 ```
 
@@ -123,8 +123,8 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 }
 ```
 
-## Price消息
-
+## Prices消息
+此消息类型不需要订阅连接上ws后会以固定频率推送
 服务器以固定频率推送市场价格摘要消息如下：
 
 ```json
@@ -164,19 +164,18 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 
 说明：
 
-- 消息类型：price
-- 只有24小时内有交易的symbol会出现，没有交易的symbol不会出现
+- 消息类型：prices
 - 数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）
-
+- 是否需要订阅: 不需要
 
 ## Bar信息
-
+此消息类型需要进行按照symbol进行订阅，推送所有支持的
 服务器会根据实际成交以固定频率推送bar（candle）信息：
 
 ```json
 {
   "type": "bar",
-  "symbol": "BTC_USDT",
+  "symbol": "WBTC_USDC",
   "resolution": "MONTH",
   "sequenceId": 629050,
   "data": [
@@ -193,24 +192,25 @@ ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4Yz
 说明：
 
 - 消息类型：bar
-- 数据格式：[timestamp, open, high, low, close, volume,amount]
+- 数据格式：[timestamp, open, high, low, close, amount, volume]
+- 是否需要订阅: 需要
 
 ## OrderBook消息
 
-服务器会根据用户挂单及成交信息增量推送,用户需要通过restApi请求orderBook并本地维护
+服务器以固定频率增量推送OrderBook消息如下：
 
 OrderBook消息如下：
 
 ```json
 {
   "type": "orderbook",
-  "symbol": "BTC_USDT",
+  "symbol": "WBTC_USDC",
   "lastSequenceId": 629050,
   "sequenceId": 629112,
   "data": {
     "sellOrders": {},
     "direction": "LONG",
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "price": 40000,
     "buyOrders": [
       [
@@ -231,6 +231,9 @@ OrderBook消息如下：
 - 消息类型：orderbook
 - 是否需要订阅：需要
 - 深度数据格式：`[price, amount]`
+- 需要自己维护订单薄，按照sequenceId递增更新订单薄
+- 维护订单薄规则:推送按照价格匹配，如果存在当前价格 ，那么amount更新为最新值（直接替换） ,
+  如果amount = 0 将该价格移除订单薄，如果当前价格不存在，按照价格排序插入到订单薄
 
 ## BBO消息
 
@@ -241,7 +244,7 @@ BBO消息如下：
 ```json
 {
   "type": "bbo",
-  "symbol": "BTC_USDT",
+  "symbol": "WBTC_USDC",
   "data": {
     "sequenceId": 656695,
     "timestamp": 1689129928255,
@@ -265,7 +268,7 @@ BBO消息如下：
 ```json
 {
   "type": "tick",
-  "symbol": "BTC_USDT",
+  "symbol": "WBTC_USDC",
   "sequenceId": 629128,
   "data": [
     [
@@ -289,8 +292,8 @@ BBO消息如下：
   - timestamp: 时间戳
   - dir: 1=主动买入, 0=主动卖出
   - price: 成交价格
-  - volume: 成交数量
-  - amount: 成交价值
+  - anount: 成交数量
+  - volume: 成交价值
   - flag: 0=普通成交（后续增加爆仓标志）
 
   
@@ -303,7 +306,7 @@ BBO消息如下：
   "sequenceId": 629244,
   "data": {
     "symbolId": 100103,
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "matchQuantity": 0.1,
     "orderId": 134357624815680,
     "matchType": "MAKER",
@@ -336,7 +339,7 @@ BBO消息如下：
   "sequenceId": 629212,
   "data": {
     "symbolId": 100103,
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
     "fee": 0,
@@ -358,7 +361,7 @@ BBO消息如下：
   "sequenceId": 629219,
   "data": {
     "symbolId": 100103,
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
     "fee": 0,
@@ -380,7 +383,7 @@ BBO消息如下：
     "sequenceId": 629244,
     "data": {
         "symbolId": 100103,
-        "symbol": "BTC_USDT",
+        "symbol": "WBTC_USDC",
         "quantity": 0.1,
         "orderId": 134357624815680,
         "fee": 4.0,
@@ -402,7 +405,7 @@ BBO消息如下：
     "sequenceId": 629378,
     "data": {
         "symbolId": 100103,
-        "symbol": "BTC_USDT",
+        "symbol": "WBTC_USDC",
         "quantity": 10.0,
         "orderId": 134366348968000,
         "fee": 0,
