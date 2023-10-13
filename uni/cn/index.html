@@ -490,7 +490,7 @@
                     <a href="#94a9a32795" class="toc-h2 toc-link" data-title="心跳">心跳</a>
                   </li>
                   <li>
-                    <a href="#price" class="toc-h2 toc-link" data-title="Price消息">Price消息</a>
+                    <a href="#prices" class="toc-h2 toc-link" data-title="Prices消息">Prices消息</a>
                   </li>
                   <li>
                     <a href="#bar" class="toc-h2 toc-link" data-title="Bar信息">Bar信息</a>
@@ -3379,19 +3379,19 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>连接WSS后，需要订阅指定symbol，发送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"WBTC_USDC"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>返回格式：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribed"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">该币对的所有信息都会被订阅</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subscribe"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">该币对的所有信息都会被订阅</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>订阅后会推送的type如下</p>
+<p>ws推送的type如下</p>
 
 <ol>
 <li>orderbook </li>
-<li>tick</li>
+<li>prices<br></li>
 <li>bar : 支持kline {MIN,MIN5,MIN15,MIN30,HOUR,HOUR4,DAY,WEEK,MONTH}</li>
 <li>bbo</li>
 </ol>
@@ -3399,7 +3399,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>已经订阅的topic可以通过<code>unsubscribe</code>的action取消，发送消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"action"</span><span class="p">:</span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"WBTC_USDC"</span><span class="w">   </span><span class="err">//</span><span class="w"> </span><span class="err">订阅指定的币对</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='94a9a32795'>心跳</h2>
 <p>客户端需要每<code>15秒</code>发送ping消息来维持连接心跳，格式如下</p>
@@ -3412,8 +3412,9 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"pong"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mi">1688721638247</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h2 id='price'>Price消息</h2>
-<p>服务器以固定频率推送市场价格摘要消息如下：</p>
+</span></code></pre></div><h2 id='prices'>Prices消息</h2>
+<p>此消息类型不需要订阅连接上ws后会以固定频率推送
+服务器以固定频率推送市场价格摘要消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prices"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -3450,15 +3451,16 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>说明：</p>
 
 <ul>
-<li>消息类型：price</li>
-<li>只有24小时内有交易的symbol会出现，没有交易的symbol不会出现</li>
+<li>消息类型：prices</li>
 <li>数据格式：与Bar数据类型相同，可看作最近24小时的一条K线图（但不同于日K，因为日K的起始时间是0:00）</li>
+<li>是否需要订阅: 不需要</li>
 </ul>
 <h2 id='bar'>Bar信息</h2>
-<p>服务器会根据实际成交以固定频率推送bar（candle）信息：</p>
+<p>此消息类型需要进行按照symbol进行订阅，推送所有支持的
+服务器会根据实际成交以固定频率推送bar（candle）信息：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bar"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"resolution"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTH"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629050</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -3476,21 +3478,22 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <ul>
 <li>消息类型：bar</li>
-<li>数据格式：[timestamp, open, high, low, close, volume,amount]</li>
+<li>数据格式：[timestamp, open, high, low, close, amount, volume]</li>
+<li>是否需要订阅: 需要</li>
 </ul>
 <h2 id='orderbook'>OrderBook消息</h2>
-<p>服务器会根据用户挂单及成交信息增量推送,用户需要通过restApi请求orderBook并本地维护</p>
+<p>服务器以固定频率增量推送OrderBook消息如下：</p>
 
 <p>OrderBook消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"orderbook"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"lastSequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629050</span><span class="p">,</span><span class="w">
   </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629112</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"sellOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
     </span><span class="nl">"direction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LONG"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">40000</span><span class="p">,</span><span class="w">
     </span><span class="nl">"buyOrders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">[</span><span class="w">
@@ -3511,6 +3514,9 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>消息类型：orderbook</li>
 <li>是否需要订阅：需要</li>
 <li>深度数据格式：<code>[price, amount]</code></li>
+<li>需要自己维护订单薄，按照sequenceId递增更新订单薄</li>
+<li>维护订单薄规则:推送按照价格匹配，如果存在当前价格 ，那么amount更新为最新值（直接替换） ,
+如果amount = 0 将该价格移除订单薄，如果当前价格不存在，按照价格排序插入到订单薄</li>
 </ul>
 <h2 id='bbo'>BBO消息</h2>
 <p>服务器会根据系统订单薄发生变化时固定频率推送bbo数据</p>
@@ -3518,7 +3524,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>BBO消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbo"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">656695</span><span class="p">,</span><span class="w">
     </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1689129928255</span><span class="p">,</span><span class="w">
@@ -3539,7 +3545,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>服务器不定期推送最新成交的Tick消息如下：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tick"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629128</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">[</span><span class="w">
@@ -3565,8 +3571,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <li>timestamp: 时间戳</li>
 <li>dir: 1=主动买入, 0=主动卖出</li>
 <li>price: 成交价格</li>
-<li>volume: 成交数量</li>
-<li>amount: 成交价值</li>
+<li>anount: 成交数量</li>
+<li>volume: 成交价值</li>
 <li>flag: 0=普通成交（后续增加爆仓标志）</li>
 </ul></li>
 </ul>
@@ -3576,7 +3582,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   </span><span class="nl">"sequenceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">629244</span><span class="p">,</span><span class="w">
   </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nl">"symbolId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100103</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"matchQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="mi">134357624815680</span><span class="p">,</span><span class="w">
     </span><span class="nl">"matchType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MAKER"</span><span class="p">,</span><span class="w">
@@ -3602,7 +3608,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   "sequenceId": 629212,
   "data": {
     "symbolId": 100103,
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
     "fee": 0,
@@ -3624,7 +3630,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
   "sequenceId": 629219,
   "data": {
     "symbolId": 100103,
-    "symbol": "BTC_USDT",
+    "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
     "fee": 0,
@@ -3646,7 +3652,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     "sequenceId": 629244,
     "data": {
         "symbolId": 100103,
-        "symbol": "BTC_USDT",
+        "symbol": "WBTC_USDC",
         "quantity": 0.1,
         "orderId": 134357624815680,
         "fee": 4.0,
@@ -3668,7 +3674,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     "sequenceId": 629378,
     "data": {
         "symbolId": 100103,
-        "symbol": "BTC_USDT",
+        "symbol": "WBTC_USDC",
         "quantity": 10.0,
         "orderId": 134366348968000,
         "fee": 0,
