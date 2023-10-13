@@ -321,6 +321,32 @@
           </li>
           <li>
             <a href="#55c26aba77" class="toc-h1 toc-link" data-title="用户信息">用户信息</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#8208381640" class="toc-h2 toc-link" data-title="获取用户激活、提现、转账等操作手续费">获取用户激活、提现、转账等操作手续费</a>
+                  </li>
+                  <li>
+                    <a href="#4c25820818" class="toc-h2 toc-link" data-title="激活">激活</a>
+                  </li>
+                  <li>
+                    <a href="#a471daf080" class="toc-h2 toc-link" data-title="提现">提现</a>
+                  </li>
+                  <li>
+                    <a href="#8e9ec9ac7d" class="toc-h2 toc-link" data-title="转账">转账</a>
+                  </li>
+                  <li>
+                    <a href="#cc67b1101b" class="toc-h2 toc-link" data-title="查询交易详情">查询交易详情</a>
+                  </li>
+                  <li>
+                    <a href="#8039345f8c" class="toc-h2 toc-link" data-title="查询交易历史">查询交易历史</a>
+                  </li>
+                  <li>
+                    <a href="#accountnonce" class="toc-h2 toc-link" data-title="查询AccountNonce">查询AccountNonce</a>
+                  </li>
+                  <li>
+                    <a href="#todo" class="toc-h2 toc-link" data-title="todo 签名">todo 签名</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#8ba46c43fe" class="toc-h1 toc-link" data-title="签名">签名</a>
@@ -561,7 +587,44 @@
 
 <p>示例：一个完整的GET请求：</p>
 <div class="highlight"><pre class="highlight plaintext"><code>https://uniapi.876ex.com/v1/market/ticks
-</code></pre></div><h1 id='55c26aba77'>用户信息</h1><h1 id='8ba46c43fe'>签名</h1>
+</code></pre></div><h1 id='55c26aba77'>用户信息</h1>
+<p>用户级别的操作api</p>
+<h2 id='8208381640'>获取用户激活、提现、转账等操作手续费</h2><h2 id='4c25820818'>激活</h2><h2 id='a471daf080'>提现</h2><h2 id='8e9ec9ac7d'>转账</h2><h2 id='cc67b1101b'>查询交易详情</h2><h2 id='8039345f8c'>查询交易历史</h2><h2 id='accountnonce'>查询AccountNonce</h2><h2 id='todo'>todo 签名</h2>
+<p>API描述：查询用户现货账户余额。</p>
+
+<p>API路径：GET /v1/trading/:accountId/balances</p>
+
+<p>API请求参数(PATH)：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><em>accountId</em></td>
+<td><strong>path</strong></td>
+<td style="text-align: left"><strong>必填</strong><br>账户id</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"BTC"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可用</span><span class="w"> 
+      </span><span class="s2">"0"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">现货冻结</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"USDT"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h1 id='8ba46c43fe'>签名</h1>
 <p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
 
 <p>签名算法：</p>
