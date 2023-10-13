@@ -1615,7 +1615,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
+<td style="text-align: left"><strong>必填</strong><br>交易对名称,例如<code>WBTC_USDC</code></td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
@@ -1631,7 +1631,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </span></code></pre></div><h2 id='nonce'>获取下单nonce值信息</h2>
 <p>API描述：创建订单时入参需要携带用户订单nonce,该接口是实时获取订单nonce信息接口</p>
 
-<p>API路径：GET /v1/orderNonce/gen/:slotType</p>
+<p>API路径：GET /v1/orderNonce/gen/:slotType/:size</p>
 
 <p>API请求参数(PATH):</p>
 
@@ -1646,6 +1646,11 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <td style="text-align: left"><em>slotType</em></td>
 <td><strong>int</strong></td>
 <td style="text-align: left"><strong>必填</strong><br> 现货 0 合约 1</td>
+</tr>
+<tr>
+<td style="text-align: left"><em>size</em></td>
+<td><strong>int</strong></td>
+<td style="text-align: left"><strong>选填</strong><br> 批量获取 不传返回一条</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
@@ -1692,7 +1697,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td><strong>必填</strong><br>交易对名称,例如<code>BTC_USDT</code></td>
+<td><strong>必填</strong><br>交易对名称,例如<code>WBTC_USDC</code></td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>type</strong></td>
@@ -1828,7 +1833,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 
 <p>API请求参数(Request Json Body)：</p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"BTC_USDT"</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="s2">"WBTC_USDC"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -1841,7 +1846,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称,例如<code>BTC_USDT</code>，为空则撤销所有交易对活动订单</td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称,例如<code>WBTC_USDC</code>，为空则撤销所有交易对活动订单</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：
@@ -2049,7 +2054,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>BTC_USDT</code>，默认空</td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>WBTC_USDC</code>，默认空</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>limit</strong></td>
@@ -2093,7 +2098,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.001000000000000000</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1688386253562</span><span class="p">,</span><span class="w">
         </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x42027101d6739a9b95d94701f6886620500fa853a27cd4d7d147a7bdfba46722"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -2145,7 +2150,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         </span><span class="nl">"chargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.00</span><span class="p">,</span><span class="w">
         </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.01</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="w">
+        </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -2200,7 +2205,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     </span><span class="nl">"chargeQuote"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p">,</span><span class="w">
     </span><span class="nl">"unfilledQuantity"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC_USDT"</span><span class="w">
+    </span><span class="nl">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WBTC_USDC"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id='515c1e61e5'>查询历史订单</h2>
@@ -2236,7 +2241,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>symbol</strong></td>
 <td><strong>string</strong></td>
-<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>BTC_USDT</code>，默认空</td>
+<td style="text-align: left"><strong>选填</strong><br>交易对名称，例如<code>WBTC_USDC</code>，默认空</td>
 </tr>
 <tr>
 <td style="text-align: left"><strong>status</strong></td>
