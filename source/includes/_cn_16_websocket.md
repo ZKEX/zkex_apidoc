@@ -342,6 +342,7 @@ BBO消息如下：
     "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
+    "clientOrderId": "@207390481842241",
     "fee": 0,
     "type": "LIMIT",
     "fillPrice": 0.0,
@@ -364,6 +365,7 @@ BBO消息如下：
     "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
+    "clientOrderId": "@207390481842241",
     "fee": 0,
     "type": "LIMIT",
     "fillPrice": 0.0,
@@ -386,6 +388,7 @@ BBO消息如下：
         "symbol": "WBTC_USDC",
         "quantity": 0.1,
         "orderId": 134357624815680,
+        "clientOrderId": "@207390481842241",
         "fee": 4.0,
         "type": "LIMIT",
         "fillPrice": 40000.0,
@@ -408,6 +411,7 @@ BBO消息如下：
         "symbol": "WBTC_USDC",
         "quantity": 10.0,
         "orderId": 134366348968000,
+        "clientOrderId": "@207390481842241",
         "fee": 0,
         "type": "LIMIT",
         "fillPrice": 0.0,
@@ -430,8 +434,8 @@ BBO消息如下：
 - 是否需要认证：需要
 
 - type: order_pending,order_cancelled,order_filled,order_failed
-
 - data 对象里面status会细化取消和filled
+- clientOrderId 用户传值 取用户传入的值，用户未传值，系统生成
 
 
 ## 仓位变化消息
