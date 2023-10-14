@@ -3674,6 +3674,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
+    "clientOrderId": "@207390481842241",
     "fee": 0,
     "type": "LIMIT",
     "fillPrice": 0.0,
@@ -3696,6 +3697,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
     "symbol": "WBTC_USDC",
     "quantity": 0.1,
     "orderId": 134355368280128,
+    "clientOrderId": "@207390481842241",
     "fee": 0,
     "type": "LIMIT",
     "fillPrice": 0.0,
@@ -3718,6 +3720,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         "symbol": "WBTC_USDC",
         "quantity": 0.1,
         "orderId": 134357624815680,
+        "clientOrderId": "@207390481842241",
         "fee": 4.0,
         "type": "LIMIT",
         "fillPrice": 40000.0,
@@ -3740,6 +3743,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
         "symbol": "WBTC_USDC",
         "quantity": 10.0,
         "orderId": 134366348968000,
+        "clientOrderId": "@207390481842241",
         "fee": 0,
         "type": "LIMIT",
         "fillPrice": 0.0,
@@ -3761,8 +3765,9 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 - 是否需要认证：需要</p>
 
 <ul>
-<li><p>type: order_pending,order_cancelled,order_filled,order_failed</p></li>
-<li><p>data 对象里面status会细化取消和filled</p></li>
+<li>type: order_pending,order_cancelled,order_filled,order_failed</li>
+<li>data 对象里面status会细化取消和filled</li>
+<li>clientOrderId 用户传值 取用户传入的值，用户未传值，系统生成</li>
 </ul>
 <h2 id='5415c9f72e'>仓位变化消息</h2>
 <p>当用户仓位发生变动后，获得仓位变化消息</p>
