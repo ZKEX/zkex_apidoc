@@ -6,7 +6,7 @@
 
 API描述：获取交易所当前所有交易。
 
-API路径：GET [/v1/market/trades](http://18.181.46.207:28080/v1/market/trades)
+API路径：GET [/v1/market/trades](https://testnet.app.zkex.com/v1/market/trades)
 
 API请求参数：
 
@@ -302,7 +302,7 @@ API响应样例：
 
 API描述：获取服务器当前时间，以毫秒为单位。
 
-API路径：GET [/v1/market/timestamp](http://18.181.46.207:28080/v1/market/timestamp)
+API路径：GET [/v1/market/timestamp](https://testnet.app.zkex.com/v1/market/timestamp)
 
 API请求参数：
 
@@ -326,7 +326,7 @@ API响应样例：
 
 API描述：获取当前市场汇率。
 
-API路径：GET [/v1/market/fex](http://18.181.46.207:28080/v1/market/fex)
+API路径：GET [/v1/market/fex](https://testnet.app.zkex.com/v1/market/fex)
 
 API请求参数：
 
@@ -379,7 +379,7 @@ API响应样例：
 
 API描述：获取系统定义的全部错误代码。
 
-API路径：GET [/v1/market/errorCodes](http://18.181.46.207:28080/v1/market/errorCodes)
+API路径：GET [/v1/market/errorCodes](https://testnet.app.zkex.com/v1/market/errorCodes)
 
 API请求参数：
 
@@ -405,7 +405,7 @@ API响应样例：
 
 API描述：获取当前所有指数的最新值。
 
-API路径：GET [/v1/market/indexes](http://18.181.46.207:28080/v1/market/indexes)
+API路径：GET [/v1/market/indexes](https://testnet.app.zkex.com/v1/market/indexes)
 
 API请求参数：
 
@@ -443,7 +443,7 @@ API描述：获取某个指数的最近历史值。
 
 API路径：GET /v1/market/indexes/:index_name
 
-API示例：GET [/v1/market/indexes/ETH_USD_FAIR](http://18.181.46.207:28080/v1/market/indexes/ETH_USD_FAIR)
+API示例：GET [/v1/market/indexes/ETH_USD_FAIR](https://testnet.app.zkex.com/v1/market/indexes/ETH_USD_FAIR)
 
 API请求参数(Path Param)：
 
@@ -484,7 +484,7 @@ API描述：获取某个交易对的最近24小时统计价格。接口不区分
 
 API路径：GET /v1/market/ticker/:symbolName
 
-API示例：GET [/v1/market/ticker/WBTC_USDC](http://18.181.46.207:28080/v1/market/ticker/WBTC_USDC)
+API示例：GET [/v1/market/ticker/WBTC_USDC](https://testnet.app.zkex.com/v1/market/ticker/WBTC_USDC)
 
 API请求参数(Path Param)：
 
@@ -528,7 +528,7 @@ API描述：获取所有交易对的最近24小时统计价格。接口不区分
 
 API路径：GET /v1/market/allTicker
 
-API示例：GET [/v1/market/allTicker](http://18.181.46.207:28080/v1/market/allTicker)
+API示例：GET [/v1/market/allTicker](https://testnet.app.zkex.com/v1/market/allTicker)
 
 API请求参数：
 
@@ -582,7 +582,7 @@ API描述：获取所有币币交易对的最近24小时统计价格。
 
 API路径：GET /v1/market/spots/allTicker
 
-API示例：GET [/v1/market/spots/allTicker](http://18.181.46.207:28080/v1/market/spots/allTicker)
+API示例：GET [/v1/market/spots/allTicker](https://testnet.app.zkex.com/v1/market/spots/allTicker)
 
 API请求参数：
 
@@ -628,7 +628,7 @@ API描述：获取所有合约交易对的最近24小时统计价格。
 
 API路径：GET /v1/market/contracts/allTicker
 
-API示例：GET [/v1/market/contracts/allTicker](http://18.181.46.207:28080/v1/market/contracts/allTicker)
+API示例：GET [/v1/market/contracts/allTicker](https://testnet.app.zkex.com/v1/market/contracts/allTicker)
 
 API请求参数：
 
@@ -664,7 +664,7 @@ API描述：获取某个交易对的最近OrderBook。
 
 API路径：GET /v1/market/orderBook/:symbol_name
 
-API示例：GET [/v1/market/orderBook/WBTC_USDC](http://18.181.46.207:28080/v1/market/orderBook/WBTC_USDC)
+API示例：GET [/v1/market/orderBook/WBTC_USDC](https://testnet.app.zkex.com/v1/market/orderBook/WBTC_USDC)
 
 API请求参数(Path Param)：
 
@@ -713,7 +713,7 @@ API描述：获取某个交易对的最近Bar数据。接口不区分现货、�
 
 API路径：GET /v1/market/bars/:symbol_name/:type
 
-API示例：GET [/v1/market/bars/WBTC_USDC/min](http://18.181.46.207:28080/v1/market/bars/WBTC_USDC/min)
+API示例：GET [/v1/market/bars/WBTC_USDC/min](https://testnet.app.zkex.com/v1/market/bars/WBTC_USDC/min)
 
 API请求参数(Path Param)：
 
