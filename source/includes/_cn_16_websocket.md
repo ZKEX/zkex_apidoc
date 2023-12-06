@@ -6,7 +6,7 @@ WebSocket API是指连接到WebSocket后推送的数据。
 
 ## 连接信息
 
-WebSocket只支持ws协议，地址是ws://18.181.46.207:18080/v1/market/notification
+WebSocket只支持ws协议，地址是wss://testnet.app.zkex.com/v1/market/notification
 
 ## 用户认证
 
@@ -16,7 +16,7 @@ WebSocket只支持ws协议，地址是ws://18.181.46.207:18080/v1/market/notific
 
 以API方式请求wss token，可以访问如下API地址（需要API签名）：
 
-用户API请求：GET [/v1/users/wss/token](http://18.181.46.207:28080/v1/users/wss/token)
+用户API请求：GET [/v1/users/wss/token](https://testnet.app.zkex.com/v1/users/wss/token)
 
 
 ```
@@ -45,7 +45,7 @@ WebSocket只支持ws协议，地址是ws://18.181.46.207:18080/v1/market/notific
 将获取的token作为参数附加到wss连接
 
 ```
-ws://13.230.140.54:18080/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
+wss://testnet.app.zkex.com/v1/market/notification?token=TlZsTWdwMDAwMDAyNzJlMTg4YzI3YjdmZDA5MmRkODY0MjE2YjNmYTU4YWMxY2EwZTdhMjRjY2IzMzNkMjMzMmViMzAxYzE1Njg2ZWFmNjAwYTNhNTdlOTgw
 
 如果WSS服务器验证用户成功，推送消息
 
