@@ -323,7 +323,7 @@
             <a href="#55c26aba77" class="toc-h1 toc-link" data-title="用户信息">用户信息</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#8208381640" class="toc-h2 toc-link" data-title="获取用户激活、提现、转账等操作手续费">获取用户激活、提现、转账等操作手续费</a>
+                    <a href="#8ccf3785a7" class="toc-h2 toc-link" data-title="获取用户操作手续费">获取用户操作手续费</a>
                   </li>
                   <li>
                     <a href="#4c25820818" class="toc-h2 toc-link" data-title="激活">激活</a>
@@ -342,6 +342,9 @@
                   </li>
                   <li>
                     <a href="#accountnonce" class="toc-h2 toc-link" data-title="查询AccountNonce">查询AccountNonce</a>
+                  </li>
+                  <li>
+                    <a href="#486f6037ed" class="toc-h2 toc-link" data-title="查询账户资产">查询账户资产</a>
                   </li>
               </ul>
           </li>
@@ -541,7 +544,311 @@ pro: https://app.zkex.com</p>
 <a href="https://testnet.app.zkex.com/v1/market/trades">https://testnet.app.zkex.com/v1/market/trades</a>。</p>
 <h1 id='55c26aba77'>用户信息</h1>
 <p>用户级别的操作api</p>
-<h2 id='8208381640'>获取用户激活、提现、转账等操作手续费</h2><h2 id='4c25820818'>激活</h2><h2 id='a471daf080'>提现</h2><h2 id='8e9ec9ac7d'>转账</h2><h2 id='cc67b1101b'>查询交易详情</h2><h2 id='8039345f8c'>查询交易历史</h2><h2 id='accountnonce'>查询AccountNonce</h2>
+<h2 id='8ccf3785a7'>获取用户操作手续费</h2>
+<p>API描述：查询用户激活、提现、转账等需要支付的手续费。</p>
+
+<p>API路径：GET /v1/account/op/fee</p>
+
+<p>是否需要鉴权：是</p>
+
+<p>API请求参数：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><em>chainId</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>非必填</strong><br> 操作指令对应的chain</td>
+</tr>
+<tr>
+<td style="text-align: left"><em>op</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>必填</strong><br>  指令类型: Transfer/Withdraw/ChangePubKey</td>
+</tr>
+<tr>
+<td style="text-align: left"><em>address</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> 操作地址: transfer 需要填to地址</td>
+</tr>
+<tr>
+<td style="text-align: left"><em>currency</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> 操作币种： USDC WBTC等</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.70000000"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">对应操作</span><span class="w"> </span><span class="err">Currency</span><span class="w"> </span><span class="err">数量</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='4c25820818'>激活</h2>
+<p>API描述：用户充值后需要进行账户激活，此操作需要进行L1签名及L2签名</p>
+
+<p>API路径：POST /v1/account/0/changePubKey</p>
+
+<p>是否需要鉴权：是</p>
+<div class="highlight"><pre class="highlight plaintext"><code>API请求样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chainId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"newPkHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x8522196355f57a36e2d7b2347b6ab3fdd38f50d1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1690290259</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pubKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d99a5e3d62be94e5c1dcfd0a19540b17d466bade136051561d3f01d4f6208b26"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81662597c6937501c59c33fe6a180f52ca06ca7e7178893b6dacc981c03cd68e67da45256af33856a1c4c3aebd0b0e66758c3ad3af8966c366ed79852eba3b00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ethAuthData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EthECDSA"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ethSignature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x318a3105234e857052a4ddaf76d6b421e5eedb93244ccff275bb5e1a5f5bff734207a60bbecdbdfeb62d7a17b1c7d2c3a03c0df5f896876b053d1beb6c15614c1c"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">312525971260161</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x9914039ef5845e478fa4c8d92cba5e5ccdd2b50e7c58fc145cbc67f94e83c271"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='a471daf080'>提现</h2>
+<p>API描述：用户可以将资产进行提现，此操作需要进行L1签名及L2签名</p>
+
+<p>API路径：POST /v1/account/0/withdraw</p>
+
+<p>是否需要鉴权：是</p>
+<div class="highlight"><pre class="highlight plaintext"><code>API请求样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"toChainId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd554bb87ddd0ddb492506d70a7bdfb7fb355c27b"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5.66"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"withdrawToL1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"withdrawFeeRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709787329</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"41fc696284f30d9f5d1617dc195e2bb4133d1154723c61c71ee230c081161e04969a84c11fb02676c790a245f3e8f42fddeeda43830a26f69751cf7cea14b702"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ethSignature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EthereumSignature"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x2e1203ed691d9985331eb3fe238a8e040b52d6c8a69436b5119568f9a8f7a42f24edcd380bc809fbf1a60861b43c144e5e8b326c6534c6e35de953fd87ad651f1c"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">312527078557313</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x7296ab4e047edfc6285ca1f2c16c1ceece5de6eaa58728ebd8cfcbd350994899"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='8e9ec9ac7d'>转账</h2>
+<p>API描述：用户可以将资产划转到指定的账户地址，此操作需要进行L1签名及L2签名</p>
+
+<p>API路径：POST /v1/account/0/transfer</p>
+
+<p>是否需要鉴权：是</p>
+<div class="highlight"><pre class="highlight plaintext"><code>API请求样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDC"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd554bb87ddd0ddb492506d70a7bdfb7fb355c27b"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709787114</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c702fd9908ed2c17b9e453ab8a630c0595ab0d0f92d5fe64b7c0f63af86ce49caf8e9aa1bde78b9c2a5152364b8ab9675ace67a2d5ae5dcd4dbe5be5dd365301"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ethSignature"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EthereumSignature"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x2597f04e7872e5d76e4b0975136dbece5b50ad4e638dc5f6fda37302fc863c983fb0fc52e4659a207c6d7a8fff713bea523d0d1f2095ca47f8e3085845ae7f5f1b"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">312525275005953</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xa692f2447d6f41d101df7c48314ec63c3906072ff8d5e710dc57344a4f05d27d"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div><h2 id='cc67b1101b'>查询交易详情</h2>
+<p>API描述：用户可以根据txId 查询交易详情</p>
+
+<p>API路径：GET /v1/account/0/transaction</p>
+
+<p>是否需要鉴权：是</p>
+
+<p>API请求参数：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><em>txId</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> 操作指令成功返回的Id</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="mi">312527078557313</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">26687</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"l2AccountId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x7296ab4e047edfc6285ca1f2c16c1ceece5de6eaa58728ebd8cfcbd350994899"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ethHash"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WITHDRAW"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"txStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"chainId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd554bb87ddd0ddb492506d70a7bdfb7fb355c27b"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd554bb87ddd0ddb492506d70a7bdfb7fb355c27b"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.660000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.000000000000000000</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">withdrawFeeRatio</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">withdrawToL1</span><span class="se">\"</span><span class="s2">:0}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"newPkHash"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pubKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ethAuthData"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ethSignature"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709787332053</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709787332053</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='8039345f8c'>查询交易历史</h2>
+<p>API描述：用户可以查询账户操作历史记录</p>
+
+<p>API路径：GET /v1/account/0/transactions</p>
+
+<p>是否需要鉴权：是</p>
+
+<p>API请求参数：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><em>pageIndex</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> 索引页</td>
+</tr>
+<tr>
+<td style="text-align: left"><em>pageSize</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> 每页大小</td>
+</tr>
+<tr>
+<td style="text-align: left"><em>type</em></td>
+<td><strong>param</strong></td>
+<td style="text-align: left"><strong>非必填</strong><br> 操作指令类型 Deposit/Transfer/Withdraw/ChangePubKey</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pageIndex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"txId"</span><span class="p">:</span><span class="w"> </span><span class="mi">312527078557313</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">26687</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"l2AccountId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x7296ab4e047edfc6285ca1f2c16c1ceece5de6eaa58728ebd8cfcbd350994899"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ethHash"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WITHDRAW"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"chainId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd554bb87ddd0ddb492506d70a7bdfb7fb355c27b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xd554bb87ddd0ddb492506d70a7bdfb7fb355c27b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.66</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"extra"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">withdrawFeeRatio</span><span class="se">\"</span><span class="s2">:0,</span><span class="se">\"</span><span class="s2">withdrawToL1</span><span class="se">\"</span><span class="s2">:0}"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"newPkHash"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ts"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"pubKey"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ethAuthData"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ethSignature"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709787332053</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="mi">1709787332053</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='accountnonce'>查询AccountNonce</h2>
+<p>API描述：用户进行withdraw/changePubKey/transfer 时需要携带账户nonce，可以从该接口获取</p>
+
+<p>API路径：GET /v1/accountNonce/gen/{nonceType}</p>
+
+<p>是否需要鉴权：是</p>
+
+<p>API请求参数：</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th>类型</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left"><em>nonceType</em></td>
+<td><strong>path</strong></td>
+<td style="text-align: left"><strong>必填</strong><br> nonce类型 changePubKey: 0  other: 2</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight plaintext"><code>API响应样例:
+</code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"nonce"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nonceType"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='486f6037ed'>查询账户资产</h2>
 <p>API描述：查询用户现货账户余额。</p>
 
 <p>API路径：GET /v1/trading/:accountId/balances</p>
