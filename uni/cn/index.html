@@ -320,6 +320,20 @@
               </ul>
           </li>
           <li>
+            <a href="#8ba46c43fe" class="toc-h1 toc-link" data-title="签名">签名</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#26670dda42" class="toc-h2 toc-link" data-title="说明">说明</a>
+                  </li>
+                  <li>
+                    <a href="#sdk" class="toc-h2 toc-link" data-title="SDK">SDK</a>
+                  </li>
+                  <li>
+                    <a href="#apikey-amp-apisecret" class="toc-h2 toc-link" data-title="ApiKey &amp; ApiSecret">ApiKey &amp; ApiSecret</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#55c26aba77" class="toc-h1 toc-link" data-title="用户信息">用户信息</a>
               <ul class="toc-list-h2">
                   <li>
@@ -345,17 +359,6 @@
                   </li>
                   <li>
                     <a href="#486f6037ed" class="toc-h2 toc-link" data-title="查询账户资产">查询账户资产</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#8ba46c43fe" class="toc-h1 toc-link" data-title="签名">签名</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#26670dda42" class="toc-h2 toc-link" data-title="说明">说明</a>
-                  </li>
-                  <li>
-                    <a href="#sdk" class="toc-h2 toc-link" data-title="SDK">SDK</a>
                   </li>
               </ul>
           </li>
@@ -559,6 +562,79 @@
 
 <p>示例：一个完整的GET请求：
 <a href="https://testnet.app.zkex.com/v1/market/trades">https://testnet.app.zkex.com/v1/market/trades</a>。</p>
+<h1 id='8ba46c43fe'>签名</h1>
+<p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
+
+<p>签名算法：</p>
+
+<p>针对一个HTTP的API请求，有如下信息：</p>
+
+<ul>
+<li>方法名称：<code>GET</code>或<code>POST</code></li>
+<li>请求域名：例如<code>uniapi.876ex.com</code></li>
+<li>请求路径：以/开头的URI，例如：<code>/v1/trade/orders</code></li>
+<li>请求参数：以key1=value2&amp;key2=value2形式的参数，例如：<code>id=123456&amp;sort=DESC&amp;from=2017-09-10</code></li>
+<li>请求Header：例如，<code>Accept: */*</code></li>
+<li>请求Body：二进制表示的JSON字符串，仅针对POST有效</li>
+</ul>
+
+<p>然后，我们需要构造一个字符串，按如下格式填入：</p>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">GET\n
+uniapi.876ex.com\n
+/v1/trade/orders\n
+from=2017-09-10&amp;id=123456&amp;sort=DESC\n
+API-KEY: xyz123456\n
+API-SIGNATURE-METHOD: HmacSHA256\n
+API-SIGNATURE-VERSION: 1\n
+API-TIMESTAMP: 12300000000\n
+API-UNIQUE-ID: uni-123-abc-xyz\n
+&lt;json body data&gt;
+</span></code></pre></div>
+<p>注意：每行以换行符<code>\n</code>结束。最后添加的Body结尾不要添加<code>\n</code>。</p>
+
+<p>第一行是方法名称，全大写的<code>GET</code>或<code>POST</code>；</p>
+
+<p>第二行是请求域名，全小写，例如：<code>uniapi.876ex.com</code>；</p>
+
+<p>第三行是请求路径，必须以<code>/</code>开头，严格区分大小写，最后不要写<code>?</code>；</p>
+
+<p>第四行是请求参数，严格区分大小写，并按照字母顺序排序，即排序后的字符串：<code>from=2017-09-10</code>，<code>id=123456</code>，<code>sort=DESC</code>，再用<code>&amp;</code>连接起来。如果没有请求参数，第四行是空行，注意空行也需要以<code>\n</code>结束；</p>
+
+<p>紧接着把以<code>API-</code>开头的Header排序后以<code>HEADER: Value</code>的格式每行一个，Header名称全大写，冒号后面有一个空格，Value严格区分大小写，每个Header一行，以<code>\n</code>结束；</p>
+
+<p>最后，如果是<code>POST</code>请求，且包含Body，把Body以JSON字符串形式添加到末尾，注意没有<code>\n</code>。如果是GET请求，或者POST请求没有Body，就添加一个空字符串<code>&#39;&#39;</code>。</p>
+
+<p>以上字符串按UTF-8编码，得到一个二进制byte数组，然后使用API Secret计算Signature：</p></p>
+<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">signature</span> <span class="o">=</span> <span class="n">HmacSHA256</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">),</span> <span class="s">"my-api-secret"</span><span class="p">)</span>
+</code></pre></div>
+<p>将所得签名以十六进制小写字符串形式添加到Header：</p>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">API-Signature: a1b2c3ff001234500900dd01ff
+</span></code></pre></div><h3 id='26670dda42'>说明</h3>
+<p>参数使用原始字符串计算签名，例如<code>a=1/5</code>，不要使用<code>a=1%2F5</code>；</p>
+
+<p>Header在计算签名时使用全大写，发送时大小写均可；</p>
+
+<p>只有以API-开头的Header才被列入并计算签名（API-Signature除外，因为最后才能计算出API-Signature并附加到请求）；</p>
+
+<p>API-Signature-Method必须为<code>HmacSHA256</code>；</p>
+
+<p>API-Signature-Version必须为<code>1</code>；</p>
+
+<p>API-Timestamp为当前时间戳，单位为毫秒整数，不支持小数，误差不得超过1分钟；</p>
+
+<p>API-Unique-ID为可选，如果提供，则客户端需要提供一个唯一字符串标识，参考<a href="unique-id">API Unique Id</a>；</p>
+
+<p>带Body的请求，需要先序列化为JSON字符串，然后把Body列入计算签名。不要对一个对象使用两次序列化，因为某些语言的实现可能导致两次序列化的JSON不一样，例如，<code>{&quot;a&quot;:true, &quot;b&quot;:1}</code>和<code>{&quot;b&quot;:1, &quot;a&quot;:true}</code>，两者JSON内容一致但字符串不同，将导致验证签名失败。</p>
+<h3 id='sdk'>SDK</h3>
+<p>我们提供如下的SDK封装了签名算法样例，帮助开发者快速调用API：</p>
+
+<ul>
+<li>Java SDK <a href="https://github.com/876ex-pub/signature-demo/blob/master/ApiClient.java">github</a></li>
+<li>Python SDK <a href="https://github.com/876ex-pub/signature-demo/blob/master/876ex.py">github</a></li>
+<li>JavaScript/Node SDK <a href="https://github.com/876ex-pub/signature-demo/blob/master/876ex.js">github</a></li>
+</ul>
+<h3 id='apikey-amp-apisecret'>ApiKey &amp; ApiSecret</h3>
+<p>暂时为开放接口获取，有需要请与我们联系</p>
 <h1 id='55c26aba77'>用户信息</h1>
 <p>用户级别的操作api</p>
 <h2 id='8ccf3785a7'>获取用户操作手续费</h2>
@@ -900,78 +976,7 @@
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h1 id='8ba46c43fe'>签名</h1>
-<p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
-
-<p>签名算法：</p>
-
-<p>针对一个HTTP的API请求，有如下信息：</p>
-
-<ul>
-<li>方法名称：<code>GET</code>或<code>POST</code></li>
-<li>请求域名：例如<code>uniapi.876ex.com</code></li>
-<li>请求路径：以/开头的URI，例如：<code>/v1/trade/orders</code></li>
-<li>请求参数：以key1=value2&amp;key2=value2形式的参数，例如：<code>id=123456&amp;sort=DESC&amp;from=2017-09-10</code></li>
-<li>请求Header：例如，<code>Accept: */*</code></li>
-<li>请求Body：二进制表示的JSON字符串，仅针对POST有效</li>
-</ul>
-
-<p>然后，我们需要构造一个字符串，按如下格式填入：</p>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">GET\n
-uniapi.876ex.com\n
-/v1/trade/orders\n
-from=2017-09-10&amp;id=123456&amp;sort=DESC\n
-API-KEY: xyz123456\n
-API-SIGNATURE-METHOD: HmacSHA256\n
-API-SIGNATURE-VERSION: 1\n
-API-TIMESTAMP: 12300000000\n
-API-UNIQUE-ID: uni-123-abc-xyz\n
-&lt;json body data&gt;
-</span></code></pre></div>
-<p>注意：每行以换行符<code>\n</code>结束。最后添加的Body结尾不要添加<code>\n</code>。</p>
-
-<p>第一行是方法名称，全大写的<code>GET</code>或<code>POST</code>；</p>
-
-<p>第二行是请求域名，全小写，例如：<code>uniapi.876ex.com</code>；</p>
-
-<p>第三行是请求路径，必须以<code>/</code>开头，严格区分大小写，最后不要写<code>?</code>；</p>
-
-<p>第四行是请求参数，严格区分大小写，并按照字母顺序排序，即排序后的字符串：<code>from=2017-09-10</code>，<code>id=123456</code>，<code>sort=DESC</code>，再用<code>&amp;</code>连接起来。如果没有请求参数，第四行是空行，注意空行也需要以<code>\n</code>结束；</p>
-
-<p>紧接着把以<code>API-</code>开头的Header排序后以<code>HEADER: Value</code>的格式每行一个，Header名称全大写，冒号后面有一个空格，Value严格区分大小写，每个Header一行，以<code>\n</code>结束；</p>
-
-<p>最后，如果是<code>POST</code>请求，且包含Body，把Body以JSON字符串形式添加到末尾，注意没有<code>\n</code>。如果是GET请求，或者POST请求没有Body，就添加一个空字符串<code>&#39;&#39;</code>。</p>
-
-<p>以上字符串按UTF-8编码，得到一个二进制byte数组，然后使用API Secret计算Signature：</p></p>
-<div class="highlight"><pre class="highlight python tab-python"><code><span class="n">signature</span> <span class="o">=</span> <span class="n">HmacSHA256</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">),</span> <span class="s">"my-api-secret"</span><span class="p">)</span>
-</code></pre></div>
-<p>将所得签名以十六进制小写字符串形式添加到Header：</p>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">API-Signature: a1b2c3ff001234500900dd01ff
-</span></code></pre></div><h3 id='26670dda42'>说明</h3>
-<p>参数使用原始字符串计算签名，例如<code>a=1/5</code>，不要使用<code>a=1%2F5</code>；</p>
-
-<p>Header在计算签名时使用全大写，发送时大小写均可；</p>
-
-<p>只有以API-开头的Header才被列入并计算签名（API-Signature除外，因为最后才能计算出API-Signature并附加到请求）；</p>
-
-<p>API-Signature-Method必须为<code>HmacSHA256</code>；</p>
-
-<p>API-Signature-Version必须为<code>1</code>；</p>
-
-<p>API-Timestamp为当前时间戳，单位为毫秒整数，不支持小数，误差不得超过1分钟；</p>
-
-<p>API-Unique-ID为可选，如果提供，则客户端需要提供一个唯一字符串标识，参考<a href="unique-id">API Unique Id</a>；</p>
-
-<p>带Body的请求，需要先序列化为JSON字符串，然后把Body列入计算签名。不要对一个对象使用两次序列化，因为某些语言的实现可能导致两次序列化的JSON不一样，例如，<code>{&quot;a&quot;:true, &quot;b&quot;:1}</code>和<code>{&quot;b&quot;:1, &quot;a&quot;:true}</code>，两者JSON内容一致但字符串不同，将导致验证签名失败。</p>
-<h3 id='sdk'>SDK</h3>
-<p>我们提供如下的SDK封装了签名算法样例，帮助开发者快速调用API：</p>
-
-<ul>
-<li>Java SDK <a href="https://github.com/876ex-pub/signature-demo/blob/master/ApiClient.java">github</a></li>
-<li>Python SDK <a href="https://github.com/876ex-pub/signature-demo/blob/master/876ex.py">github</a></li>
-<li>JavaScript/Node SDK <a href="https://github.com/876ex-pub/signature-demo/blob/master/876ex.js">github</a></li>
-</ul>
-<h1 id='72eaf18632'>公开市场</h1>
+</span></code></pre></div><h1 id='72eaf18632'>公开市场</h1>
 <p>公开市场API是指无需登录，即可直接访问的API。</p>
 <h2 id='9161c1f667'>获取交易信息</h2>
 <p>API描述：获取交易所当前所有交易。</p>
