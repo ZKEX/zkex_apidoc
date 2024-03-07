@@ -3,8 +3,8 @@
 API使用HTTPS。
 
 针对终端用户的API域名
-test: https://testnet.app.zkex.com
-pro: https://app.zkex.com
+- test: https://testnet.app.zkex.com
+- pro: https://app.zkex.com
 
 API调用方式：
 
@@ -24,7 +24,11 @@ API调用方式：
 
 格式为固定的Error，请参考[https://testnet.app.zkex.com/v1/market/error](https://testnet.app.zkex.com/v1/market/error)。
 
-如果API超过了业务频率限制，返回429，无内容，可根据返回头`X-RateLimit-Biz-Limit`、"`X-RateLimit-Biz-Burst`和`X-RateLimit-Biz-Remaining`获取限频次数。
+如果API超过了业务频率限制，返回429，无内容，可根据返回头
+- `X-RateLimit-Biz-Limit`
+- `X-RateLimit-Biz-Burst`
+- `X-RateLimit-Biz-Remaining`
+- 获取限频次数。
 
 ## 字符编码
 
