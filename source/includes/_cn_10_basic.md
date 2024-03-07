@@ -5,7 +5,7 @@ API使用HTTPS。
 针对终端用户的API域名:
 
 - test: https://testnet.app.zkex.com
-- pro: https://app.zkex.com
+- prd: https://app.zkex.com
 
 API调用方式：
 

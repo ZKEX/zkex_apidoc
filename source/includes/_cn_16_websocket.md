@@ -6,7 +6,11 @@ WebSocket API是指连接到WebSocket后推送的数据。
 
 ## 连接信息
 
-WebSocket只支持ws协议，地址是wss://testnet.app.zkex.com/v1/market/notification
+WebSocket只支持wss协议:
+
+- test环境: wss://testnet.app.zkex.com/v1/market/notification
+- prd环境: wss://app.zkex.com/v1/market/notification
+
 
 ## 用户认证
 
