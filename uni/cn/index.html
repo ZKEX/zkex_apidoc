@@ -523,7 +523,7 @@
 
 <ul>
 <li>test: https://testnet.app.zkex.com</li>
-<li>pro: https://app.zkex.com</li>
+<li>prd: https://app.zkex.com</li>
 </ul>
 
 <p>API调用方式：</p>
@@ -2675,7 +2675,12 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <h1 id='5bf19eee5a'>合约交易</h1><h2 id='814cf854cc'>敬请期待</h2><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
-<p>WebSocket只支持ws协议，地址是wss://testnet.app.zkex.com/v1/market/notification</p>
+<p>WebSocket只支持wss协议:</p>
+
+<ul>
+<li>test环境: wss://testnet.app.zkex.com/v1/market/notification</li>
+<li>prd环境: wss://app.zkex.com/v1/market/notification</li>
+</ul>
 <h2 id='4ade1cf0af'>用户认证</h2>
 <p>要以认证用户连接wss，必须提供一个有效的wss token</p>
 
