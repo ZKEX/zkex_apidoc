@@ -442,6 +442,11 @@
                   <li>
                     <a href="#515c1e61e5" class="toc-h2 toc-link" data-title="查询历史订单">查询历史订单</a>
                   </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#5bf19eee5a" class="toc-h1 toc-link" data-title="合约交易">合约交易</a>
+              <ul class="toc-list-h2">
                   <li>
                     <a href="#814cf854cc" class="toc-h2 toc-link" data-title="敬请期待">敬请期待</a>
                   </li>
@@ -515,8 +520,8 @@
 <p>API使用HTTPS。</p>
 
 <p>针对终端用户的API域名
-test: https://testnet.app.zkex.com
-pro: https://app.zkex.com</p>
+- test: https://testnet.app.zkex.com
+- pro: https://app.zkex.com</p>
 
 <p>API调用方式：</p>
 
@@ -536,7 +541,11 @@ pro: https://app.zkex.com</p>
 
 <p>格式为固定的Error，请参考<a href="https://testnet.app.zkex.com/v1/market/error">https://testnet.app.zkex.com/v1/market/error</a>。</p>
 
-<p>如果API超过了业务频率限制，返回429，无内容，可根据返回头<code>X-RateLimit-Biz-Limit</code>、&quot;<code>X-RateLimit-Biz-Burst</code>和<code>X-RateLimit-Biz-Remaining</code>获取限频次数。</p>
+<p>如果API超过了业务频率限制，返回429，无内容，可根据返回头
+- <code>X-RateLimit-Biz-Limit</code>
+- <code>X-RateLimit-Biz-Burst</code>
+- <code>X-RateLimit-Biz-Remaining</code>
+- 获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
 <p>全部使用UTF-8且只能使用UTF-8。</p>
 
@@ -2655,7 +2664,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>如果API响应样例返回的hasMore=true，则可以根据nextOffsetId构造下一页查询的URL。</p>
 
 <p>该接口不支持跨月查询</p>
-<h2 id='814cf854cc'>敬请期待</h2><h1 id='websocket-api'>WebSocket API</h1>
+<h1 id='5bf19eee5a'>合约交易</h1><h2 id='814cf854cc'>敬请期待</h2><h1 id='websocket-api'>WebSocket API</h1>
 <p>WebSocket API是指连接到WebSocket后推送的数据。</p>
 <h2 id='b98a1892b6'>连接信息</h2>
 <p>WebSocket只支持ws协议，地址是wss://testnet.app.zkex.com/v1/market/notification</p>
