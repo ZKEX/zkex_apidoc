@@ -519,9 +519,12 @@
         <h1 id='46ae2946a2'>基础介绍</h1>
 <p>API使用HTTPS。</p>
 
-<p>针对终端用户的API域名
-- test: https://testnet.app.zkex.com
-- pro: https://app.zkex.com</p>
+<p>针对终端用户的API域名:</p>
+
+<ul>
+<li>test: https://testnet.app.zkex.com</li>
+<li>pro: https://app.zkex.com</li>
+</ul>
 
 <p>API调用方式：</p>
 
@@ -532,7 +535,8 @@
 <h2 id='1f9ac54b15'>请求参数</h2>
 <ul>
 <li>GET请求以URL参数传入，例如：<a href="https://testnet.app.zkex.com/v1/market/bars/WBTC_USDC/SEC?start=0&amp;end=1">https://testnet.app.zkex.com/v1/market/bars/WBTC_USDC/SEC?start=0&amp;end=1</a>。</li>
-<li>POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json</li>
+<li>POST请求以JSON作为HTTP BODY传入</li>
+<li>必须设置Content-Type: application/json</li>
 </ul>
 <h2 id='70bdef7e25'>返回参数</h2>
 <p>如果API调用成功，返回200，内容总是JSON，且具有<code>Content-Type: application/json</code>。</p>
@@ -541,11 +545,15 @@
 
 <p>格式为固定的Error，请参考<a href="https://testnet.app.zkex.com/v1/market/error">https://testnet.app.zkex.com/v1/market/error</a>。</p>
 
-<p>如果API超过了业务频率限制，返回429，无内容，可根据返回头
-- <code>X-RateLimit-Biz-Limit</code>
-- <code>X-RateLimit-Biz-Burst</code>
-- <code>X-RateLimit-Biz-Remaining</code>
-- 获取限频次数。</p>
+<p>如果API超过了业务频率限制，返回429，无内容，可根据返回头:</p>
+
+<ul>
+<li><code>X-RateLimit-Biz-Limit</code></li>
+<li><code>X-RateLimit-Biz-Burst</code></li>
+<li><code>X-RateLimit-Biz-Remaining</code></li>
+</ul>
+
+<p>获取限频次数。</p>
 <h2 id='d91b75440f'>字符编码</h2>
 <p>全部使用UTF-8且只能使用UTF-8。</p>
 
