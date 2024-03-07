@@ -18,7 +18,8 @@ includes:
   - cn_12_api_signature
   - cn_13_public_market
   - cn_14_spots_trade
-  - cn_15_contracts_trade
+
+[//]: # (  - cn_15_contracts_trade)
   - cn_16_websocket
   - cn_99_errors
 
