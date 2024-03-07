@@ -79,3 +79,8 @@ API-Unique-ID为可选，如果提供，则客户端需要提供一个唯一字�
 * Java SDK [github](https://github.com/876ex-pub/signature-demo/blob/master/ApiClient.java)
 * Python SDK [github](https://github.com/876ex-pub/signature-demo/blob/master/876ex.py)
 * JavaScript/Node SDK [github](https://github.com/876ex-pub/signature-demo/blob/master/876ex.js)
+
+
+### ApiKey & ApiSecret
+
+暂时为开放接口获取，有需要请与我们联系

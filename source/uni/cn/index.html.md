@@ -14,8 +14,8 @@ toc_footers:
 
 includes:
   - cn_10_basic
-  - cn_11_user
   - cn_12_api_signature
+  - cn_11_user
   - cn_13_public_market
   - cn_14_spots_trade
   - cn_15_contracts_trade
