@@ -2,7 +2,9 @@
 
 API使用HTTPS。
 
-针对终端用户的API域名是`https://testnet.app.zkex.com`。
+针对终端用户的API域名
+test: https://testnet.app.zkex.com
+pro: https://app.zkex.com
 
 API调用方式：
 
@@ -11,7 +13,7 @@ API调用方式：
 
 ## 请求参数
 
-- GET请求以URL参数传入，例如：[https://testnet.app.zkex.com/v1/market/bars/BTC_USDT/SEC?start=0&end=1](http://18.181.46.207:28080/v1/market/bars/BTC_USDT/SEC?start=0&end=1)。
+- GET请求以URL参数传入，例如：[https://testnet.app.zkex.com/v1/market/bars/WBTC_USDC/SEC?start=0&end=1](https://testnet.app.zkex.com/v1/market/bars/WBTC_USDC/SEC?start=0&end=1)。
 - POST请求以JSON作为HTTP BODY传入，且必须设置Content-Type: application/json
 
 ## 返回参数
@@ -29,8 +31,5 @@ API调用方式：
 全部使用UTF-8且只能使用UTF-8。
 
 示例：一个完整的GET请求：
-
-```
-https://testnet.app.zkex.com/v1/market/ticks
-```
+[https://testnet.app.zkex.com/v1/market/trades](https://testnet.app.zkex.com/v1/market/trades)。
 

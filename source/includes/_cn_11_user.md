@@ -16,7 +16,6 @@
 
 ## 查询AccountNonce
 
-## todo 签名 
 
 
 API描述：查询用户现货账户余额。
