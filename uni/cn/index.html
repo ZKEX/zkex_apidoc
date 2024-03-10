@@ -323,13 +323,10 @@
             <a href="#8ba46c43fe" class="toc-h1 toc-link" data-title="签名">签名</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#26670dda42" class="toc-h2 toc-link" data-title="说明">说明</a>
+                    <a href="#api" class="toc-h2 toc-link" data-title="API-签名">API-签名</a>
                   </li>
                   <li>
-                    <a href="#sdk" class="toc-h2 toc-link" data-title="SDK">SDK</a>
-                  </li>
-                  <li>
-                    <a href="#apikey-amp-apisecret" class="toc-h2 toc-link" data-title="ApiKey &amp; ApiSecret">ApiKey &amp; ApiSecret</a>
+                    <a href="#zk" class="toc-h2 toc-link" data-title="Zk-签名">Zk-签名</a>
                   </li>
               </ul>
           </li>
@@ -562,7 +559,7 @@
 
 <p>示例：一个完整的GET请求：
 <a href="https://testnet.app.zkex.com/v1/market/trades">https://testnet.app.zkex.com/v1/market/trades</a>。</p>
-<h1 id='8ba46c43fe'>签名</h1>
+<h1 id='8ba46c43fe'>签名</h1><h2 id='api'>API-签名</h2>
 <p>API请求需要签名，以确认用户身份，并防止重放攻击。</p>
 
 <p>签名算法：</p>
@@ -635,6 +632,13 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 </ul>
 <h3 id='apikey-amp-apisecret'>ApiKey &amp; ApiSecret</h3>
 <p>暂时未开放接口获取，有需要请与我们联系</p>
+<h2 id='zk'>Zk-签名</h2>
+<p>交易时用户需要对交易数据进行ZK-Transaction签名</p>
+
+<ul>
+<li>可以参考zkLink 官方文档  <a href="https://docs.zk.link/welcome/readme">zkLink X </a></li>
+<li>如有需要，请与我们联系</li>
+</ul>
 <h1 id='55c26aba77'>用户信息</h1>
 <p>用户级别的操作api</p>
 <h2 id='8ccf3785a7'>获取用户操作手续费</h2>
@@ -687,6 +691,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>API路径：POST /v1/account/0/changePubKey</p>
 
 <p>是否需要鉴权：是</p>
+
+<p>signature and ethAuthData 需要进行zkLink签名获取</p>
 <div class="highlight"><pre class="highlight plaintext"><code>API请求样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -720,6 +726,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>API路径：POST /v1/account/0/withdraw</p>
 
 <p>是否需要鉴权：是</p>
+
+<p>signature and ethAuthData 需要进行zkLink签名获取</p>
 <div class="highlight"><pre class="highlight plaintext"><code>API请求样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -755,6 +763,8 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <p>API路径：POST /v1/account/0/transfer</p>
 
 <p>是否需要鉴权：是</p>
+
+<p>signature and ethAuthData 需要进行zkLink签名获取</p>
 <div class="highlight"><pre class="highlight plaintext"><code>API请求样例:
 </code></pre></div><div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -2104,7 +2114,7 @@ API-UNIQUE-ID: uni-123-abc-xyz\n
 <tr>
 <td style="text-align: left"><strong>signature</strong></td>
 <td><strong>String</strong></td>
-<td><strong>必填</strong><br/>请求参数签名串，通过2层私钥签名</td>
+<td><strong>必填</strong><br/>请求参数签名串，通过2层私钥签名，参考 ZkLink签名文档</td>
 </tr>
 </tbody></table>
 <div class="highlight"><pre class="highlight plaintext"><code>API响应样例：订单信息
