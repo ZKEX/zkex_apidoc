@@ -40,6 +40,8 @@ API路径：POST /v1/account/0/changePubKey
 
 是否需要鉴权：是
 
+signature and ethAuthData 需要进行zkLink签名获取
+
 ```
 API请求样例:
 ```
@@ -87,6 +89,8 @@ API描述：用户可以将资产进行提现，此操作需要进行L1签名及
 API路径：POST /v1/account/0/withdraw
 
 是否需要鉴权：是
+
+signature and ethAuthData 需要进行zkLink签名获取
 
 ```
 API请求样例:
@@ -138,6 +142,8 @@ API描述：用户可以将资产划转到指定的账户地址，此操作需�
 API路径：POST /v1/account/0/transfer
 
 是否需要鉴权：是
+
+signature and ethAuthData 需要进行zkLink签名获取
 
 ```
 API请求样例:

@@ -1,5 +1,7 @@
 # 签名
 
+## API-签名
+
 API请求需要签名，以确认用户身份，并防止重放攻击。
 
 签名算法：
@@ -84,3 +86,11 @@ API-Unique-ID为可选，如果提供，则客户端需要提供一个唯一字�
 ### ApiKey & ApiSecret
 
 暂时未开放接口获取，有需要请与我们联系
+
+
+## Zk-签名
+
+交易时用户需要对交易数据进行ZK-Transaction签名
+
+* 可以参考zkLink 官方文档  [zkLink X ](https://docs.zk.link/welcome/readme)
+* 如有需要，请与我们联系

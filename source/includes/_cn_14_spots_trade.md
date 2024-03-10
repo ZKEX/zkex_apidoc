@@ -124,7 +124,7 @@ API请求参数(Request Json Body)：
 | **clientOrderId**     | **string**  | **选填**<br/>用户自定义OrderId，可用于查询 activity Order        |
 | **slotId**            | **long**    | **必填**<br/>订单slotId，通过接口/v1/orderNonce/gen获取 例如`1`  |
 | **nonce**             | **long**    | **必填**<br/>订单NonceId，通过接口/v1/orderNonce/gen获取 例如`0` |
-| **signature**         | **String**  | **必填**<br/>请求参数签名串，通过2层私钥签名                         |
+| **signature**         | **String**  | **必填**<br/>请求参数签名串，通过2层私钥签名，参考 ZkLink签名文档           |
 
 
 
