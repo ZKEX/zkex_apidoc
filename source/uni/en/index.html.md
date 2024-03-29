@@ -9,15 +9,19 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - java
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+- <a href='#'>API Key Guide</a>
 
-#includes:
-#  - errors
+includes:
+- en_10_basic
+- en_12_api_signature
+- en_11_user
+- en_13_public_market
+- en_14_spots_trade
+- en_15_contracts_trade
+- en_16_websocket
+- en_99_errors
 
 search: true
 
 code_clipboard: true
 ---
-
-# Introduction
-Not Ready
