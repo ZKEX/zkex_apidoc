@@ -1,6 +1,6 @@
 ---
-name: uni
-title: Uni-Trading API Reference
+name: zkex
+title: Zkex-Trading API Reference
 
 #language_tabs: # must be one of https://git.io/vQNgJ
 #  - shell
@@ -13,14 +13,14 @@ toc_footers:
   - <a href='#'>API Key Guide</a>
 
 includes:
-  - cn_10_basic
-  - cn_12_api_signature
-  - cn_11_user
-  - cn_13_public_market
-  - cn_14_spots_trade
-  - cn_15_contracts_trade
-  - cn_16_websocket
-  - cn_99_errors
+  - en_10_basic
+  - en_12_api_signature
+  - en_11_user
+  - en_13_public_market
+  - en_14_spots_trade
+  - en_15_contracts_trade
+  - en_16_websocket
+  - en_99_errors
 
 search: true
 
