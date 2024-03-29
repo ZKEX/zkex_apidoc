@@ -1,12 +1,13 @@
 ---
-title: API Reference
+name: uni
+title: Uni-Trading API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-  - java
+#language_tabs: # must be one of https://git.io/vQNgJ
+#  - shell
+#  - ruby
+#  - python
+#  - javascript
+#  - java
 
 toc_footers:
 - <a href='#'>API Key Guide</a>
